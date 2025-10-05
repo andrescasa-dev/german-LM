@@ -19,7 +19,17 @@ export default function TopTabs({
     "contenido"
   );
   const [mobileOpen, setMobileOpen] = useState(false);
-  const closeMobile = useCallback(() => setMobileOpen(false), []);
+  const [drawerMounted, setDrawerMounted] = useState(false);
+  const openMobile = useCallback(() => {
+    setDrawerMounted(true);
+    // Permite que el panel monte antes de iniciar la animación
+    requestAnimationFrame(() => setMobileOpen(true));
+  }, []);
+  const closeMobile = useCallback(() => {
+    setMobileOpen(false);
+    // Espera a que la transición termine antes de desmontar
+    setTimeout(() => setDrawerMounted(false), 200);
+  }, []);
 
   return (
     <div className="space-y-8">
@@ -58,22 +68,28 @@ export default function TopTabs({
               size="icon"
               aria-label="Abrir menú de secciones"
               className="fixed left-4 top-4 z-50"
-              onClick={() => setMobileOpen(true)}
+              onClick={openMobile}
             >
               <Menu />
             </Button>
           </div>
 
-          {mobileOpen ? (
+          {drawerMounted ? (
             <div aria-hidden={false} className="md:hidden">
               <div
-                className="fixed inset-0 z-50 bg-black/50"
+                className={`fixed inset-0 z-50 transition-opacity duration-200 ease-out ${
+                  mobileOpen
+                    ? "opacity-100 bg-black/50"
+                    : "opacity-0 bg-black/50"
+                }`}
                 onClick={closeMobile}
               />
               <div
                 role="dialog"
                 aria-modal="true"
-                className="fixed left-0 top-0 z-50 h-full w-[80%] max-w-xs bg-background border-r shadow-xl flex flex-col"
+                className={`fixed left-0 top-0 z-50 h-full w-[80%] max-w-xs bg-background border-r shadow-xl flex flex-col transform transition-transform duration-200 ease-out ${
+                  mobileOpen ? "translate-x-0" : "-translate-x-full"
+                }`}
               >
                 <div className="p-4 border-b flex items-center justify-between">
                   <span className="text-sm font-medium">Navegación</span>
