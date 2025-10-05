@@ -10,34 +10,17 @@ export function useSectionState(sectionId: string, totalQuestions: number) {
   const storageKey = `german-lm-section-${sectionId}`;
 
   // Estado de la sección
-  const [progress, setProgress] = useState<SectionProgress>(() => {
-    // Intentar cargar desde sessionStorage
-    if (typeof window !== "undefined") {
-      const stored = sessionStorage.getItem(storageKey);
-      if (stored) {
-        try {
-          const parsed = JSON.parse(stored);
-          return {
-            ...parsed,
-            lastUpdated: new Date(parsed.lastUpdated),
-          };
-        } catch {
-          // Si falla el parsing, usar valores por defecto
-        }
-      }
-    }
-
-    return {
-      sectionId,
-      attempts: 0,
-      correctAnswers: 0,
-      totalQuestions,
-      hintsUsed: 0,
-      completed: false,
-      score: 0,
-      lastUpdated: new Date(),
-    };
-  });
+  const [progress, setProgress] = useState<SectionProgress>(() => ({
+    sectionId,
+    attempts: 0,
+    correctAnswers: 0,
+    totalQuestions,
+    hintsUsed: 0,
+    completed: false,
+    score: 0,
+    // Determinístico entre SSR y CSR para evitar mismatch
+    lastUpdated: new Date(0),
+  }));
 
   const [answers, setAnswers] = useState<UserAnswer[]>([]);
   const [showFeedback, setShowFeedback] = useState(false);
@@ -49,6 +32,23 @@ export function useSectionState(sectionId: string, totalQuestions: number) {
       sessionStorage.setItem(storageKey, JSON.stringify(progress));
     }
   }, [progress, storageKey]);
+
+  // Cargar desde sessionStorage tras montar (evita mismatch de hidratación)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const stored = sessionStorage.getItem(storageKey);
+    if (!stored) return;
+    try {
+      const parsed = JSON.parse(stored);
+      setProgress({
+        ...parsed,
+        lastUpdated: new Date(parsed.lastUpdated ?? 0),
+      });
+    } catch {
+      // Ignorar errores y mantener valores por defecto
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Registrar una respuesta
   const recordAnswer = useCallback(

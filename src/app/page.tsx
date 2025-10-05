@@ -17,7 +17,9 @@ export default function Home() {
             <div className="absolute inset-0 bg-black/40" />
           </div>
           <div className="relative z-10 container mx-auto px-4 pt-4 flex justify-end">
-            <ThemeToggle />
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
           </div>
           <div className="relative z-10 container mx-auto px-4 py-12 md:py-16 text-center">
             <h1 className="text-3xl md:text-4xl font-bold">
@@ -59,6 +61,12 @@ export default function Home() {
                 <Vocabulary />
               </section>
             }
+            contentSections={[
+              { id: "repaso", label: "I. Repaso & Diagnóstico" },
+              { id: "ejercicio-central", label: "II. Ejercicio central" },
+              { id: "relato", label: "III. Relato contextualizado" },
+              { id: "recursos", label: "IV. Recursos" },
+            ]}
           />
         </main>
 
