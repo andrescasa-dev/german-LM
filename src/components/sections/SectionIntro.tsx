@@ -346,11 +346,12 @@ export function SectionIntro() {
                       aria-label={`Terminación para: ${q.sentence}`}
                     />
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex flex-col md:flex-row gap-2">
                     <Button
                       size="sm"
                       onClick={() => handlePracticeSubmit(q)}
                       disabled={!practiceAnswers[q.id]}
+                      className="w-full md:w-auto"
                     >
                       Verificar
                     </Button>
@@ -358,6 +359,7 @@ export function SectionIntro() {
                       size="sm"
                       variant="outline"
                       onClick={() => handleShowHint(q)}
+                      className="w-full md:w-auto"
                     >
                       💡 Pista
                     </Button>
@@ -371,6 +373,7 @@ export function SectionIntro() {
                           [q.id]: getAdjectiveEnding(q.context),
                         }))
                       }
+                      className="w-full md:w-auto"
                     >
                       Rellenar
                     </Button>

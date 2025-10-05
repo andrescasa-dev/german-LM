@@ -112,7 +112,7 @@ german-lm/
 ### Sección IV: Recursos
 - Lista curada A2–B1
 - Favoritos persistentes
-- Plan de estudio personalizable
+ 
 - Criterio de logro: ≥1 recurso seleccionado + plan guardado
 
 ## ♿ Accesibilidad

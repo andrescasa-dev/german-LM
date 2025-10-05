@@ -49,9 +49,9 @@ Taller de consolidación intensiva sobre la Declinación del Adjetivo Alemán (r
 ### 4) Recursos para práctica continua
 - Objetivo: Derivar a práctica autónoma con material confiable A2–B1.
 - Contenidos: Listado curado (gramáticas, cuadernos, lecturas, simulacros B1).
-- Interacción: Guardar favoritos; enlaces; registro de estudio (opcional).
+- Interacción: Guardar favoritos; enlaces.
 - Duración sugerida: libre.
-- Criterios de logro: Selecciona al menos un recurso y planifica práctica.
+- Criterios de logro: Selecciona al menos un recurso.
 
 ---
 

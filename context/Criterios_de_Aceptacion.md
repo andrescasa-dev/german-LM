@@ -78,8 +78,8 @@ Basado en `context/Spec.md`. Estos criterios son verificables y cubren funcional
 
 ### 9) Sección IV — Recursos para práctica continua
 - [x] Lista curada A2–B1 con categorías (gramática, cuadernos, lecturas, simulacros B1) y enlaces.
-- [x] El usuario puede "guardar favorito" (persistencia por sesión) y registrar una nota/plan breve.
-- [x] Criterio de logro: el usuario selecciona al menos un recurso y planifica práctica.
+- [x] El usuario puede "guardar favorito" (persistencia por sesión).
+- [x] Criterio de logro: el usuario selecciona al menos un recurso.
 
 ---
 
@@ -115,7 +115,7 @@ Basado en `context/Spec.md`. Estos criterios son verificables y cubren funcional
 - [x] Repaso: micro-sondeo ≥2/3 correcto registrado.
 - [x] Ejercicio central: 3/3 correctos o 2/3 con explicación vista.
 - [x] Relato: ≥80% aciertos globales o mejora entre intentos; producción opcional correcta en 2 oraciones.
-- [x] Recursos: al menos un recurso seleccionado y plan de práctica guardado.
+- [x] Recursos: al menos un recurso seleccionado.
 - [x] Se muestra medalla/completado cuando se cumplen los cuatro criterios; persistencia por sesión.
 
 ---

@@ -246,16 +246,18 @@ export function ExerciseAkkusativMasculine() {
                   />
                 </div>
 
-                <div className="flex gap-2">
+                <div className="flex flex-col md:flex-row gap-2">
                   <Button
                     onClick={() => handleSubmit(scenario)}
                     disabled={!answers[scenario.id]}
+                    className="w-full md:w-auto"
                   >
                     Verificar
                   </Button>
                   <Button
                     variant="outline"
                     onClick={() => handleHint(scenario)}
+                    className="w-full md:w-auto"
                   >
                     💡 Pista
                   </Button>
@@ -268,6 +270,7 @@ export function ExerciseAkkusativMasculine() {
                         [scenario.id]: getAdjectiveEnding(scenario.context),
                       }))
                     }
+                    className="w-full md:w-auto"
                   >
                     Rellenar
                   </Button>
@@ -285,6 +288,7 @@ export function ExerciseAkkusativMasculine() {
                               "Piensa en la regla: ¿quién lleva la marca fuerte aquí?",
                           });
                         }}
+                        className="w-full md:w-auto"
                       >
                         Intento extra
                       </Button>

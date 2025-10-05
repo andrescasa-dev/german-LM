@@ -389,16 +389,18 @@ export function NarrativeCloze() {
             </div>
 
             {!verifiedParagraphs.has(paragraph.id) && (
-              <div className="flex gap-2">
+              <div className="flex flex-col md:flex-row gap-2">
                 <Button
                   onClick={() => handleVerifyParagraph(paragraph)}
                   disabled={paragraph.clozes.some((c) => !answers[c.id])}
+                  className="w-full md:w-auto"
                 >
                   Verificar párrafo
                 </Button>
                 <Button
                   variant="outline"
                   onClick={() => handleHintForParagraph(paragraph)}
+                  className="w-full md:w-auto"
                 >
                   💡 Pistas
                 </Button>
@@ -406,6 +408,7 @@ export function NarrativeCloze() {
                   variant="secondary"
                   onClick={() => handleFillParagraph(paragraph)}
                   aria-label={`Rellenar todas las terminaciones del párrafo ${paragraph.title}`}
+                  className="w-full md:w-auto"
                 >
                   Rellenar
                 </Button>

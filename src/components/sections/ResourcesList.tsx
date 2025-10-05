@@ -98,7 +98,6 @@ const CATEGORY_LABELS = {
 
 export function ResourcesList() {
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
-  const [studyPlan, setStudyPlan] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   // Cargar favoritos desde sessionStorage
@@ -113,10 +112,7 @@ export function ResourcesList() {
         }
       }
 
-      const storedPlan = sessionStorage.getItem("german-lm-study-plan");
-      if (storedPlan) {
-        setStudyPlan(storedPlan);
-      }
+      // Ya no se usa plan de estudio
     }
   }, []);
 
@@ -144,20 +140,13 @@ export function ResourcesList() {
     });
   };
 
-  const savePlan = () => {
-    if (typeof window !== "undefined") {
-      sessionStorage.setItem("german-lm-study-plan", studyPlan);
-      toast.success("Plan de estudio guardado", {
-        description: "Tu plan se ha guardado en esta sesión.",
-      });
-    }
-  };
+  // Eliminado: guardado de plan de estudio
 
   const filteredResources = selectedCategory
     ? RESOURCES.filter((r) => r.category === selectedCategory)
     : RESOURCES;
 
-  const criteriaComplete = favorites.size > 0 && studyPlan.trim().length > 0;
+  const criteriaComplete = favorites.size > 0;
 
   return (
     <Card>
@@ -259,24 +248,7 @@ export function ResourcesList() {
           ))}
         </div>
 
-        {/* Plan de estudio */}
-        <div className="border-t pt-6">
-          <h3 className="font-semibold text-lg mb-3">📅 Mi plan de práctica</h3>
-          <p className="text-sm text-muted-foreground mb-3">
-            Describe brevemente cómo planeas usar estos recursos (20–30 min
-            sugeridos):
-          </p>
-          <Input
-            placeholder="Ej: Lunes y miércoles, 20 min de ejercicios de Schubert Verlag..."
-            value={studyPlan}
-            onChange={(e) => setStudyPlan(e.target.value)}
-            className="mb-3"
-            aria-label="Plan de estudio"
-          />
-          <Button onClick={savePlan} disabled={!studyPlan.trim()}>
-            Guardar plan
-          </Button>
-        </div>
+        {/* Se eliminó el bloque de plan de práctica */}
 
         {/* Favoritos seleccionados */}
         {favorites.size > 0 && (
@@ -304,8 +276,7 @@ export function ResourcesList() {
               ¡Sección completada!
             </p>
             <p className="text-sm text-muted-foreground mt-1">
-              Has seleccionado {favorites.size} recurso(s) y planificado tu
-              práctica.
+              Has seleccionado {favorites.size} recurso(s).
             </p>
           </div>
         )}
