@@ -195,7 +195,10 @@ export function SectionIntro() {
       <CardHeader>
         <CardTitle>I. Repaso de los Tipos de Declinación</CardTitle>
         <CardDescription>
-          Distinguir cuándo aplica declinación débil, mixta o fuerte
+          Objetivo: distinguir cuándo aplica declinación débil, mixta o fuerte.
+          Cómo interactuar: escribe la terminación del adjetivo en los campos y
+          verifica cada ítem; puedes pedir una pista. Criterio de aprobación:
+          micro-sondeo ≥2/3 y práctica completada.
         </CardDescription>
         <Progress value={progress.score} className="mt-4" />
         <div className="flex justify-between text-sm text-muted-foreground mt-2">

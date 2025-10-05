@@ -12,7 +12,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { useSectionState } from "@/hooks/useSectionState";
-import { validateAdjectiveEnding, generateHint } from "@/lib/adjective-rules";
+import {
+  validateAdjectiveEnding,
+  generateHint,
+  getAdjectiveEnding,
+} from "@/lib/adjective-rules";
 import type { AdjectiveContext } from "@/types/adjective";
 import { toast } from "sonner";
 
@@ -217,6 +221,22 @@ export function NarrativeCloze() {
     new Set()
   );
 
+  const handleKeyDownInput = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    paragraph: Paragraph
+  ) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (!paragraph.clozes.some((c) => !answers[c.id])) return;
+      // If not all filled, move focus to next empty input
+      const next = paragraph.clozes.find((c) => !(answers[c.id] || "").trim());
+      const el = document.querySelector<HTMLInputElement>(
+        `input[data-cloze="${next?.id}"]`
+      );
+      el?.focus();
+    }
+  };
+
   const handleVerifyParagraph = (paragraph: Paragraph) => {
     let correctCount = 0;
     const results: string[] = [];
@@ -234,9 +254,9 @@ export function NarrativeCloze() {
       }
     });
 
-    setVerifiedParagraphs((prev) => new Set([...prev, paragraph.id]));
-
-    if (correctCount === paragraph.clozes.length) {
+    const allCorrect = correctCount === paragraph.clozes.length;
+    if (allCorrect) {
+      setVerifiedParagraphs((prev) => new Set([...prev, paragraph.id]));
       toast.success(`¡Párrafo "${paragraph.title}" correcto! ✓`, {
         description: `${correctCount}/${paragraph.clozes.length} respuestas correctas.`,
       });
@@ -261,38 +281,70 @@ export function NarrativeCloze() {
     });
   };
 
-  const renderParagraphText = (paragraph: Paragraph) => {
-    let text = paragraph.text;
-    paragraph.clozes.forEach((cloze) => {
-      const placeholder = `{${cloze.adjective}}`;
-      const input = `<input data-cloze="${cloze.id}" />`;
-      text = text.replace(placeholder, input);
+  const handleFillParagraph = (paragraph: Paragraph) => {
+    setAnswers((prev) => {
+      const next = { ...prev };
+      paragraph.clozes.forEach((cloze) => {
+        const ending = getAdjectiveEnding(cloze.context);
+        next[cloze.id] = ending;
+      });
+      return next;
     });
+  };
 
-    return text.split(/(<input[^>]*>)/).map((part, index) => {
-      const match = part.match(/data-cloze="([^"]+)"/);
-      if (match) {
-        const clozeId = match[1];
-        const cloze = paragraph.clozes.find((c) => c.id === clozeId);
-        return (
-          <span key={index} className="inline-flex items-center mx-1">
-            <span className="font-mono text-sm mr-1">{cloze?.adjective}</span>
-            <Input
-              type="text"
-              maxLength={3}
-              className="w-16 h-8 inline-flex"
-              value={answers[clozeId] || ""}
-              onChange={(e) =>
-                setAnswers((prev) => ({ ...prev, [clozeId]: e.target.value }))
-              }
-              disabled={verifiedParagraphs.has(paragraph.id)}
-              aria-label={`Terminación para ${cloze?.adjective}`}
-            />
+  const renderParagraphText = (paragraph: Paragraph) => {
+    const nodes: React.ReactNode[] = [];
+    const regex = /\{([^}]+)\}/g;
+    let lastIndex = 0;
+    let clozeIndex = 0;
+    let match: RegExpExecArray | null;
+
+    while ((match = regex.exec(paragraph.text)) !== null) {
+      if (match.index > lastIndex) {
+        nodes.push(
+          <span key={`t-${paragraph.id}-${lastIndex}`}>
+            {paragraph.text.slice(lastIndex, match.index)}
           </span>
         );
       }
-      return <span key={index}>{part}</span>;
-    });
+
+      const cloze = paragraph.clozes[clozeIndex];
+      const clozeId = cloze?.id ?? `${paragraph.id}-auto-${clozeIndex}`;
+      nodes.push(
+        <span
+          key={`c-${paragraph.id}-${clozeId}`}
+          className="inline-flex items-center mx-1"
+        >
+          <span className="font-mono text-sm mr-1">{cloze?.adjective}</span>
+          <Input
+            type="text"
+            maxLength={3}
+            className="w-16 h-8 inline-flex"
+            value={answers[clozeId] || ""}
+            onChange={(e) =>
+              setAnswers((prev) => ({ ...prev, [clozeId]: e.target.value }))
+            }
+            disabled={verifiedParagraphs.has(paragraph.id)}
+            aria-label={`Terminación para ${cloze?.adjective}`}
+            data-cloze={clozeId}
+            onKeyDown={(e) => handleKeyDownInput(e, paragraph)}
+          />
+        </span>
+      );
+
+      clozeIndex++;
+      lastIndex = match.index + match[0].length;
+    }
+
+    if (lastIndex < paragraph.text.length) {
+      nodes.push(
+        <span key={`t-${paragraph.id}-end`}>
+          {paragraph.text.slice(lastIndex)}
+        </span>
+      );
+    }
+
+    return nodes;
   };
 
   return (
@@ -350,6 +402,13 @@ export function NarrativeCloze() {
                 >
                   💡 Pistas
                 </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleFillParagraph(paragraph)}
+                  aria-label={`Rellenar todas las terminaciones del párrafo ${paragraph.title}`}
+                >
+                  Rellenar
+                </Button>
               </div>
             )}
 
@@ -394,7 +453,14 @@ export function NarrativeCloze() {
 
         {/* Botón de reset */}
         <div className="flex justify-end pt-4 border-t">
-          <Button variant="outline" onClick={resetSection}>
+          <Button
+            variant="outline"
+            onClick={() => {
+              setAnswers({});
+              setVerifiedParagraphs(new Set());
+              resetSection();
+            }}
+          >
             Reiniciar sección
           </Button>
         </div>
