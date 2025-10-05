@@ -3,6 +3,7 @@ import { ExerciseAkkusativMasculine } from "@/components/sections/ExerciseAkkusa
 import { NarrativeCloze } from "@/components/sections/NarrativeCloze";
 import { ResourcesList } from "@/components/sections/ResourcesList";
 import { Toaster } from "@/components/ui/sonner";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Home() {
   return (
@@ -13,7 +14,10 @@ export default function Home() {
             <div className="h-full w-full bg-[url('/banner.webp')] bg-cover bg-center" />
             <div className="absolute inset-0 bg-black/40" />
           </div>
-          <div className="relative container mx-auto px-4 py-16 text-center">
+          <div className="relative z-10 container mx-auto px-4 pt-4 flex justify-end">
+            <ThemeToggle />
+          </div>
+          <div className="relative z-10 container mx-auto px-4 py-12 md:py-16 text-center">
             <h1 className="text-3xl md:text-4xl font-bold">
               <span className="inline-block bg-background text-foreground rounded-xl px-4 py-2 shadow-sm">
                 🧙‍♀️ Taller de Declinación del Adjetivo Alemán

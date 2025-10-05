@@ -281,6 +281,29 @@ export function SectionIntro() {
           </div>
         </div>
 
+        {/* Ejemplo ilustrativo (no puntúa) */}
+        <div className="bg-muted/30 rounded-lg p-4">
+          <h4 className="font-semibold mb-2">Ejemplo</h4>
+          <p className="text-sm text-muted-foreground mb-2">
+            Observa cómo se completa la terminación directamente en la oración:
+          </p>
+          <p className="text-base leading-relaxed">
+            {"Der "}
+            <span className="inline-flex items-baseline gap-2 align-baseline">
+              <span className="font-mono">alt</span>
+              <Input
+                type="text"
+                maxLength={3}
+                disabled
+                value="e"
+                className="inline-block align-baseline w-16 min-w-[6rem] shrink-0"
+                aria-label="Ejemplo de terminación para alt"
+              />
+            </span>
+            {" Mann kommt."}
+          </p>
+        </div>
+
         {/* Micro-sondeo */}
         {!surveyCompleted && (
           <div>
@@ -289,27 +312,39 @@ export function SectionIntro() {
               Completa las terminaciones de los adjetivos:
             </p>
             <div className="space-y-4">
-              {SURVEY_QUESTIONS.map((q) => (
-                <div key={q.id} className="flex items-center gap-3">
-                  <label htmlFor={q.id} className="flex-1">
-                    {q.sentence.replace("_____", `${q.adjective}___`)}
-                  </label>
-                  <Input
-                    id={q.id}
-                    type="text"
-                    maxLength={3}
-                    className="w-20"
-                    value={surveyAnswers[q.id] || ""}
-                    onChange={(e) =>
-                      setSurveyAnswers((prev) => ({
-                        ...prev,
-                        [q.id]: e.target.value,
-                      }))
-                    }
-                    aria-label={`Terminación para: ${q.sentence}`}
-                  />
-                </div>
-              ))}
+              {SURVEY_QUESTIONS.map((q) => {
+                const parts = q.sentence.split("_____");
+                const before = parts[0] ?? "";
+                const after = parts[1] ?? "";
+                return (
+                  <div key={q.id} className="text-base leading-relaxed">
+                    <label htmlFor={q.id} className="sr-only">
+                      Terminación para: {q.sentence}
+                    </label>
+                    <p>
+                      {before}
+                      <span className="inline-flex items-baseline gap-2 align-baseline">
+                        <span className="font-mono">{q.adjective}</span>
+                        <Input
+                          id={q.id}
+                          type="text"
+                          maxLength={3}
+                          className="inline-block align-baseline w-28 md:w-32 min-w-[8rem] shrink-0"
+                          value={surveyAnswers[q.id] || ""}
+                          onChange={(e) =>
+                            setSurveyAnswers((prev) => ({
+                              ...prev,
+                              [q.id]: e.target.value,
+                            }))
+                          }
+                          aria-label={`Terminación para: ${q.sentence}`}
+                        />
+                      </span>
+                      {after}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
             <Button onClick={handleSurveySubmit} className="mt-4">
               🪄 Enviar micro-sondeo
@@ -325,61 +360,76 @@ export function SectionIntro() {
               Identifica el marcador y selecciona la terminación correcta:
             </p>
             <div className="space-y-6">
-              {PRACTICE_QUESTIONS.map((q) => (
-                <div key={q.id} className="border border-border rounded-lg p-4">
-                  <div className="flex items-center gap-3 mb-3">
-                    <label htmlFor={`practice-${q.id}`} className="flex-1">
-                      {q.sentence.replace("_____", `${q.adjective}___`)}
-                    </label>
-                    <Input
-                      id={`practice-${q.id}`}
-                      type="text"
-                      maxLength={3}
-                      className="w-20"
-                      value={practiceAnswers[q.id] || ""}
-                      onChange={(e) =>
-                        setPracticeAnswers((prev) => ({
-                          ...prev,
-                          [q.id]: e.target.value,
-                        }))
-                      }
-                      aria-label={`Terminación para: ${q.sentence}`}
-                    />
+              {PRACTICE_QUESTIONS.map((q) => {
+                const parts = q.sentence.split("_____");
+                const before = parts[0] ?? "";
+                const after = parts[1] ?? "";
+                return (
+                  <div
+                    key={q.id}
+                    className="border border-border rounded-lg p-4"
+                  >
+                    <div className="mb-3 text-base leading-relaxed">
+                      <label htmlFor={`practice-${q.id}`} className="sr-only">
+                        Terminación para: {q.sentence}
+                      </label>
+                      <p>
+                        {before}
+                        <span className="inline-flex items-baseline gap-2 align-baseline">
+                          <span className="font-mono">{q.adjective}</span>
+                          <Input
+                            id={`practice-${q.id}`}
+                            type="text"
+                            maxLength={3}
+                            className="inline-block align-baseline w-28 md:w-32 min-w-[8rem] shrink-0"
+                            value={practiceAnswers[q.id] || ""}
+                            onChange={(e) =>
+                              setPracticeAnswers((prev) => ({
+                                ...prev,
+                                [q.id]: e.target.value,
+                              }))
+                            }
+                            aria-label={`Terminación para: ${q.sentence}`}
+                          />
+                        </span>
+                        {after}
+                      </p>
+                    </div>
+                    <div className="flex flex-col md:flex-row gap-2">
+                      <Button
+                        size="sm"
+                        onClick={() => handlePracticeSubmit(q)}
+                        disabled={!practiceAnswers[q.id]}
+                        className="w-full md:w-auto"
+                      >
+                        🪄 Verificar
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleShowHint(q)}
+                        className="w-full md:w-auto"
+                      >
+                        💡 Pista
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        aria-label={`Rellenar terminación correcta para: ${q.sentence}`}
+                        onClick={() =>
+                          setPracticeAnswers((prev) => ({
+                            ...prev,
+                            [q.id]: getAdjectiveEnding(q.context),
+                          }))
+                        }
+                        className="w-full md:w-auto"
+                      >
+                        Rellenar
+                      </Button>
+                    </div>
                   </div>
-                  <div className="flex flex-col md:flex-row gap-2">
-                    <Button
-                      size="sm"
-                      onClick={() => handlePracticeSubmit(q)}
-                      disabled={!practiceAnswers[q.id]}
-                      className="w-full md:w-auto"
-                    >
-                      🪄 Verificar
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => handleShowHint(q)}
-                      className="w-full md:w-auto"
-                    >
-                      💡 Pista
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="secondary"
-                      aria-label={`Rellenar terminación correcta para: ${q.sentence}`}
-                      onClick={() =>
-                        setPracticeAnswers((prev) => ({
-                          ...prev,
-                          [q.id]: getAdjectiveEnding(q.context),
-                        }))
-                      }
-                      className="w-full md:w-auto"
-                    >
-                      Rellenar
-                    </Button>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}
