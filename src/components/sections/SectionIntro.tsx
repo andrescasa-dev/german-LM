@@ -197,7 +197,7 @@ export function SectionIntro() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>I. Repaso de los Tipos de Declinación</CardTitle>
+        <CardTitle>🔮 I. Repaso de los Tipos de Declinación</CardTitle>
         <CardDescription>
           En síntesis: calentamiento + mini‑clase guiada + práctica corta para
           asegurar que identificas el marcador (der/ein/—) y aplicas la
@@ -312,7 +312,7 @@ export function SectionIntro() {
               ))}
             </div>
             <Button onClick={handleSurveySubmit} className="mt-4">
-              Enviar micro-sondeo
+              🪄 Enviar micro-sondeo
             </Button>
           </div>
         )}
@@ -353,7 +353,7 @@ export function SectionIntro() {
                       disabled={!practiceAnswers[q.id]}
                       className="w-full md:w-auto"
                     >
-                      Verificar
+                      🪄 Verificar
                     </Button>
                     <Button
                       size="sm"

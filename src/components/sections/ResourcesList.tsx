@@ -151,7 +151,7 @@ export function ResourcesList() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>IV. Recursos para Práctica Continua</CardTitle>
+        <CardTitle>🔮 IV. Recursos para Práctica Continua</CardTitle>
         <CardDescription>
           Material confiable A2–B1 para estudio autónomo
         </CardDescription>
@@ -186,7 +186,7 @@ export function ResourcesList() {
             size="sm"
             onClick={() => setSelectedCategory(null)}
           >
-            Todos
+            🪄 Todos
           </Button>
           {Object.entries(CATEGORY_LABELS).map(([key, label]) => (
             <Button
@@ -195,7 +195,7 @@ export function ResourcesList() {
               size="sm"
               onClick={() => setSelectedCategory(key)}
             >
-              {label}
+              🪄 {label}
             </Button>
           ))}
         </div>
@@ -241,7 +241,7 @@ export function ResourcesList() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Visitar recurso →
+                  🪄 Visitar recurso →
                 </a>
               </Button>
             </div>

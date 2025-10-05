@@ -350,7 +350,7 @@ export function NarrativeCloze() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>III. Relato Contextualizado</CardTitle>
+        <CardTitle>🔮 III. Relato Contextualizado</CardTitle>
         <CardDescription>
           Aplicar débil/mixta/fuerte en contexto narrativo con mezcla de casos
         </CardDescription>
@@ -395,7 +395,7 @@ export function NarrativeCloze() {
                   disabled={paragraph.clozes.some((c) => !answers[c.id])}
                   className="w-full md:w-auto"
                 >
-                  Verificar párrafo
+                  🪄 Verificar párrafo
                 </Button>
                 <Button
                   variant="outline"
@@ -410,7 +410,7 @@ export function NarrativeCloze() {
                   aria-label={`Rellenar todas las terminaciones del párrafo ${paragraph.title}`}
                   className="w-full md:w-auto"
                 >
-                  Rellenar
+                  🪄 Rellenar
                 </Button>
               </div>
             )}

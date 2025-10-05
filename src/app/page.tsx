@@ -8,13 +8,21 @@ export default function Home() {
   return (
     <>
       <div className="min-h-screen bg-background">
-        <header className="border-b">
-          <div className="container mx-auto px-4 py-6">
-            <h1 className="text-3xl font-bold text-foreground">
-              Taller de Declinación del Adjetivo Alemán
+        <header className="relative border-b overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="h-full w-full bg-[url('/banner.webp')] bg-cover bg-center" />
+            <div className="absolute inset-0 bg-black/40" />
+          </div>
+          <div className="relative container mx-auto px-4 py-16 text-center">
+            <h1 className="text-3xl md:text-4xl font-bold">
+              <span className="inline-block bg-background text-foreground rounded-xl px-4 py-2 shadow-sm">
+                🧙‍♀️ Taller de Declinación del Adjetivo Alemán
+              </span>
             </h1>
-            <p className="text-muted-foreground mt-2">
-              Nivel A2.2–B1 | Enfoque comunicativo
+            <p className="mt-3">
+              <span className="inline-block bg-background text-foreground rounded-full px-3 py-1 shadow-sm">
+                Nivel A2.2–B1 | Enfoque comunicativo
+              </span>
             </p>
           </div>
         </header>

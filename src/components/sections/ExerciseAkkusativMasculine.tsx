@@ -132,7 +132,7 @@ export function ExerciseAkkusativMasculine() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>II. Ejercicio Central: Acusativo Masculino</CardTitle>
+        <CardTitle>🔮 II. Ejercicio Central: Acusativo Masculino</CardTitle>
         <CardDescription>
           Consolidar la selección de terminaciones en el punto de mayor
           confusión
@@ -187,7 +187,7 @@ export function ExerciseAkkusativMasculine() {
               onClick={() => setShowDemo(false)}
               className="mt-4"
             >
-              Entendido, comenzar ejercicio
+              🪄 Entendido, comenzar ejercicio
             </Button>
           </div>
         )}
@@ -252,7 +252,7 @@ export function ExerciseAkkusativMasculine() {
                     disabled={!answers[scenario.id]}
                     className="w-full md:w-auto"
                   >
-                    Verificar
+                    🪄 Verificar
                   </Button>
                   <Button
                     variant="outline"
@@ -272,7 +272,7 @@ export function ExerciseAkkusativMasculine() {
                     }
                     className="w-full md:w-auto"
                   >
-                    Rellenar
+                    🪄 Rellenar
                   </Button>
                   {attempts[scenario.id] > 0 &&
                     !userAnswers.find(
@@ -290,7 +290,7 @@ export function ExerciseAkkusativMasculine() {
                         }}
                         className="w-full md:w-auto"
                       >
-                        Intento extra
+                        🪄 Intento extra
                       </Button>
                     )}
                 </div>
