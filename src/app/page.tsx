@@ -4,6 +4,8 @@ import { NarrativeCloze } from "@/components/sections/NarrativeCloze";
 import { ResourcesList } from "@/components/sections/ResourcesList";
 import { Toaster } from "@/components/ui/sonner";
 import ThemeToggle from "@/components/ThemeToggle";
+import { Vocabulary } from "@/components/sections/Vocabulary";
+import TopTabs from "@/components/TopTabs";
 
 export default function Home() {
   return (
@@ -31,22 +33,33 @@ export default function Home() {
           </div>
         </header>
 
-        <main className="container mx-auto px-4 py-8 space-y-12">
-          <section id="repaso" className="scroll-mt-20">
-            <SectionIntro />
-          </section>
+        <main className="container mx-auto px-4 py-8 space-y-8">
+          <TopTabs
+            content={
+              <div className="space-y-12">
+                <section id="repaso" className="scroll-mt-20">
+                  <SectionIntro />
+                </section>
 
-          <section id="ejercicio-central" className="scroll-mt-20">
-            <ExerciseAkkusativMasculine />
-          </section>
+                <section id="ejercicio-central" className="scroll-mt-20">
+                  <ExerciseAkkusativMasculine />
+                </section>
 
-          <section id="relato" className="scroll-mt-20">
-            <NarrativeCloze />
-          </section>
+                <section id="relato" className="scroll-mt-20">
+                  <NarrativeCloze />
+                </section>
 
-          <section id="recursos" className="scroll-mt-20">
-            <ResourcesList />
-          </section>
+                <section id="recursos" className="scroll-mt-20">
+                  <ResourcesList />
+                </section>
+              </div>
+            }
+            vocabulary={
+              <section id="vocabulario" className="scroll-mt-20">
+                <Vocabulary />
+              </section>
+            }
+          />
         </main>
 
         <footer className="border-t mt-16">
