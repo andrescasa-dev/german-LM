@@ -1,0 +1,421 @@
+"use client";
+
+import { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Progress } from "@/components/ui/progress";
+import { useSectionState } from "@/hooks/useSectionState";
+import { validateAdjectiveEnding, generateHint } from "@/lib/adjective-rules";
+import type { AdjectiveContext } from "@/types/adjective";
+import { toast } from "sonner";
+
+interface ClozeItem {
+  id: string;
+  adjective: string;
+  context: AdjectiveContext;
+}
+
+interface Paragraph {
+  id: string;
+  title: string;
+  text: string;
+  clozes: ClozeItem[];
+  emoji: string;
+}
+
+const NARRATIVE: Paragraph[] = [
+  {
+    id: "para-1",
+    title: "Llegada a la cabaña",
+    emoji: "🏔️",
+    text: "Der Entdecker erreicht eine {alte} Hütte. In der {dunklen} Nacht sieht er ein {schwaches} Licht.",
+    clozes: [
+      {
+        id: "cloze-1",
+        adjective: "alt",
+        context: {
+          determiner: {
+            word: "eine",
+            type: "indefinite",
+            case: "akkusativ",
+            gender: "feminin",
+            number: "singular",
+          },
+          case: "akkusativ",
+          gender: "feminin",
+          number: "singular",
+        },
+      },
+      {
+        id: "cloze-2",
+        adjective: "dunkel",
+        context: {
+          determiner: {
+            word: "der",
+            type: "definite",
+            case: "dativ",
+            gender: "feminin",
+            number: "singular",
+          },
+          case: "dativ",
+          gender: "feminin",
+          number: "singular",
+        },
+      },
+      {
+        id: "cloze-3",
+        adjective: "schwach",
+        context: {
+          determiner: {
+            word: "ein",
+            type: "indefinite",
+            case: "akkusativ",
+            gender: "neutrum",
+            number: "singular",
+          },
+          case: "akkusativ",
+          gender: "neutrum",
+          number: "singular",
+        },
+      },
+    ],
+  },
+  {
+    id: "para-2",
+    title: "Interior de la cabaña",
+    emoji: "🪵",
+    text: "Er findet {warme} Decken und {frisches} Brot. Auf dem {kleinen} Tisch liegt ein {alter} Brief.",
+    clozes: [
+      {
+        id: "cloze-4",
+        adjective: "warm",
+        context: {
+          determiner: null,
+          case: "akkusativ",
+          gender: "feminin",
+          number: "plural",
+        },
+      },
+      {
+        id: "cloze-5",
+        adjective: "frisch",
+        context: {
+          determiner: null,
+          case: "akkusativ",
+          gender: "neutrum",
+          number: "singular",
+        },
+      },
+      {
+        id: "cloze-6",
+        adjective: "klein",
+        context: {
+          determiner: {
+            word: "dem",
+            type: "definite",
+            case: "dativ",
+            gender: "maskulin",
+            number: "singular",
+          },
+          case: "dativ",
+          gender: "maskulin",
+          number: "singular",
+        },
+      },
+      {
+        id: "cloze-7",
+        adjective: "alt",
+        context: {
+          determiner: {
+            word: "ein",
+            type: "indefinite",
+            case: "nominativ",
+            gender: "maskulin",
+            number: "singular",
+          },
+          case: "nominativ",
+          gender: "maskulin",
+          number: "singular",
+        },
+      },
+    ],
+  },
+  {
+    id: "para-3",
+    title: "Suministros",
+    emoji: "🎒",
+    text: "Der Brief erwähnt {wichtige} Vorräte: {gutes} Wasser, {trockenes} Holz und einen {warmen} Schlafsack.",
+    clozes: [
+      {
+        id: "cloze-8",
+        adjective: "wichtig",
+        context: {
+          determiner: null,
+          case: "akkusativ",
+          gender: "maskulin",
+          number: "plural",
+        },
+      },
+      {
+        id: "cloze-9",
+        adjective: "gut",
+        context: {
+          determiner: null,
+          case: "akkusativ",
+          gender: "neutrum",
+          number: "singular",
+        },
+      },
+      {
+        id: "cloze-10",
+        adjective: "trocken",
+        context: {
+          determiner: null,
+          case: "akkusativ",
+          gender: "neutrum",
+          number: "singular",
+        },
+      },
+      {
+        id: "cloze-11",
+        adjective: "warm",
+        context: {
+          determiner: {
+            word: "einen",
+            type: "indefinite",
+            case: "akkusativ",
+            gender: "maskulin",
+            number: "singular",
+          },
+          case: "akkusativ",
+          gender: "maskulin",
+          number: "singular",
+        },
+      },
+    ],
+  },
+];
+
+const TOTAL_CLOZES = NARRATIVE.reduce(
+  (sum, para) => sum + para.clozes.length,
+  0
+);
+
+export function NarrativeCloze() {
+  const { progress, recordAnswer, recordHintUsed, resetSection } =
+    useSectionState("narrative-cloze", TOTAL_CLOZES);
+
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [verifiedParagraphs, setVerifiedParagraphs] = useState<Set<string>>(
+    new Set()
+  );
+
+  const handleVerifyParagraph = (paragraph: Paragraph) => {
+    let correctCount = 0;
+    const results: string[] = [];
+
+    paragraph.clozes.forEach((cloze) => {
+      const answer = answers[cloze.id] || "";
+      const result = validateAdjectiveEnding(answer, cloze.context);
+
+      recordAnswer(cloze.id, answer, result.isCorrect, 0);
+
+      if (result.isCorrect) {
+        correctCount++;
+      } else {
+        results.push(`❌ ${cloze.adjective}: ${result.explanation}`);
+      }
+    });
+
+    setVerifiedParagraphs((prev) => new Set([...prev, paragraph.id]));
+
+    if (correctCount === paragraph.clozes.length) {
+      toast.success(`¡Párrafo "${paragraph.title}" correcto! ✓`, {
+        description: `${correctCount}/${paragraph.clozes.length} respuestas correctas.`,
+      });
+    } else {
+      toast.error(`Párrafo "${paragraph.title}" con errores`, {
+        description: results.join("\n"),
+        duration: 8000,
+      });
+    }
+  };
+
+  const handleHintForParagraph = (paragraph: Paragraph) => {
+    const hints = paragraph.clozes.map((cloze) => {
+      const hint = generateHint(cloze.context);
+      return `• ${cloze.adjective}: ${hint}`;
+    });
+
+    recordHintUsed();
+    toast.info(`Pistas para "${paragraph.title}"`, {
+      description: hints.join("\n"),
+      duration: 10000,
+    });
+  };
+
+  const renderParagraphText = (paragraph: Paragraph) => {
+    let text = paragraph.text;
+    paragraph.clozes.forEach((cloze) => {
+      const placeholder = `{${cloze.adjective}}`;
+      const input = `<input data-cloze="${cloze.id}" />`;
+      text = text.replace(placeholder, input);
+    });
+
+    return text.split(/(<input[^>]*>)/).map((part, index) => {
+      const match = part.match(/data-cloze="([^"]+)"/);
+      if (match) {
+        const clozeId = match[1];
+        const cloze = paragraph.clozes.find((c) => c.id === clozeId);
+        return (
+          <span key={index} className="inline-flex items-center mx-1">
+            <span className="font-mono text-sm mr-1">{cloze?.adjective}</span>
+            <Input
+              type="text"
+              maxLength={3}
+              className="w-16 h-8 inline-flex"
+              value={answers[clozeId] || ""}
+              onChange={(e) =>
+                setAnswers((prev) => ({ ...prev, [clozeId]: e.target.value }))
+              }
+              disabled={verifiedParagraphs.has(paragraph.id)}
+              aria-label={`Terminación para ${cloze?.adjective}`}
+            />
+          </span>
+        );
+      }
+      return <span key={index}>{part}</span>;
+    });
+  };
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>III. Relato Contextualizado</CardTitle>
+        <CardDescription>
+          Aplicar débil/mixta/fuerte en contexto narrativo con mezcla de casos
+        </CardDescription>
+        <Progress value={progress.score} className="mt-4" />
+        <div className="flex justify-between text-sm text-muted-foreground mt-2">
+          <span>
+            Progreso: {progress.correctAnswers}/{progress.totalQuestions}
+          </span>
+          <span>Pistas usadas: {progress.hintsUsed}</span>
+        </div>
+      </CardHeader>
+
+      <CardContent className="space-y-8">
+        <div className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+          <h3 className="font-semibold mb-2 text-amber-900 dark:text-amber-100">
+            📖 Diario del Explorador
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Completa las terminaciones de los adjetivos en este relato. Presta
+            atención a las preposiciones y artículos que indican el caso.
+          </p>
+        </div>
+
+        {NARRATIVE.map((paragraph) => (
+          <div
+            key={paragraph.id}
+            className="border border-border rounded-lg p-6 space-y-4"
+          >
+            <div className="flex items-center gap-3">
+              <span className="text-3xl">{paragraph.emoji}</span>
+              <h3 className="font-semibold text-lg">{paragraph.title}</h3>
+            </div>
+
+            <div className="bg-muted/30 rounded-lg p-4 leading-relaxed">
+              <p className="text-base">{renderParagraphText(paragraph)}</p>
+            </div>
+
+            {!verifiedParagraphs.has(paragraph.id) && (
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => handleVerifyParagraph(paragraph)}
+                  disabled={paragraph.clozes.some((c) => !answers[c.id])}
+                >
+                  Verificar párrafo
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => handleHintForParagraph(paragraph)}
+                >
+                  💡 Pistas
+                </Button>
+              </div>
+            )}
+
+            {verifiedParagraphs.has(paragraph.id) && (
+              <div className="text-sm text-green-600 dark:text-green-400 flex items-center gap-2">
+                <span>✓</span>
+                <span>Párrafo verificado</span>
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Producción opcional */}
+        {verifiedParagraphs.size === NARRATIVE.length && (
+          <div className="bg-purple-50 dark:bg-purple-950 border border-purple-200 dark:border-purple-800 rounded-lg p-6">
+            <h3 className="font-semibold text-lg mb-3 text-purple-900 dark:text-purple-100">
+              ✍️ Producción opcional
+            </h3>
+            <p className="text-sm mb-4">
+              Reescribe estas oraciones cambiando el artículo para forzar una
+              regla distinta:
+            </p>
+            <div className="space-y-3 text-sm">
+              <p>
+                1. &ldquo;Der Entdecker sieht <strong>einen alten</strong>{" "}
+                Brief&rdquo;
+                <br />
+                <span className="text-muted-foreground">
+                  → Reescribe sin artículo (declinación fuerte)
+                </span>
+              </p>
+              <p>
+                2. &ldquo;Er findet <strong>warme</strong> Decken&rdquo;
+                <br />
+                <span className="text-muted-foreground">
+                  → Reescribe con artículo definido (declinación débil)
+                </span>
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Botón de reset */}
+        <div className="flex justify-end pt-4 border-t">
+          <Button variant="outline" onClick={resetSection}>
+            Reiniciar sección
+          </Button>
+        </div>
+
+        {/* Medalla si completado */}
+        {progress.completed && (
+          <div
+            className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-lg p-4 text-center"
+            role="status"
+            aria-live="polite"
+          >
+            <div className="text-4xl mb-2">🏅</div>
+            <p className="font-semibold text-green-900 dark:text-green-100">
+              ¡Relato completado con {progress.score}%!
+            </p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Has aplicado las reglas en contexto narrativo con éxito.
+            </p>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
