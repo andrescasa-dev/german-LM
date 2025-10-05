@@ -232,5 +232,5 @@ El estudiante puede ahora escribir directamente en los campos y presionar **Ente
 
 ### 2) Criterios de finalización — Iteración 4
 
-* [x] Cada párrafo ofrece "Rellenar" y completa todas las terminaciones correctas.
-* [x] No interfiere con la validación ni el estado de verificación.
+* [x] Cada actividad con "Pista" también ofrece "Rellenar" (Sección I práctica, Sección II escenarios, Sección III párrafos).
+* [x] "Rellenar" autocompleta la(s) terminación(es) correcta(s) sin interferir con validación/verificación.

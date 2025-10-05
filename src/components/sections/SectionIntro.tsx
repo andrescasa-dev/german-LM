@@ -12,7 +12,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { useSectionState } from "@/hooks/useSectionState";
-import { validateAdjectiveEnding, generateHint } from "@/lib/adjective-rules";
+import {
+  validateAdjectiveEnding,
+  generateHint,
+  getAdjectiveEnding,
+} from "@/lib/adjective-rules";
 import type { AdjectiveContext } from "@/types/adjective";
 import { toast } from "sonner";
 
@@ -195,10 +199,12 @@ export function SectionIntro() {
       <CardHeader>
         <CardTitle>I. Repaso de los Tipos de Declinación</CardTitle>
         <CardDescription>
-          Objetivo: distinguir cuándo aplica declinación débil, mixta o fuerte.
-          Cómo interactuar: escribe la terminación del adjetivo en los campos y
-          verifica cada ítem; puedes pedir una pista. Criterio de aprobación:
-          micro-sondeo ≥2/3 y práctica completada.
+          En síntesis: calentamiento + mini‑clase guiada + práctica corta para
+          asegurar que identificas el marcador (der/ein/—) y aplicas la
+          terminación correcta antes del ejercicio central. Cómo interactuar:
+          escribe la terminación del adjetivo en los campos y verifica cada
+          ítem; puedes pedir una pista. Criterio de aprobación: al menos 2 de 3
+          correctas en el micro‑sondeo y práctica completada.
         </CardDescription>
         <Progress value={progress.score} className="mt-4" />
         <div className="flex justify-between text-sm text-muted-foreground mt-2">
@@ -354,6 +360,19 @@ export function SectionIntro() {
                       onClick={() => handleShowHint(q)}
                     >
                       💡 Pista
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      aria-label={`Rellenar terminación correcta para: ${q.sentence}`}
+                      onClick={() =>
+                        setPracticeAnswers((prev) => ({
+                          ...prev,
+                          [q.id]: getAdjectiveEnding(q.context),
+                        }))
+                      }
+                    >
+                      Rellenar
                     </Button>
                   </div>
                 </div>

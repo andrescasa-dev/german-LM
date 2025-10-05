@@ -12,7 +12,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { useSectionState } from "@/hooks/useSectionState";
-import { validateAdjectiveEnding, generateHint } from "@/lib/adjective-rules";
+import {
+  validateAdjectiveEnding,
+  generateHint,
+  getAdjectiveEnding,
+} from "@/lib/adjective-rules";
 import type { AdjectiveContext } from "@/types/adjective";
 import { toast } from "sonner";
 
@@ -254,6 +258,18 @@ export function ExerciseAkkusativMasculine() {
                     onClick={() => handleHint(scenario)}
                   >
                     💡 Pista
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    aria-label={`Rellenar terminación correcta para: ${scenario.sentence}`}
+                    onClick={() =>
+                      setAnswers((prev) => ({
+                        ...prev,
+                        [scenario.id]: getAdjectiveEnding(scenario.context),
+                      }))
+                    }
+                  >
+                    Rellenar
                   </Button>
                   {attempts[scenario.id] > 0 &&
                     !userAnswers.find(
