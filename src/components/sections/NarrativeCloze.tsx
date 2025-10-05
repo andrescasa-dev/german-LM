@@ -213,8 +213,13 @@ const TOTAL_CLOZES = NARRATIVE.reduce(
 );
 
 export function NarrativeCloze() {
-  const { progress, recordAnswer, recordHintUsed, resetSection } =
-    useSectionState("narrative-cloze", TOTAL_CLOZES);
+  const {
+    progress,
+    answers: userAnswers,
+    recordAnswer,
+    recordHintUsed,
+    resetSection,
+  } = useSectionState("narrative-cloze", TOTAL_CLOZES);
 
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [verifiedParagraphs, setVerifiedParagraphs] = useState<Set<string>>(
@@ -316,19 +321,39 @@ export function NarrativeCloze() {
           className="inline-flex items-center mx-1"
         >
           <span className="font-mono text-sm mr-1">{cloze?.adjective}</span>
-          <Input
-            type="text"
-            maxLength={3}
-            className="w-16 h-8 inline-flex"
-            value={answers[clozeId] || ""}
-            onChange={(e) =>
-              setAnswers((prev) => ({ ...prev, [clozeId]: e.target.value }))
-            }
-            disabled={verifiedParagraphs.has(paragraph.id)}
-            aria-label={`Terminación para ${cloze?.adjective}`}
-            data-cloze={clozeId}
-            onKeyDown={(e) => handleKeyDownInput(e, paragraph)}
-          />
+          {(() => {
+            const correct = !!userAnswers.find(
+              (a) => a.questionId === clozeId && a.isCorrect
+            );
+            return (
+              <>
+                <Input
+                  type="text"
+                  maxLength={3}
+                  className="w-16 h-8 inline-flex"
+                  value={answers[clozeId] || ""}
+                  onChange={(e) =>
+                    setAnswers((prev) => ({
+                      ...prev,
+                      [clozeId]: e.target.value,
+                    }))
+                  }
+                  disabled={verifiedParagraphs.has(paragraph.id) || correct}
+                  aria-label={`Terminación para ${cloze?.adjective}`}
+                  data-cloze={clozeId}
+                  onKeyDown={(e) => handleKeyDownInput(e, paragraph)}
+                />
+                {correct && (
+                  <span
+                    className="text-green-600 dark:text-green-400 font-semibold ml-1"
+                    aria-label="Respuesta correcta"
+                  >
+                    ✓
+                  </span>
+                )}
+              </>
+            );
+          })()}
         </span>
       );
 

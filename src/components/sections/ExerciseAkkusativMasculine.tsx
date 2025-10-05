@@ -230,26 +230,51 @@ export function ExerciseAkkusativMasculine() {
                   <label htmlFor={scenario.id} className="text-sm font-medium">
                     Terminación del adjetivo &ldquo;{scenario.adjective}&rdquo;:
                   </label>
-                  <Input
-                    id={scenario.id}
-                    type="text"
-                    maxLength={3}
-                    className="w-24"
-                    value={answers[scenario.id] || ""}
-                    onChange={(e) =>
-                      setAnswers((prev) => ({
-                        ...prev,
-                        [scenario.id]: e.target.value,
-                      }))
-                    }
-                    aria-label={`Terminación para: ${scenario.sentence}`}
-                  />
+                  {(() => {
+                    const correct = !!userAnswers.find(
+                      (a: { questionId: string; isCorrect: boolean }) =>
+                        a.questionId === scenario.id && a.isCorrect
+                    );
+                    return (
+                      <>
+                        <Input
+                          id={scenario.id}
+                          type="text"
+                          maxLength={3}
+                          className="w-24"
+                          value={answers[scenario.id] || ""}
+                          onChange={(e) =>
+                            setAnswers((prev) => ({
+                              ...prev,
+                              [scenario.id]: e.target.value,
+                            }))
+                          }
+                          aria-label={`Terminación para: ${scenario.sentence}`}
+                          disabled={correct}
+                        />
+                        {correct && (
+                          <span
+                            className="text-green-600 dark:text-green-400 font-semibold"
+                            aria-label="Respuesta correcta"
+                          >
+                            ✓
+                          </span>
+                        )}
+                      </>
+                    );
+                  })()}
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-2">
                   <Button
                     onClick={() => handleSubmit(scenario)}
-                    disabled={!answers[scenario.id]}
+                    disabled={
+                      !answers[scenario.id] ||
+                      !!userAnswers.find(
+                        (a: { questionId: string; isCorrect: boolean }) =>
+                          a.questionId === scenario.id && a.isCorrect
+                      )
+                    }
                     className="w-full md:w-auto"
                   >
                     🪄 Verificar
@@ -307,7 +332,15 @@ export function ExerciseAkkusativMasculine() {
 
         {/* Botón de reset */}
         <div className="flex justify-end pt-4 border-t">
-          <Button variant="outline" onClick={resetSection}>
+          <Button
+            variant="outline"
+            onClick={() => {
+              setAnswers({});
+              setAttempts({});
+              setShowDemo(true);
+              resetSection();
+            }}
+          >
             Reiniciar sección
           </Button>
         </div>

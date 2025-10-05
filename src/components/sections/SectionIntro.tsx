@@ -130,7 +130,7 @@ const PRACTICE_QUESTIONS: Question[] = [
 ];
 
 export function SectionIntro() {
-  const { progress, recordAnswer, recordHintUsed, resetSection } =
+  const { progress, answers, recordAnswer, recordHintUsed, resetSection } =
     useSectionState(
       "section-intro",
       SURVEY_QUESTIONS.length + PRACTICE_QUESTIONS.length
@@ -316,6 +316,9 @@ export function SectionIntro() {
                 const parts = q.sentence.split("_____");
                 const before = parts[0] ?? "";
                 const after = parts[1] ?? "";
+                const correct = !!answers.find(
+                  (a) => a.questionId === q.id && a.isCorrect
+                );
                 return (
                   <div key={q.id} className="text-base leading-relaxed">
                     <label htmlFor={q.id} className="sr-only">
@@ -338,7 +341,16 @@ export function SectionIntro() {
                             }))
                           }
                           aria-label={`Terminación para: ${q.sentence}`}
+                          disabled={correct}
                         />
+                        {correct && (
+                          <span
+                            className="text-green-600 dark:text-green-400 font-semibold"
+                            aria-label="Respuesta correcta"
+                          >
+                            ✓
+                          </span>
+                        )}
                       </span>
                       {after}
                     </p>
@@ -364,6 +376,9 @@ export function SectionIntro() {
                 const parts = q.sentence.split("_____");
                 const before = parts[0] ?? "";
                 const after = parts[1] ?? "";
+                const correct = !!answers.find(
+                  (a) => a.questionId === q.id && a.isCorrect
+                );
                 return (
                   <div
                     key={q.id}
@@ -390,7 +405,16 @@ export function SectionIntro() {
                               }))
                             }
                             aria-label={`Terminación para: ${q.sentence}`}
+                            disabled={correct}
                           />
+                          {correct && (
+                            <span
+                              className="text-green-600 dark:text-green-400 font-semibold"
+                              aria-label="Respuesta correcta"
+                            >
+                              ✓
+                            </span>
+                          )}
                         </span>
                         {after}
                       </p>
@@ -399,7 +423,7 @@ export function SectionIntro() {
                       <Button
                         size="sm"
                         onClick={() => handlePracticeSubmit(q)}
-                        disabled={!practiceAnswers[q.id]}
+                        disabled={!practiceAnswers[q.id] || correct}
                         className="w-full md:w-auto"
                       >
                         🪄 Verificar
@@ -436,7 +460,16 @@ export function SectionIntro() {
 
         {/* Botón de reset */}
         <div className="flex justify-end pt-4 border-t">
-          <Button variant="outline" onClick={resetSection}>
+          <Button
+            variant="outline"
+            onClick={() => {
+              setSurveyAnswers({});
+              setPracticeAnswers({});
+              setSurveyCompleted(false);
+              setShowHint(null);
+              resetSection();
+            }}
+          >
             Reiniciar sección
           </Button>
         </div>
