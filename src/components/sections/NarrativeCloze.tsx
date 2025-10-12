@@ -259,7 +259,9 @@ export function NarrativeCloze() {
       if (result.isCorrect) {
         correctCount++;
       } else {
-        results.push(`❌ ${cloze.adjective}: ${result.explanation}`);
+        results.push(
+          `❌ <strong>${cloze.adjective}</strong>: ${result.explanation}`
+        );
       }
     });
 

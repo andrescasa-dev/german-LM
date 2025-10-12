@@ -1,8 +1,9 @@
 import { toast } from "sonner";
+import React from "react";
 
 export interface ToastConfig {
   title: string;
-  description?: string;
+  description?: string | React.ReactNode;
   duration?: number;
   action?: {
     label: string;
@@ -29,6 +30,9 @@ export const showError = (config: ToastConfig) => {
     description: config.description,
     duration: config.duration,
     action: config.action,
+    actionButtonStyle: {
+      backgroundColor: "#dd3c3c",
+    },
   });
 };
 
@@ -72,13 +76,31 @@ export const showIncorrectAnswer = (
   example?: string,
   markerInfo?: string
 ) => {
-  let description = explanation;
-  if (example) description += `\nEjemplo correcto: ${example}`;
-  if (markerInfo) description += `\n\n${markerInfo}`;
+  console.log("showIncorrectAnswer", explanation, example, markerInfo);
 
+  // Si hay múltiples elementos, usar JSX para mejor formato
+  if (example || markerInfo) {
+    return showError({
+      title: "Incorrecto",
+      description: (
+        <div className="space-y-2 text-sm">
+          <p>{explanation}</p>
+          {example && (
+            <p className="text-green-700 dark:text-green-300">
+              <strong>Ejemplo correcto: </strong>
+              {example}
+            </p>
+          )}
+          {markerInfo && <p className="text-muted-foreground">{markerInfo}</p>}
+        </div>
+      ),
+    });
+  }
+
+  // Si solo hay explicación, usar string simple
   return showError({
     title: "Incorrecto",
-    description,
+    description: explanation,
   });
 };
 
@@ -109,9 +131,21 @@ export const showParagraphCorrect = (
  * Toast de párrafo con errores
  */
 export const showParagraphWithErrors = (title: string, errors: string[]) => {
+  console.log("showParagraphWithErrors", title, errors);
   return showError({
     title: `Párrafo "${title}" con errores`,
-    description: errors.join("\n"),
+    description: (
+      <ul className="list-disc list-inside space-y-2 text-sm [&_li]:ml-1.5">
+        {errors.map((error, index) => (
+          <li
+            key={index}
+            className="[&_strong]:font-bold [&_strong]:text-[hsl(357_100%_85.5%)]"
+          >
+            <span dangerouslySetInnerHTML={{ __html: error }} />
+          </li>
+        ))}
+      </ul>
+    ),
     duration: Infinity,
     action: {
       label: "Cerrar",
@@ -126,7 +160,15 @@ export const showParagraphWithErrors = (title: string, errors: string[]) => {
 export const showParagraphHints = (title: string, hints: string[]) => {
   return showInfo({
     title: `Pistas para "${title}"`,
-    description: hints.join("\n"),
+    description: (
+      <ul className="list-disc list-inside space-y-2 text-sm [&_li]:ml-1.5">
+        {hints.map((hint, index) => (
+          <li key={index} className="text-blue-700 dark:text-blue-300">
+            {hint}
+          </li>
+        ))}
+      </ul>
+    ),
     duration: 10000,
   });
 };
