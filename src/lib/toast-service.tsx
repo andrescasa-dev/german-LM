@@ -28,7 +28,7 @@ export const showSuccess = (config: ToastConfig) => {
 export const showError = (config: ToastConfig) => {
   return toast.error(config.title, {
     description: config.description,
-    duration: config.duration,
+    duration: Infinity,
     closeButton: true,
     actionButtonStyle: {
       backgroundColor: "#dd3c3c",
@@ -86,7 +86,7 @@ export const showIncorrectAnswer = (
         <div className="space-y-2 text-sm">
           <p>{explanation}</p>
           {example && (
-            <p className="text-green-700 dark:text-green-300">
+            <p>
               <strong>Ejemplo correcto: </strong>
               {example}
             </p>

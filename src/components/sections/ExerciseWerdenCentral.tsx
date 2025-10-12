@@ -14,7 +14,11 @@ import { Progress } from "@/components/ui/progress";
 import { useSectionState } from "@/hooks/useSectionState";
 import { validateWerdenForm, generateWerdenHint } from "@/lib/werden-rules";
 import { getCentralExercises } from "@/lib/workshop-loader";
-import { toast } from "sonner";
+import {
+  showCorrectAnswer,
+  showIncorrectAnswer,
+  showHintToast,
+} from "@/lib/toast-service";
 
 export function ExerciseWerdenCentral() {
   const exercises = getCentralExercises("werden");
@@ -51,11 +55,11 @@ export function ExerciseWerdenCentral() {
     );
 
     if (isCorrect) {
-      toast.success("¡Correcto! ✓", {
-        description: `Respuesta: ${
-          exercise.correctAnswer
-        }\nFunción: ${getFunctionLabel(exercise.correctFunction)}`,
-      });
+      showCorrectAnswer(
+        `Respuesta: ${exercise.correctAnswer}\nFunción: ${getFunctionLabel(
+          exercise.correctFunction
+        )}`
+      );
     } else {
       let errorMessage = "";
       if (!isAnswerCorrect) {
@@ -67,9 +71,7 @@ export function ExerciseWerdenCentral() {
         )}`;
       }
 
-      toast.error("Incorrecto", {
-        description: errorMessage,
-      });
+      showIncorrectAnswer(errorMessage);
     }
   };
 
@@ -79,9 +81,7 @@ export function ExerciseWerdenCentral() {
 
     const hint = generateWerdenHint(exercise.context);
     recordHintUsed();
-    toast.info(`Pista para ejercicio ${exerciseId}:`, {
-      description: hint,
-    });
+    showHintToast(`Pista para ejercicio ${exerciseId}: ${hint}`);
   };
 
   const getFunctionLabel = (functionCode: string): string => {

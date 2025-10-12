@@ -18,8 +18,11 @@ import {
   getExpectedAnswer,
 } from "@/lib/werden-rules";
 import { getWarmupExercises } from "@/lib/workshop-loader";
-import type { WerdenContext } from "@/types/werden";
-import { toast } from "sonner";
+import {
+  showCorrectAnswer,
+  showIncorrectAnswer,
+  showHintToast,
+} from "@/lib/toast-service";
 
 export function SectionWerdenIntro() {
   const exercises = getWarmupExercises("werden");
@@ -44,13 +47,9 @@ export function SectionWerdenIntro() {
     );
 
     if (result.isCorrect) {
-      toast.success("¡Correcto! ✓", {
-        description: result.explanation,
-      });
+      showCorrectAnswer(result.explanation);
     } else {
-      toast.error("Incorrecto", {
-        description: `${result.explanation}\nEjemplo: ${result.example}`,
-      });
+      showIncorrectAnswer(result.explanation, result.example);
     }
   };
 
@@ -61,7 +60,7 @@ export function SectionWerdenIntro() {
     const hint = generateWerdenHint(exercise.context);
     setShowHint(exerciseId);
     recordHintUsed();
-    toast.info(hint);
+    showHintToast(hint);
   };
 
   const handleFillAnswer = (exerciseId: string) => {
@@ -253,7 +252,7 @@ export function SectionWerdenIntro() {
           </h3>
           <p className="text-sm text-muted-foreground mb-4">
             Completa la frase conjugando werden en presente, en su función de
-            "convertirse en" o "cambio de estado".
+            &ldquo;convertirse en&rdquo; o &ldquo;cambio de estado&rdquo;.
           </p>
           <div className="space-y-6">
             {exercises.map((exercise) => {

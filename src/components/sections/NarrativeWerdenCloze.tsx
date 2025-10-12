@@ -19,7 +19,11 @@ import {
 } from "@/lib/werden-rules";
 import { getNarrativeExercises } from "@/lib/workshop-loader";
 import type { NarrativeParagraph } from "@/types/werden";
-import { toast } from "sonner";
+import {
+  showParagraphCorrect,
+  showParagraphWithErrors,
+  showParagraphHints,
+} from "@/lib/toast-service";
 
 export function NarrativeWerdenCloze() {
   const paragraphs = getNarrativeExercises("werden");
@@ -83,14 +87,9 @@ export function NarrativeWerdenCloze() {
     const allCorrect = correctCount === paragraph.clozes.length;
     if (allCorrect) {
       setVerifiedParagraphs((prev) => new Set([...prev, paragraphId]));
-      toast.success(`¡Párrafo completado correctamente! ✓`, {
-        description: `${correctCount}/${paragraph.clozes.length} respuestas correctas.`,
-      });
+      showParagraphCorrect(paragraph.id, correctCount, paragraph.clozes.length);
     } else {
-      toast.error(`Párrafo con errores`, {
-        description: results.join("\n"),
-        duration: 8000,
-      });
+      showParagraphWithErrors(paragraph.id, results);
     }
   };
 
@@ -104,10 +103,7 @@ export function NarrativeWerdenCloze() {
     });
 
     recordHintUsed();
-    toast.info(`Pistas para el párrafo`, {
-      description: hints.join("\n"),
-      duration: 10000,
-    });
+    showParagraphHints(paragraph.id, hints);
   };
 
   const handleFillParagraph = (paragraphId: string) => {
