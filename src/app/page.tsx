@@ -1,4 +1,3 @@
-import { Toaster } from "@/components/ui/sonner";
 import ThemeToggle from "@/components/ThemeToggle";
 import {
   Card,
@@ -95,7 +94,6 @@ export default function Home() {
           </div>
         </footer>
       </div>
-      <Toaster />
     </>
   );
 }

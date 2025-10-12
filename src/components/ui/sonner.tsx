@@ -1,7 +1,9 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { Toaster as Sonner, ToasterProps } from "sonner";
+import { Toaster as Sonner } from "sonner";
+
+type ToasterProps = React.ComponentProps<typeof Sonner>;
 
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme();
@@ -9,30 +11,20 @@ const Toaster = ({ ...props }: ToasterProps) => {
   return (
     <Sonner
       theme={theme as ToasterProps["theme"]}
+      richColors={true}
       className="toaster group"
-      richColors
-      duration={4500}
+      expand={false}
+      style={{ "--width": "500px" } as React.CSSProperties}
       toastOptions={{
         classNames: {
-          toast: "bg-background text-foreground border border-border shadow-lg",
-          title: "font-semibold",
-          description: "text-foreground/90",
-          actionButton:
-            "bg-primary text-primary-foreground hover:bg-primary/90",
-          cancelButton: "text-muted-foreground hover:text-foreground",
-          success: "",
-          error: "",
-          warning: "",
-          info: "",
+          icon: "self-start mt-0.5",
+          title: "text-base mb-1.5",
+          toast:
+            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg group-[.toaster]:max-w-2xl group-[.toaster]:w-full",
+          description:
+            "group-[.toast]:text-muted-foreground group-[.toast]:max-w-none",
         },
       }}
-      style={
-        {
-          "--normal-bg": "var(--popover)",
-          "--normal-text": "var(--popover-foreground)",
-          "--normal-border": "var(--border)",
-        } as React.CSSProperties
-      }
       {...props}
     />
   );

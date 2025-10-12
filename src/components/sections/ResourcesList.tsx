@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
+import { showFavoriteAdded, showFavoriteRemoved } from "@/lib/toast-service";
 
 interface Resource {
   id: string;
@@ -131,10 +131,10 @@ export function ResourcesList() {
       const newFavorites = new Set(prev);
       if (newFavorites.has(resourceId)) {
         newFavorites.delete(resourceId);
-        toast.info("Recurso eliminado de favoritos");
+        showFavoriteRemoved();
       } else {
         newFavorites.add(resourceId);
-        toast.success("Recurso añadido a favoritos ⭐");
+        showFavoriteAdded();
       }
       return newFavorites;
     });

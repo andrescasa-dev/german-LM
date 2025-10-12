@@ -18,7 +18,11 @@ import {
   getAdjectiveEnding,
 } from "@/lib/adjective-rules";
 import type { AdjectiveContext } from "@/types/adjective";
-import { toast } from "sonner";
+import {
+  showParagraphCorrect,
+  showParagraphWithErrors,
+  showParagraphHints,
+} from "@/lib/toast-service";
 
 interface ClozeItem {
   id: string;
@@ -255,35 +259,33 @@ export function NarrativeCloze() {
       if (result.isCorrect) {
         correctCount++;
       } else {
-        results.push(`❌ ${cloze.adjective}: ${result.explanation}`);
+        results.push(
+          `❌ <strong>${cloze.adjective}</strong>: ${result.explanation}`
+        );
       }
     });
 
     const allCorrect = correctCount === paragraph.clozes.length;
     if (allCorrect) {
       setVerifiedParagraphs((prev) => new Set([...prev, paragraph.id]));
-      toast.success(`¡Párrafo "${paragraph.title}" correcto! ✓`, {
-        description: `${correctCount}/${paragraph.clozes.length} respuestas correctas.`,
-      });
+      showParagraphCorrect(
+        paragraph.title,
+        correctCount,
+        paragraph.clozes.length
+      );
     } else {
-      toast.error(`Párrafo "${paragraph.title}" con errores`, {
-        description: results.join("\n"),
-        duration: 8000,
-      });
+      showParagraphWithErrors(paragraph.title, results);
     }
   };
 
   const handleHintForParagraph = (paragraph: Paragraph) => {
     const hints = paragraph.clozes.map((cloze) => {
       const hint = generateHint(cloze.context);
-      return `• ${cloze.adjective}: ${hint}`;
+      return `💡 <strong>${cloze.adjective}</strong>: ${hint}`;
     });
 
     recordHintUsed();
-    toast.info(`Pistas para "${paragraph.title}"`, {
-      description: hints.join("\n"),
-      duration: 10000,
-    });
+    showParagraphHints(paragraph.title, hints);
   };
 
   const handleFillParagraph = (paragraph: Paragraph) => {
@@ -382,7 +384,7 @@ export function NarrativeCloze() {
         <Progress value={progress.score} className="mt-4" />
         <div className="flex justify-between text-sm text-muted-foreground mt-2">
           <span>
-            Progreso: {progress.correctAnswers}/{progress.totalQuestions}
+            Respuestas: {progress.correctAnswers}/{progress.totalQuestions}
           </span>
           <span>Pistas usadas: {progress.hintsUsed}</span>
         </div>

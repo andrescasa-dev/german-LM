@@ -50,6 +50,21 @@ export function useSectionState(sectionId: string, totalQuestions: number) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Recalcular progreso cuando cambian las respuestas
+  useEffect(() => {
+    const correctCount = answers.filter((a) => a.isCorrect).length;
+    const newScore = Math.round((correctCount / totalQuestions) * 100);
+    const newCompleted = newScore >= 80;
+
+    setProgress((prev) => ({
+      ...prev,
+      correctAnswers: correctCount,
+      completed: newCompleted,
+      score: newScore,
+      lastUpdated: new Date(),
+    }));
+  }, [answers, totalQuestions]);
+
   // Registrar una respuesta
   const recordAnswer = useCallback(
     (
@@ -80,24 +95,13 @@ export function useSectionState(sectionId: string, totalQuestions: number) {
         return [...prev, newAnswer];
       });
 
-      setProgress((prev) => {
-        const newCorrectAnswers = isCorrect
-          ? prev.correctAnswers + 1
-          : prev.correctAnswers;
-        const newScore = Math.round((newCorrectAnswers / totalQuestions) * 100);
-        const newCompleted = newScore >= 80;
-
-        return {
-          ...prev,
-          attempts: prev.attempts + 1,
-          correctAnswers: newCorrectAnswers,
-          completed: newCompleted,
-          score: newScore,
-          lastUpdated: new Date(),
-        };
-      });
+      // Solo incrementar attempts
+      setProgress((prev) => ({
+        ...prev,
+        attempts: prev.attempts + 1,
+      }));
     },
-    [totalQuestions]
+    []
   );
 
   // Registrar uso de una pista

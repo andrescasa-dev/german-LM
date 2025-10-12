@@ -107,7 +107,7 @@ Taller de consolidación intensiva sobre la Declinación del Adjetivo Alemán (r
 - Estados de carga: skeleton breve al cambiar de bloque.
 - Confirmación de respuesta: tick verde con resumen; error con explicación y vibración sutil (reduce motion configurable).
 - Pistas: botón muestra marcador/caso; contador de pistas usadas.
-- Progreso: barra por sección; medalla al completar con ≥80%.
+- Respuestas: barra por sección; medalla al completar con ≥80%.
 - Accesibilidad: contraste AA, focus visible, mensajes aria-live para feedback.
 
 ---
