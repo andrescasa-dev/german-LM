@@ -22,7 +22,7 @@ import {
   showSurveyCompleted,
   showCorrectAnswer,
   showIncorrectAnswer,
-  showHint,
+  showHintToast,
 } from "@/lib/toast-service";
 
 interface Question {
@@ -89,7 +89,7 @@ const PRACTICE_QUESTIONS: Question[] = [
   },
   {
     id: "practice-2",
-    sentence: "Ich habe _____ alten Freund.",
+    sentence: "Ich habe _____ Freund.",
     adjective: "alt",
     context: {
       determiner: {
@@ -106,7 +106,7 @@ const PRACTICE_QUESTIONS: Question[] = [
   },
   {
     id: "practice-3",
-    sentence: "_____ kaltes Wasser schmeckt gut.",
+    sentence: "_____ Wasser schmeckt gut.",
     adjective: "kalt",
     context: {
       determiner: null,
@@ -187,7 +187,7 @@ export function SectionIntro() {
     const hint = generateHint(question.context);
     setShowHint(question.id);
     recordHintUsed();
-    showHint(hint);
+    showHintToast(hint);
   };
 
   return (
@@ -205,7 +205,7 @@ export function SectionIntro() {
         <Progress value={progress.score} className="mt-4" />
         <div className="flex justify-between text-sm text-muted-foreground mt-2">
           <span>
-            Progreso: {progress.correctAnswers}/{progress.totalQuestions}
+            Respuestas: {progress.correctAnswers}/{progress.totalQuestions}
           </span>
           <span>Pistas usadas: {progress.hintsUsed}</span>
         </div>

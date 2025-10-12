@@ -384,7 +384,7 @@ export function NarrativeCloze() {
         <Progress value={progress.score} className="mt-4" />
         <div className="flex justify-between text-sm text-muted-foreground mt-2">
           <span>
-            Progreso: {progress.correctAnswers}/{progress.totalQuestions}
+            Respuestas: {progress.correctAnswers}/{progress.totalQuestions}
           </span>
           <span>Pistas usadas: {progress.hintsUsed}</span>
         </div>

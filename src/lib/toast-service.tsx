@@ -107,7 +107,7 @@ export const showIncorrectAnswer = (
 /**
  * Toast de pista
  */
-export const showHint = (hint: string) => {
+export const showHintToast = (hint: string) => {
   return showInfo({
     title: hint,
   });

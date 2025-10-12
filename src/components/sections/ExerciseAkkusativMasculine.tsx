@@ -21,7 +21,7 @@ import type { AdjectiveContext } from "@/types/adjective";
 import {
   showCorrectAnswer,
   showIncorrectAnswer,
-  showHint,
+  showHintToast,
   showExtraAttempt,
 } from "@/lib/toast-service";
 
@@ -127,7 +127,7 @@ export function ExerciseAkkusativMasculine() {
   const handleHint = (scenario: Scenario) => {
     const hint = generateHint(scenario.context);
     recordHintUsed();
-    showHint(hint);
+    showHintToast(hint);
   };
 
   return (
@@ -141,7 +141,7 @@ export function ExerciseAkkusativMasculine() {
         <Progress value={progress.score} className="mt-4" />
         <div className="flex justify-between text-sm text-muted-foreground mt-2">
           <span>
-            Progreso: {progress.correctAnswers}/{progress.totalQuestions}
+            Respuestas: {progress.correctAnswers}/{progress.totalQuestions}
           </span>
           <span>Pistas usadas: {progress.hintsUsed}</span>
         </div>
