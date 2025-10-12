@@ -29,7 +29,7 @@ export const showError = (config: ToastConfig) => {
   return toast.error(config.title, {
     description: config.description,
     duration: config.duration,
-    action: config.action,
+    closeButton: true,
     actionButtonStyle: {
       backgroundColor: "#dd3c3c",
     },
@@ -42,8 +42,8 @@ export const showError = (config: ToastConfig) => {
 export const showInfo = (config: ToastConfig) => {
   return toast.info(config.title, {
     description: config.description,
-    duration: config.duration,
-    action: config.action,
+    duration: Infinity,
+    closeButton: true,
   });
 };
 
@@ -163,8 +163,11 @@ export const showParagraphHints = (title: string, hints: string[]) => {
     description: (
       <ul className="list-disc list-inside space-y-2 text-sm [&_li]:ml-1.5">
         {hints.map((hint, index) => (
-          <li key={index} className="text-blue-700 dark:text-blue-300">
-            {hint}
+          <li
+            key={index}
+            className="[&_strong]:font-bold [&_strong]:text-[hsl(216_87%_70%)]"
+          >
+            <span dangerouslySetInnerHTML={{ __html: hint }} />
           </li>
         ))}
       </ul>

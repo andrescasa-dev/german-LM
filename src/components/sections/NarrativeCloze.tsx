@@ -281,7 +281,7 @@ export function NarrativeCloze() {
   const handleHintForParagraph = (paragraph: Paragraph) => {
     const hints = paragraph.clozes.map((cloze) => {
       const hint = generateHint(cloze.context);
-      return `• ${cloze.adjective}: ${hint}`;
+      return `💡 <strong>${cloze.adjective}</strong>: ${hint}`;
     });
 
     recordHintUsed();

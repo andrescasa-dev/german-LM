@@ -275,9 +275,9 @@ export function generateHint(context: AdjectiveContext): string {
   };
 
   const hints = {
-    weak: `💡 Pista: Declinación débil (artículo definido marca). Caso: ${caseNames[grammaticalCase]}, género: ${genderNames[gender]}.`,
-    mixed: `💡 Pista: Declinación mixta (con "${context.determiner?.word}"). Caso: ${caseNames[grammaticalCase]}, género: ${genderNames[gender]}.`,
-    strong: `💡 Pista: Declinación fuerte (sin artículo, el adjetivo marca todo). Caso: ${caseNames[grammaticalCase]}, género: ${genderNames[gender]}.`,
+    weak: `Pista: Declinación débil (artículo definido marca). Caso: ${caseNames[grammaticalCase]}, género: ${genderNames[gender]}.`,
+    mixed: `Pista: Declinación mixta (con "${context.determiner?.word}"). Caso: ${caseNames[grammaticalCase]}, género: ${genderNames[gender]}.`,
+    strong: `Pista: Declinación fuerte (sin artículo, el adjetivo marca todo). Caso: ${caseNames[grammaticalCase]}, género: ${genderNames[gender]}.`,
   };
 
   return hints[declensionType];
