@@ -18,7 +18,12 @@ import {
   getAdjectiveEnding,
 } from "@/lib/adjective-rules";
 import type { AdjectiveContext } from "@/types/adjective";
-import { toast } from "sonner";
+import {
+  showCorrectAnswer,
+  showIncorrectAnswer,
+  showHint,
+  showExtraAttempt,
+} from "@/lib/toast-service";
 
 interface Scenario {
   id: string;
@@ -109,24 +114,20 @@ export function ExerciseAkkusativMasculine() {
     setAttempts((prev) => ({ ...prev, [scenario.id]: currentAttempts + 1 }));
 
     if (result.isCorrect) {
-      toast.success("¡Correcto! ✓", {
-        description: `${result.explanation}\n${result.markerInfo}`,
-        duration: 5000,
-      });
+      showCorrectAnswer(result.explanation, result.markerInfo);
     } else {
-      toast.error("Incorrecto", {
-        description: `${result.explanation}\nEjemplo correcto: ${result.example}\n\n${result.markerInfo}`,
-        duration: 7000,
-      });
+      showIncorrectAnswer(
+        result.explanation,
+        result.example,
+        result.markerInfo
+      );
     }
   };
 
   const handleHint = (scenario: Scenario) => {
     const hint = generateHint(scenario.context);
     recordHintUsed();
-    toast.info(hint, {
-      duration: 6000,
-    });
+    showHint(hint);
   };
 
   return (
@@ -308,10 +309,7 @@ export function ExerciseAkkusativMasculine() {
                         variant="secondary"
                         onClick={() => {
                           // Intento extra con variante léxica
-                          toast.info("💪 Intento extra disponible", {
-                            description:
-                              "Piensa en la regla: ¿quién lleva la marca fuerte aquí?",
-                          });
+                          showExtraAttempt();
                         }}
                         className="w-full md:w-auto"
                       >

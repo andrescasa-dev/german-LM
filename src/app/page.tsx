@@ -2,7 +2,6 @@ import { SectionIntro } from "@/components/sections/SectionIntro";
 import { ExerciseAkkusativMasculine } from "@/components/sections/ExerciseAkkusativMasculine";
 import { NarrativeCloze } from "@/components/sections/NarrativeCloze";
 import { ResourcesList } from "@/components/sections/ResourcesList";
-import { Toaster } from "@/components/ui/sonner";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Vocabulary } from "@/components/sections/Vocabulary";
 import TopTabs from "@/components/TopTabs";
@@ -76,7 +75,6 @@ export default function Home() {
           </div>
         </footer>
       </div>
-      <Toaster />
     </>
   );
 }

@@ -18,7 +18,11 @@ import {
   getAdjectiveEnding,
 } from "@/lib/adjective-rules";
 import type { AdjectiveContext } from "@/types/adjective";
-import { toast } from "sonner";
+import {
+  showParagraphCorrect,
+  showParagraphWithErrors,
+  showParagraphHints,
+} from "@/lib/toast-service";
 
 interface ClozeItem {
   id: string;
@@ -262,14 +266,13 @@ export function NarrativeCloze() {
     const allCorrect = correctCount === paragraph.clozes.length;
     if (allCorrect) {
       setVerifiedParagraphs((prev) => new Set([...prev, paragraph.id]));
-      toast.success(`¡Párrafo "${paragraph.title}" correcto! ✓`, {
-        description: `${correctCount}/${paragraph.clozes.length} respuestas correctas.`,
-      });
+      showParagraphCorrect(
+        paragraph.title,
+        correctCount,
+        paragraph.clozes.length
+      );
     } else {
-      toast.error(`Párrafo "${paragraph.title}" con errores`, {
-        description: results.join("\n"),
-        duration: 8000,
-      });
+      showParagraphWithErrors(paragraph.title, results);
     }
   };
 
@@ -280,10 +283,7 @@ export function NarrativeCloze() {
     });
 
     recordHintUsed();
-    toast.info(`Pistas para "${paragraph.title}"`, {
-      description: hints.join("\n"),
-      duration: 10000,
-    });
+    showParagraphHints(paragraph.title, hints);
   };
 
   const handleFillParagraph = (paragraph: Paragraph) => {

@@ -18,7 +18,12 @@ import {
   getAdjectiveEnding,
 } from "@/lib/adjective-rules";
 import type { AdjectiveContext } from "@/types/adjective";
-import { toast } from "sonner";
+import {
+  showSurveyCompleted,
+  showCorrectAnswer,
+  showIncorrectAnswer,
+  showHint,
+} from "@/lib/toast-service";
 
 interface Question {
   id: string;
@@ -157,12 +162,7 @@ export function SectionIntro() {
     setSurveyCompleted(true);
     const percentage = Math.round((correct / SURVEY_QUESTIONS.length) * 100);
 
-    toast.success(
-      `Micro-sondeo completado: ${correct}/${SURVEY_QUESTIONS.length} correctas (${percentage}%)`,
-      {
-        description: "Ahora revisemos las reglas y practiquemos.",
-      }
-    );
+    showSurveyCompleted(correct, SURVEY_QUESTIONS.length, percentage);
   };
 
   const handlePracticeSubmit = (question: Question) => {
@@ -177,13 +177,9 @@ export function SectionIntro() {
     );
 
     if (result.isCorrect) {
-      toast.success("¡Correcto! ✓", {
-        description: result.explanation,
-      });
+      showCorrectAnswer(result.explanation);
     } else {
-      toast.error("Incorrecto", {
-        description: `${result.explanation}\nEjemplo: ${result.example}`,
-      });
+      showIncorrectAnswer(result.explanation, result.example);
     }
   };
 
@@ -191,7 +187,7 @@ export function SectionIntro() {
     const hint = generateHint(question.context);
     setShowHint(question.id);
     recordHintUsed();
-    toast.info(hint);
+    showHint(hint);
   };
 
   return (
