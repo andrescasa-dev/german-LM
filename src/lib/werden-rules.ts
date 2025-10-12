@@ -1,9 +1,9 @@
 import type {
-  WerdenContext,
-  WerdenValidationResult,
-  WerdenFunction,
-  Tense,
   Pronoun,
+  Tense,
+  WerdenContext,
+  WerdenFunction,
+  WerdenValidationResult,
 } from "@/types/werden";
 
 // Tabla de conjugación de werden
@@ -97,7 +97,7 @@ export function validateWerdenForm(
   const isCorrect = normalizedAnswer === normalizedExpected;
 
   // Generar explicación
-  const explanation = generateExplanation(context, isCorrect, normalizedAnswer);
+  const explanation = generateExplanation(context, isCorrect);
 
   // Generar hint
   const hint = generateWerdenHint(context);
@@ -125,25 +125,50 @@ export function validateWerdenForm(
 // Función para generar explicación
 function generateExplanation(
   context: WerdenContext,
-  isCorrect: boolean,
-  userAnswer: string
+  isCorrect: boolean
 ): string {
-  const expectedAnswer = getExpectedAnswer(context);
-
   if (isCorrect) {
+    const expectedAnswer = getExpectedAnswer(context);
     return `¡Correcto! Para "${context.pronoun}" en ${getFunctionLabel(
       context.function
     )}, se usa "${expectedAnswer}".`;
   }
 
+  // Para respuestas incorrectas, generar explicación educativa sin mostrar la respuesta correcta
   const functionLabel = getFunctionLabel(context.function);
   const tenseLabel = getTenseLabel(context.tense);
+  const pronounLabel = getPronounLabel(context.pronoun);
 
   if (context.isInfinitive) {
-    return `Incorrecto. Para ${functionLabel}, necesitas el infinitivo "${expectedAnswer}".`;
+    switch (context.function) {
+      case "futuro":
+        return `En futuro, después de werden conjugado siempre va el infinitivo del verbo principal al final de la oración.`;
+      case "verbo-pleno":
+        return `Como verbo pleno, werden se usa en infinitivo después de otro verbo auxiliar (como en Perfekt).`;
+      case "pasiva":
+        return `En pasiva, después de werden conjugado va el participio pasado del verbo principal.`;
+      default:
+        return `Para ${functionLabel}, necesitas el infinitivo del verbo.`;
+    }
   }
 
-  return `Incorrecto. Para "${context.pronoun}" en ${functionLabel} (${tenseLabel}), se usa "${expectedAnswer}".`;
+  // Explicaciones para conjugaciones incorrectas
+  switch (context.function) {
+    case "verbo-pleno":
+      if (context.tense === "perfekt") {
+        return `En Perfekt como verbo pleno, werden usa "sein" como auxiliar + "geworden". Para ${pronounLabel} se usa la conjugación de "sein".`;
+      }
+      return `Como verbo pleno, werden se conjuga normalmente. Para ${pronounLabel} en ${tenseLabel}, revisa la conjugación.`;
+
+    case "futuro":
+      return `En futuro, werden se conjuga según el pronombre y el verbo principal va al final en infinitivo. Para ${pronounLabel}, revisa la conjugación de werden.`;
+
+    case "pasiva":
+      return `En pasiva, werden se conjuga según el pronombre y el verbo principal va en participio pasado. Para ${pronounLabel}, revisa la conjugación.`;
+
+    default:
+      return `Para ${pronounLabel} en ${functionLabel} (${tenseLabel}), revisa la conjugación de werden.`;
+  }
 }
 
 // Función para generar hints contextuales
@@ -209,24 +234,47 @@ function detectCommonErrors(
   answer: string,
   context: WerdenContext
 ): string | undefined {
-  const expectedAnswer = getExpectedAnswer(context);
+  const pronounLabel = getPronounLabel(context.pronoun);
 
   // Error de tiempo
   if (answer === "wurde" && context.tense === "prasens") {
-    return 'Cuidado: "wurde" es pasado (Präteritum), necesitas presente.';
+    return '"wurde" es pasado (Präteritum). En presente necesitas la conjugación de werden.';
   }
 
   if (answer === "werde" && context.pronoun === "du") {
-    return 'Cuidado: para "du" se usa "wirst", no "werde".';
+    return `Para "du" se usa "wirst", no "werde". Recuerda: du wirst, er/sie/es wird.`;
   }
 
   if (answer === "wirst" && context.pronoun === "ich") {
-    return 'Cuidado: para "ich" se usa "werde", no "wirst".';
+    return `Para "ich" se usa "werde", no "wirst". Recuerda: ich werde, du wirst.`;
+  }
+
+  if (
+    answer === "wird" &&
+    (context.pronoun === "ich" || context.pronoun === "du")
+  ) {
+    return `"wird" es para er/sie/es. Para ${pronounLabel} necesitas la conjugación correcta.`;
   }
 
   // Error de función
   if (context.function === "futuro" && answer.includes("geworden")) {
-    return 'Cuidado: "geworden" es para verbo pleno en Perfekt, no para futuro.';
+    return '"geworden" es para verbo pleno en Perfekt. En futuro necesitas werden + infinitivo.';
+  }
+
+  if (
+    context.function === "futuro" &&
+    answer.includes("gemacht") &&
+    context.mainVerb === "machen"
+  ) {
+    return 'En futuro necesitas "machen" (infinitivo), no "gemacht" (participio).';
+  }
+
+  if (
+    context.function === "pasiva" &&
+    answer.includes("machen") &&
+    context.mainVerb === "machen"
+  ) {
+    return 'En pasiva necesitas "gemacht" (participio), no "machen" (infinitivo).';
   }
 
   if (
@@ -234,7 +282,24 @@ function detectCommonErrors(
     answer.includes("werden") &&
     context.tense === "prasens"
   ) {
-    return "Cuidado: en presente como verbo pleno, werden se conjuga, no se usa en infinitivo.";
+    return "En presente como verbo pleno, werden se conjuga según el pronombre, no se usa en infinitivo.";
+  }
+
+  // Errores específicos de Perfekt
+  if (context.tense === "perfekt" && context.function === "verbo-pleno") {
+    if (answer.includes("habe") || answer.includes("hat")) {
+      return 'Werden como verbo pleno en Perfekt usa "sein" como auxiliar, no "haben".';
+    }
+    if (answer.includes("werden") && !answer.includes("geworden")) {
+      return 'En Perfekt como verbo pleno necesitas "sein" + "geworden".';
+    }
+  }
+
+  // Errores de futuro pasivo
+  if (context.function === "pasiva" && context.tense === "futur") {
+    if (answer.includes("bezahlt") && !answer.includes("werden")) {
+      return 'En futuro pasivo necesitas "werden" + participio + "werden" al final.';
+    }
   }
 
   return undefined;

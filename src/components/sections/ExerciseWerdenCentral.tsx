@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,17 +8,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { useSectionState } from "@/hooks/useSectionState";
-import { validateWerdenForm, generateWerdenHint } from "@/lib/werden-rules";
-import { getCentralExercises } from "@/lib/workshop-loader";
 import {
   showCorrectAnswer,
-  showIncorrectAnswer,
   showHintToast,
+  showIncorrectAnswer,
 } from "@/lib/toast-service";
+import { generateWerdenHint, validateWerdenForm } from "@/lib/werden-rules";
+import { getCentralExercises } from "@/lib/workshop-loader";
+import { useState } from "react";
 
 export function ExerciseWerdenCentral() {
   const exercises = getCentralExercises("werden");
@@ -62,13 +61,33 @@ export function ExerciseWerdenCentral() {
       );
     } else {
       let errorMessage = "";
+
       if (!isAnswerCorrect) {
-        errorMessage += `Respuesta incorrecta. La correcta es: ${exercise.correctAnswer}\n`;
+        // Generar explicación educativa para la respuesta incorrecta
+        const validation = validateWerdenForm(selectedAnswer, exercise.context);
+        errorMessage += `❌ Respuesta incorrecta: "${selectedAnswer}"\n`;
+        errorMessage += `💡 ${validation.explanation}\n`;
+
+        if (validation.commonError) {
+          errorMessage += `⚠️ ${validation.commonError}\n`;
+        }
       }
+
       if (!isFunctionCorrect) {
-        errorMessage += `Función incorrecta. La correcta es: ${getFunctionLabel(
+        errorMessage += `\n❌ Función incorrecta: "${getFunctionLabel(
+          functionAnswer
+        )}"\n`;
+        errorMessage += `💡 Para este contexto, la función correcta es: ${getFunctionLabel(
           exercise.correctFunction
-        )}`;
+        )}\n`;
+
+        // Agregar explicación específica de la función
+        const functionExplanation = getFunctionExplanation(
+          exercise.context.function
+        );
+        if (functionExplanation) {
+          errorMessage += `📚 ${functionExplanation}\n`;
+        }
       }
 
       showIncorrectAnswer(errorMessage);
@@ -96,6 +115,19 @@ export function ExerciseWerdenCentral() {
         return "Futuro Pasivo";
       default:
         return functionCode;
+    }
+  };
+
+  const getFunctionExplanation = (functionType: string): string => {
+    switch (functionType) {
+      case "verbo-pleno":
+        return "Verbo Pleno: werden indica cambio de estado, profesión o características. Se conjuga normalmente.";
+      case "futuro":
+        return "Futuro: werden + infinitivo al final. Indica acciones futuras.";
+      case "pasiva":
+        return "Pasiva: werden + participio pasado. Indica que el sujeto recibe la acción.";
+      default:
+        return "";
     }
   };
 
