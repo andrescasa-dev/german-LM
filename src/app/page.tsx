@@ -19,11 +19,11 @@ export default function Home() {
       status: "available",
     },
     {
-      id: "example",
-      title: "Example",
-      description: "Próximamente disponible",
-      href: "/workshops/example",
-      status: "coming-soon",
+      id: "werden",
+      title: "⚡ Taller del Verbo WERDEN",
+      description: "Nivel A2 | Verbo pleno, Futuro y Pasiva",
+      href: "/workshops/werden",
+      status: "available",
     },
   ];
 
