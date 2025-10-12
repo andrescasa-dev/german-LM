@@ -1,0 +1,228 @@
+{
+  "adjetivo": [
+    {
+      "id": "wagen",
+      "de": "der Wagen",
+      "es": "el coche"
+    },
+    {
+      "id": "neu",
+      "de": "neu",
+      "es": "nuevo"
+    },
+    {
+      "id": "alt",
+      "de": "alt",
+      "es": "viejo"
+    },
+    {
+      "id": "dunkel",
+      "de": "dunkel",
+      "es": "oscuro"
+    },
+    {
+      "id": "licht",
+      "de": "das Licht",
+      "es": "la luz"
+    },
+    {
+      "id": "huette",
+      "de": "die Hütte",
+      "es": "la cabaña"
+    },
+    {
+      "id": "decke",
+      "de": "die Decke",
+      "es": "la manta"
+    },
+    {
+      "id": "brot",
+      "de": "das Brot",
+      "es": "el pan"
+    },
+    {
+      "id": "tisch",
+      "de": "der Tisch",
+      "es": "la mesa"
+    },
+    {
+      "id": "brief",
+      "de": "der Brief",
+      "es": "la carta"
+    },
+    {
+      "id": "wasser",
+      "de": "das Wasser",
+      "es": "el agua"
+    },
+    {
+      "id": "holz",
+      "de": "das Holz",
+      "es": "la madera"
+    },
+    {
+      "id": "schlafsack",
+      "de": "der Schlafsack",
+      "es": "el saco de dormir"
+    },
+    {
+      "id": "gut",
+      "de": "gut",
+      "es": "bueno"
+    },
+    {
+      "id": "trocken",
+      "de": "trocken",
+      "es": "seco"
+    },
+    {
+      "id": "warm",
+      "de": "warm",
+      "es": "caliente"
+    },
+    {
+      "id": "wichtig",
+      "de": "wichtig",
+      "es": "importante"
+    },
+    {
+      "id": "klein",
+      "de": "klein",
+      "es": "pequeño"
+    },
+    {
+      "id": "schwach",
+      "de": "schwach",
+      "es": "débil"
+    }
+  ],
+  "werden": [
+    {
+      "id": "werden",
+      "de": "werden",
+      "es": "llegar a ser, convertirse en",
+      "note": "Verbo auxiliar y pleno",
+      "tag": "verbo"
+    },
+    {
+      "id": "ingenieur",
+      "de": "der Ingenieur",
+      "es": "el ingeniero",
+      "tag": "profesión"
+    },
+    {
+      "id": "arzt",
+      "de": "der Arzt",
+      "es": "el médico",
+      "tag": "profesión"
+    },
+    {
+      "id": "lehrer",
+      "de": "der Lehrer",
+      "es": "el profesor",
+      "tag": "profesión"
+    },
+    {
+      "id": "krank",
+      "de": "krank",
+      "es": "enfermo",
+      "tag": "estado"
+    },
+    {
+      "id": "gesund",
+      "de": "gesund",
+      "es": "sano",
+      "tag": "estado"
+    },
+    {
+      "id": "alt",
+      "de": "alt",
+      "es": "viejo",
+      "tag": "edad"
+    },
+    {
+      "id": "jung",
+      "de": "jung",
+      "es": "joven",
+      "tag": "edad"
+    },
+    {
+      "id": "dick",
+      "de": "dick",
+      "es": "gordo",
+      "tag": "físico"
+    },
+    {
+      "id": "dünn",
+      "de": "dünn",
+      "es": "delgado",
+      "tag": "físico"
+    },
+    {
+      "id": "teuer",
+      "de": "teuer",
+      "es": "caro",
+      "tag": "precio"
+    },
+    {
+      "id": "billig",
+      "de": "billig",
+      "es": "barato",
+      "tag": "precio"
+    },
+    {
+      "id": "warm",
+      "de": "warm",
+      "es": "caliente",
+      "tag": "temperatura"
+    },
+    {
+      "id": "kalt",
+      "de": "kalt",
+      "es": "frío",
+      "tag": "temperatura"
+    },
+    {
+      "id": "erwachsen",
+      "de": "erwachsen",
+      "es": "adulto",
+      "tag": "edad"
+    },
+    {
+      "id": "berlin",
+      "de": "Berlin",
+      "es": "Berlín",
+      "tag": "lugar"
+    },
+    {
+      "id": "karriere",
+      "de": "die Karriere",
+      "es": "la carrera profesional",
+      "tag": "trabajo"
+    },
+    {
+      "id": "job",
+      "de": "der Job",
+      "es": "el trabajo",
+      "tag": "trabajo"
+    },
+    {
+      "id": "nächstes-jahr",
+      "de": "nächstes Jahr",
+      "es": "el próximo año",
+      "tag": "tiempo"
+    },
+    {
+      "id": "bestimmt",
+      "de": "bestimmt",
+      "es": "seguramente",
+      "tag": "adverbio"
+    },
+    {
+      "id": "toll",
+      "de": "toll",
+      "es": "genial, estupendo",
+      "tag": "adjetivo"
+    }
+  ]
+}

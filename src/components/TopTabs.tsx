@@ -60,72 +60,72 @@ export default function TopTabs({
         </div>
       </div>
 
-      {activeTab === "contenido" ? (
-        <>
-          <div className="md:hidden">
-            <Button
-              variant="outline"
-              size="icon"
-              aria-label="Abrir menú de secciones"
-              className="fixed left-4 top-4 z-50"
-              onClick={openMobile}
-            >
-              <Menu />
-            </Button>
-          </div>
+      {/* Contenido - siempre montado pero oculto cuando no está activo */}
+      <div className={activeTab === "contenido" ? "block" : "hidden"}>
+        <div className="md:hidden">
+          <Button
+            variant="outline"
+            size="icon"
+            aria-label="Abrir menú de secciones"
+            className="fixed left-4 top-4 z-50"
+            onClick={openMobile}
+          >
+            <Menu />
+          </Button>
+        </div>
 
-          {drawerMounted ? (
-            <div aria-hidden={false} className="md:hidden">
+        {drawerMounted ? (
+          <div aria-hidden={false} className="md:hidden">
+            <div
+              className={`fixed inset-0 z-50 transition-opacity duration-200 ease-out ${
+                mobileOpen ? "opacity-100 bg-black/50" : "opacity-0 bg-black/50"
+              }`}
+              onClick={closeMobile}
+            />
+            <div
+              role="dialog"
+              aria-modal="true"
+              className={`fixed left-0 top-0 z-50 h-full w-[80%] max-w-xs bg-background border-r shadow-xl flex flex-col transform transition-transform duration-200 ease-out ${
+                mobileOpen ? "translate-x-0" : "-translate-x-full"
+              }`}
+            >
+              <div className="p-4 border-b flex items-center justify-between">
+                <span className="text-sm font-medium">Navegación</span>
+                <ThemeToggle />
+              </div>
               <div
-                className={`fixed inset-0 z-50 transition-opacity duration-200 ease-out ${
-                  mobileOpen
-                    ? "opacity-100 bg-black/50"
-                    : "opacity-0 bg-black/50"
-                }`}
-                onClick={closeMobile}
-              />
-              <div
-                role="dialog"
-                aria-modal="true"
-                className={`fixed left-0 top-0 z-50 h-full w-[80%] max-w-xs bg-background border-r shadow-xl flex flex-col transform transition-transform duration-200 ease-out ${
-                  mobileOpen ? "translate-x-0" : "-translate-x-full"
-                }`}
+                className="p-2 overflow-y-auto"
+                onClick={(e) => {
+                  const target = e.target as HTMLElement;
+                  if (target.closest("a")) {
+                    closeMobile();
+                  }
+                }}
               >
-                <div className="p-4 border-b flex items-center justify-between">
-                  <span className="text-sm font-medium">Navegación</span>
-                  <ThemeToggle />
-                </div>
-                <div
-                  className="p-2 overflow-y-auto"
-                  onClick={(e) => {
-                    const target = e.target as HTMLElement;
-                    if (target.closest("a")) {
-                      closeMobile();
-                    }
-                  }}
-                >
-                  {contentSections && contentSections.length > 0 ? (
-                    <LeftSectionNav sections={contentSections} />
-                  ) : null}
-                </div>
+                {contentSections && contentSections.length > 0 ? (
+                  <LeftSectionNav sections={contentSections} />
+                ) : null}
               </div>
             </div>
-          ) : null}
-
-          <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-6">
-            <aside className="hidden md:block">
-              {contentSections && contentSections.length > 0 ? (
-                <div className="sticky top-24">
-                  <LeftSectionNav sections={contentSections} />
-                </div>
-              ) : null}
-            </aside>
-            <div>{content}</div>
           </div>
-        </>
-      ) : (
-        vocabulary
-      )}
+        ) : null}
+
+        <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-6">
+          <aside className="hidden md:block">
+            {contentSections && contentSections.length > 0 ? (
+              <div className="sticky top-24">
+                <LeftSectionNav sections={contentSections} />
+              </div>
+            ) : null}
+          </aside>
+          <div>{content}</div>
+        </div>
+      </div>
+
+      {/* Vocabulario - siempre montado pero oculto cuando no está activo */}
+      <div className={activeTab === "vocabulario" ? "block" : "hidden"}>
+        {vocabulary}
+      </div>
     </div>
   );
 }

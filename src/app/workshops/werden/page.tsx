@@ -2,6 +2,7 @@ import { SectionWerdenIntro } from "@/components/sections/SectionWerdenIntro";
 import { ExerciseWerdenCentral } from "@/components/sections/ExerciseWerdenCentral";
 import { NarrativeWerdenCloze } from "@/components/sections/NarrativeWerdenCloze";
 import { ResourcesWerdenList } from "@/components/sections/ResourcesWerdenList";
+import { Vocabulary } from "@/components/sections/Vocabulary";
 import { Toaster } from "@/components/ui/sonner";
 import ThemeToggle from "@/components/ThemeToggle";
 import TopTabs from "@/components/TopTabs";
@@ -63,6 +64,11 @@ export default function WerdenWorkshop() {
                   <ResourcesWerdenList />
                 </section>
               </div>
+            }
+            vocabulary={
+              <section id="vocabulario" className="scroll-mt-20">
+                <Vocabulary module="werden" />
+              </section>
             }
             contentSections={[
               { id: "repaso", label: "I. Repaso y Diagnóstico" },

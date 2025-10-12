@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import vocabularyData from "@/data/workshops/vocabulary.json";
 
 type VocabItem = {
   id: string;
@@ -12,36 +13,29 @@ type VocabItem = {
   tag?: string; // Optional tag/category
 };
 
-const DEFAULT_VOCAB: VocabItem[] = [
-  { id: "wagen", de: "der Wagen", es: "el coche" },
-  { id: "neu", de: "neu", es: "nuevo" },
-  { id: "alt", de: "alt", es: "viejo" },
-  { id: "dunkel", de: "dunkel", es: "oscuro" },
-  { id: "licht", de: "das Licht", es: "la luz" },
-  { id: "huette", de: "die Hütte", es: "la cabaña" },
-  { id: "decke", de: "die Decke", es: "la manta" },
-  { id: "brot", de: "das Brot", es: "el pan" },
-  { id: "tisch", de: "der Tisch", es: "la mesa" },
-  { id: "brief", de: "der Brief", es: "la carta" },
-  { id: "wasser", de: "das Wasser", es: "el agua" },
-  { id: "holz", de: "das Holz", es: "la madera" },
-  { id: "schlafsack", de: "der Schlafsack", es: "el saco de dormir" },
-  { id: "gut", de: "gut", es: "bueno" },
-  { id: "trocken", de: "trocken", es: "seco" },
-  { id: "warm", de: "warm", es: "caliente" },
-  { id: "wichtig", de: "wichtig", es: "importante" },
-  { id: "klein", de: "klein", es: "pequeño" },
-  { id: "schwach", de: "schwach", es: "débil" },
-];
+// Función para obtener vocabulario por módulo
+const getVocabularyByModule = (module: string): VocabItem[] => {
+  const moduleData = vocabularyData[module as keyof typeof vocabularyData];
+  return moduleData || [];
+};
 
 type ViewMode = "table" | "cards";
 
-export function Vocabulary({ items }: { items?: VocabItem[] }) {
+export function Vocabulary({
+  items,
+  module = "adjetivo",
+}: {
+  items?: VocabItem[];
+  module?: string;
+}) {
   const [view, setView] = useState<ViewMode>("cards");
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
   const [showOthers, setShowOthers] = useState(false);
 
-  const vocab = useMemo(() => (items?.length ? items : DEFAULT_VOCAB), [items]);
+  const vocab = useMemo(() => {
+    if (items?.length) return items;
+    return getVocabularyByModule(module);
+  }, [items, module]);
 
   const toggleReveal = (id: string) => {
     setRevealed((prev) => ({ ...prev, [id]: !prev[id] }));

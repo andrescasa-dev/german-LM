@@ -22,17 +22,19 @@ export function loadWorkshopExercises(workshopId: string): WorkshopExercises {
 
 // Helpers para acceder a ejercicios específicos
 export function getWarmupExercises(workshopId: string): WarmupExercise[] {
-  return loadWorkshopExercises(workshopId).sections.warmup;
+  return loadWorkshopExercises(workshopId).sections.warmup as WarmupExercise[];
 }
 
 export function getCentralExercises(workshopId: string): CentralExercise[] {
-  return loadWorkshopExercises(workshopId).sections.central;
+  return loadWorkshopExercises(workshopId).sections
+    .central as CentralExercise[];
 }
 
 export function getNarrativeExercises(
   workshopId: string
 ): NarrativeParagraph[] {
-  return loadWorkshopExercises(workshopId).sections.narrative;
+  return loadWorkshopExercises(workshopId).sections
+    .narrative as NarrativeParagraph[];
 }
 
 // Helper para obtener un ejercicio específico por ID
