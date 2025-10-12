@@ -1,0 +1,311 @@
+{
+  "workshopId": "werden",
+  "sections": {
+    "warmup": [
+      {
+        "id": "warm-1",
+        "sentence": "Ich ___ Ingenieur.",
+        "expectedAnswer": "werde",
+        "context": {
+          "pronoun": "ich",
+          "function": "verbo-pleno",
+          "tense": "prasens"
+        }
+      },
+      {
+        "id": "warm-2",
+        "sentence": "Du ___ dick, wenn du nur Süßigkeiten isst.",
+        "expectedAnswer": "wirst",
+        "context": {
+          "pronoun": "du",
+          "function": "verbo-pleno",
+          "tense": "prasens"
+        }
+      },
+      {
+        "id": "warm-3",
+        "sentence": "Die Autos ___ immer teurer.",
+        "expectedAnswer": "werden",
+        "context": {
+          "pronoun": "sie-plural",
+          "function": "verbo-pleno",
+          "tense": "prasens"
+        }
+      },
+      {
+        "id": "warm-4",
+        "sentence": "Wir ___ jetzt Erwachsene.",
+        "expectedAnswer": "werden",
+        "context": {
+          "pronoun": "wir",
+          "function": "verbo-pleno",
+          "tense": "prasens"
+        }
+      }
+    ],
+    "central": [
+      {
+        "id": "mc-1",
+        "sentence": "Morgen ___ wir ins Kino ___ (gehen).",
+        "options": [
+          "werden... gehen",
+          "sind... gegangen",
+          "werden... gegangen"
+        ],
+        "correctAnswer": "werden... gehen",
+        "correctFunction": "F",
+        "context": {
+          "pronoun": "wir",
+          "function": "futuro",
+          "tense": "prasens",
+          "mainVerb": "gehen"
+        }
+      },
+      {
+        "id": "mc-2",
+        "sentence": "Die Hausaufgaben ___ von den Schülern ___ (machen).",
+        "options": [
+          "werden... gemacht",
+          "werden... machen",
+          "sind... geworden"
+        ],
+        "correctAnswer": "werden... gemacht",
+        "correctFunction": "P",
+        "context": {
+          "pronoun": "sie-plural",
+          "function": "pasiva",
+          "tense": "prasens",
+          "mainVerb": "machen"
+        }
+      },
+      {
+        "id": "mc-3",
+        "sentence": "Er ___ ein guter Sänger.",
+        "options": [
+          "hat",
+          "wird",
+          "ist"
+        ],
+        "correctAnswer": "wird",
+        "correctFunction": "VP",
+        "context": {
+          "pronoun": "er",
+          "function": "verbo-pleno",
+          "tense": "prasens"
+        }
+      },
+      {
+        "id": "mc-4",
+        "sentence": "Nächste Woche ___ ich meine Eltern ___ (besuchen).",
+        "options": [
+          "werde... besucht",
+          "werde... besuchen",
+          "bin... geworden"
+        ],
+        "correctAnswer": "werde... besuchen",
+        "correctFunction": "F",
+        "context": {
+          "pronoun": "ich",
+          "function": "futuro",
+          "tense": "prasens",
+          "mainVerb": "besuchen"
+        }
+      },
+      {
+        "id": "mc-5",
+        "sentence": "Ich ___ krank ___ (werden in Perfekt).",
+        "options": [
+          "werde... geworden",
+          "bin... geworden",
+          "habe... geworden"
+        ],
+        "correctAnswer": "bin... geworden",
+        "correctFunction": "VP",
+        "context": {
+          "pronoun": "ich",
+          "function": "verbo-pleno",
+          "tense": "perfekt"
+        }
+      },
+      {
+        "id": "mc-6",
+        "sentence": "Die Rechnung ___ bald ___ (bezahlen - Futuro Pasivo).",
+        "options": [
+          "wird... bezahlt werden",
+          "wird... bezahlt",
+          "ist... bezahlt"
+        ],
+        "correctAnswer": "wird... bezahlt werden",
+        "correctFunction": "P/F",
+        "context": {
+          "pronoun": "sie",
+          "function": "pasiva",
+          "tense": "futur",
+          "mainVerb": "bezahlen"
+        }
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "germanText": "Julia hat 25 Jahre alt und ist abgengt von ihrem jetzigen Job. Sie {0} eine neue Karriere {1}. Nächstes Jahr {2} sie in Berlin {3}. Sie {4} bestimmt eine tolle Ärztin.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "expectedAnswer": "wird",
+            "context": {
+              "pronoun": "sie",
+              "function": "futuro",
+              "tense": "prasens",
+              "mainVerb": "starten"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "expectedAnswer": "starten",
+            "context": {
+              "pronoun": "sie",
+              "function": "futuro",
+              "tense": "prasens",
+              "mainVerb": "starten",
+              "isInfinitive": true
+            }
+          },
+          {
+            "id": "cloze-3",
+            "expectedAnswer": "wird",
+            "context": {
+              "pronoun": "sie",
+              "function": "futuro",
+              "tense": "prasens",
+              "mainVerb": "studieren"
+            }
+          },
+          {
+            "id": "cloze-4",
+            "expectedAnswer": "studieren",
+            "context": {
+              "pronoun": "sie",
+              "function": "futuro",
+              "tense": "prasens",
+              "mainVerb": "studieren",
+              "isInfinitive": true
+            }
+          },
+          {
+            "id": "cloze-5",
+            "expectedAnswer": "wird",
+            "context": {
+              "pronoun": "sie",
+              "function": "verbo-pleno",
+              "tense": "prasens"
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-2",
+        "germanText": "Sie weiß, dass das Studium schwer {0}. Aber sie {1} sich nicht {2}. Zuerst {3} sie eine kleine Wohnung {4}.",
+        "clozes": [
+          {
+            "id": "cloze-6",
+            "expectedAnswer": "wird",
+            "context": {
+              "pronoun": "es",
+              "function": "verbo-pleno",
+              "tense": "prasens"
+            }
+          },
+          {
+            "id": "cloze-7",
+            "expectedAnswer": "wird",
+            "context": {
+              "pronoun": "sie",
+              "function": "futuro",
+              "tense": "prasens",
+              "mainVerb": "ärgern"
+            }
+          },
+          {
+            "id": "cloze-8",
+            "expectedAnswer": "ärgern",
+            "context": {
+              "pronoun": "sie",
+              "function": "futuro",
+              "tense": "prasens",
+              "mainVerb": "ärgern",
+              "isInfinitive": true
+            }
+          },
+          {
+            "id": "cloze-9",
+            "expectedAnswer": "wird",
+            "context": {
+              "pronoun": "sie",
+              "function": "futuro",
+              "tense": "prasens",
+              "mainVerb": "suchen"
+            }
+          },
+          {
+            "id": "cloze-10",
+            "expectedAnswer": "suchen",
+            "context": {
+              "pronoun": "sie",
+              "function": "futuro",
+              "tense": "prasens",
+              "mainVerb": "suchen",
+              "isInfinitive": true
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-3",
+        "germanText": "Ihre Freunde fragen: \"Was {0} aus dir {1}?\" Julia antwortet: \"Ich {2} eine glückliche Frau {3}.\"",
+        "clozes": [
+          {
+            "id": "cloze-11",
+            "expectedAnswer": "wird",
+            "context": {
+              "pronoun": "es",
+              "function": "verbo-pleno",
+              "tense": "prasens"
+            }
+          },
+          {
+            "id": "cloze-12",
+            "expectedAnswer": "werden",
+            "context": {
+              "pronoun": "du",
+              "function": "verbo-pleno",
+              "tense": "prasens",
+              "isInfinitive": true
+            }
+          },
+          {
+            "id": "cloze-13",
+            "expectedAnswer": "werde",
+            "context": {
+              "pronoun": "ich",
+              "function": "futuro",
+              "tense": "prasens",
+              "mainVerb": "werden"
+            }
+          },
+          {
+            "id": "cloze-14",
+            "expectedAnswer": "werden",
+            "context": {
+              "pronoun": "ich",
+              "function": "futuro",
+              "tense": "prasens",
+              "mainVerb": "werden",
+              "isInfinitive": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
