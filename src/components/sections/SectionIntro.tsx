@@ -361,6 +361,14 @@ export function SectionIntro() {
                             ✓
                           </span>
                         )}
+                        {!correct && surveyCompleted && (
+                          <span
+                            className="text-red-600 dark:text-red-400 font-semibold"
+                            aria-label="Respuesta incorrecta"
+                          >
+                            ✗
+                          </span>
+                        )}
                       </span>
                       {after}
                     </p>
@@ -425,6 +433,15 @@ export function SectionIntro() {
                               ✓
                             </span>
                           )}
+                          {!correct &&
+                            answers.find((a) => a.questionId === q.id) && (
+                              <span
+                                className="text-red-600 dark:text-red-400 font-semibold"
+                                aria-label="Respuesta incorrecta"
+                              >
+                                ✗
+                              </span>
+                            )}
                         </span>
                         {after}
                       </p>

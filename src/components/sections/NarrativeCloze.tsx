@@ -194,6 +194,9 @@ export function NarrativeCloze() {
             const correct = !!userAnswers.find(
               (a) => a.questionId === clozeId && a.isCorrect
             );
+            const incorrect = !!userAnswers.find(
+              (a) => a.questionId === clozeId && !a.isCorrect
+            );
             return (
               <>
                 <Input
@@ -218,6 +221,14 @@ export function NarrativeCloze() {
                     aria-label="Respuesta correcta"
                   >
                     ✓
+                  </span>
+                )}
+                {incorrect && !correct && (
+                  <span
+                    className="text-red-600 dark:text-red-400 font-semibold ml-1"
+                    aria-label="Respuesta incorrecta"
+                  >
+                    ✗
                   </span>
                 )}
               </>

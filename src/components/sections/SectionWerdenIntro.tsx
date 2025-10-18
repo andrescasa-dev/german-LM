@@ -298,6 +298,15 @@ export function SectionWerdenIntro() {
                             ✓
                           </span>
                         )}
+                        {!correct &&
+                          answers.find((a) => a.questionId === exercise.id) && (
+                            <span
+                              className="text-red-600 dark:text-red-400 font-semibold"
+                              aria-label="Respuesta incorrecta"
+                            >
+                              ✗
+                            </span>
+                          )}
                       </span>
                       {after}
                     </p>

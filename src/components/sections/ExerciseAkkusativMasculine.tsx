@@ -235,6 +235,10 @@ export function ExerciseAkkusativMasculine() {
                           (a: { questionId: string; isCorrect: boolean }) =>
                             a.questionId === scenario.id && a.isCorrect
                         );
+                        const incorrect = !!userAnswers.find(
+                          (a: { questionId: string; isCorrect: boolean }) =>
+                            a.questionId === scenario.id && !a.isCorrect
+                        );
                         return (
                           <>
                             <Input
@@ -258,6 +262,14 @@ export function ExerciseAkkusativMasculine() {
                                 aria-label="Respuesta correcta"
                               >
                                 ✓
+                              </span>
+                            )}
+                            {incorrect && !correct && (
+                              <span
+                                className="text-red-600 dark:text-red-400 font-semibold"
+                                aria-label="Respuesta incorrecta"
+                              >
+                                ✗
                               </span>
                             )}
                           </>
