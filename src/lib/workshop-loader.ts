@@ -18,6 +18,11 @@ import type {
   PreposicionRecorridoParagraph,
   PreposicionRecorridoWorkshop,
 } from "@/types/preposiciones-recorrido-orientacion";
+import type {
+  PreposicionModalRelacionalExercise,
+  PreposicionModalRelacionalParagraph,
+  PreposicionModalRelacionalWorkshop,
+} from "@/types/preposiciones-modales-relaciones";
 
 /**
  * Definición de un taller en el registry
@@ -61,6 +66,13 @@ const WORKSHOP_REGISTRY: Record<string, WorkshopDefinition> = {
     loaderFn: loadPreposicionesRecorridoVariant,
     vocabularyLoaderFn: loadPreposicionesRecorridoVocabularyVariant,
   },
+  "preposiciones-modales-relaciones": {
+    id: "preposiciones-modales-relaciones",
+    hasVariants: true,
+    variantCount: 1,
+    loaderFn: loadPreposicionesModalesVariant,
+    vocabularyLoaderFn: loadPreposicionesModalesVocabularyVariant,
+  },
 };
 
 export type WorkshopExercises =
@@ -73,7 +85,8 @@ export type WorkshopExercises =
       };
     }
   | PreposicionTemporalWorkshop
-  | PreposicionRecorridoWorkshop;
+  | PreposicionRecorridoWorkshop
+  | PreposicionModalRelacionalWorkshop;
 
 // Dynamic import function for adjective variants
 async function loadAdjectiveVariant(variant: number = 1) {
@@ -127,6 +140,26 @@ async function loadPreposicionesRecorridoVariant(variant: number = 1) {
     // Fallback to variant 1
     const variantModule = await import(
       `@/data/workshops/preposiciones-recorrido-orientacion/variant-1.json`
+    );
+    return variantModule.default;
+  }
+}
+
+// Dynamic import function for preposiciones modales variants
+async function loadPreposicionesModalesVariant(variant: number = 1) {
+  try {
+    const variantModule = await import(
+      `@/data/workshops/preposiciones-modales-relaciones/variant-${variant}.json`
+    );
+    return variantModule.default;
+  } catch (error) {
+    console.error(
+      `Failed to load preposiciones modales variant ${variant}:`,
+      error
+    );
+    // Fallback to variant 1
+    const variantModule = await import(
+      `@/data/workshops/preposiciones-modales-relaciones/variant-1.json`
     );
     return variantModule.default;
   }
@@ -300,6 +333,34 @@ export async function getPreposicionesRecorridoNarrativeAsync(
   return exercises.sections.narrative as PreposicionRecorridoParagraph[];
 }
 
+// Helper functions for preposiciones modales workshop
+export async function getPreposicionesModalesWarmupAsync(
+  workshopId: string,
+  variant?: number
+): Promise<PreposicionModalRelacionalExercise[]> {
+  const exercises = await loadWorkshopExercises(workshopId, variant);
+  if ("warmup" in exercises.sections) {
+    return exercises.sections.warmup as PreposicionModalRelacionalExercise[];
+  }
+  return [];
+}
+
+export async function getPreposicionesModalesCentralAsync(
+  workshopId: string,
+  variant?: number
+): Promise<PreposicionModalRelacionalExercise[]> {
+  const exercises = await loadWorkshopExercises(workshopId, variant);
+  return exercises.sections.central as PreposicionModalRelacionalExercise[];
+}
+
+export async function getPreposicionesModalesNarrativeAsync(
+  workshopId: string,
+  variant?: number
+): Promise<PreposicionModalRelacionalParagraph[]> {
+  const exercises = await loadWorkshopExercises(workshopId, variant);
+  return exercises.sections.narrative as PreposicionModalRelacionalParagraph[];
+}
+
 // Helper para obtener un ejercicio específico por ID
 export function getExerciseById(
   workshopId: string,
@@ -404,6 +465,26 @@ async function loadPreposicionesRecorridoVocabularyVariant(
   } catch (error) {
     console.error(
       `Failed to load preposiciones recorrido vocabulary variant ${variant}:`,
+      error
+    );
+    // Fallback to general vocabulary
+    const generalModule = await import(
+      `@/data/workshops/legacy_vocabulary.json`
+    );
+    return generalModule.default;
+  }
+}
+
+// Dynamic import function for preposiciones modales vocabulary variants
+async function loadPreposicionesModalesVocabularyVariant(variant: number = 1) {
+  try {
+    const variantModule = await import(
+      `@/data/workshops/preposiciones-modales-relaciones/variant-${variant}-vocabulary.json`
+    );
+    return variantModule.default;
+  } catch (error) {
+    console.error(
+      `Failed to load preposiciones modales vocabulary variant ${variant}:`,
       error
     );
     // Fallback to general vocabulary

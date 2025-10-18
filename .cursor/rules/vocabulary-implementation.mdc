@@ -1,0 +1,139 @@
+---
+description: Guía para implementar archivos de vocabulario en talleres de alemán
+globs: **/vocabulary.json,**/variant-*-vocabulary.json
+---
+
+# Guía de Implementación de Vocabulario
+
+Esta regla define el patrón estándar para crear archivos de vocabulario en los talleres de aprendizaje de alemán.
+
+## Estructura Estándar
+
+Todos los archivos de vocabulario deben seguir esta estructura:
+
+```json
+{
+  "[workshop-id]": [
+    {
+      "id": "identificador-unico",
+      "de": "palabra en alemán",
+      "es": "traducción al español",
+      "tag": "categoría-del-elemento",
+      "caso": "caso-gramatical",
+      "uso": "uso-específico",
+      "preposicion": "preposición-asociada"
+    }
+  ]
+}
+```
+
+## Campos Obligatorios
+
+- **id**: Identificador único del elemento
+- **de**: Palabra o frase en alemán
+- **es**: Traducción al español
+- **tag**: Categoría del elemento (ver sección de tags)
+
+## Campos Opcionales
+
+- **caso**: Caso gramatical (dativo, acusativo, genitivo, nominativo)
+- **uso**: Uso específico del elemento
+- **preposicion**: Preposición asociada (para verbos fijos)
+
+## Tags Estándar
+
+### Preposiciones
+- `preposicion-modal`: Preposiciones modales (mit, ohne, für, gegen)
+- `preposicion-temporal`: Preposiciones temporales (vor, nach, während)
+- `preposicion-recorrido`: Preposiciones de recorrido (durch, um)
+- `preposicion-local`: Preposiciones locales (bis zu, am...vorbei)
+
+### Verbos
+- `verbo`: Verbo regular
+- `verbo-fijo`: Verbo con preposición fija
+- `verbo-movimiento`: Verbo de movimiento
+- `verbo-modal`: Verbo modal
+
+### Sustantivos
+- `sustantivo-masculino`: Sustantivo masculino
+- `sustantivo-femenino`: Sustantivo femenino
+- `sustantivo-neutro`: Sustantivo neutro
+
+### Otros
+- `adverbio`: Adverbio
+- `adverbio-direccion`: Adverbio de dirección
+- `adverbio-tiempo`: Adverbio de tiempo
+- `adverbio-negacion`: Adverbio de negación
+- `adjetivo`: Adjetivo
+- `nombre-propio`: Nombre propio
+
+## Convenciones de Naming
+
+### IDs
+- Usar minúsculas y guiones para separar palabras
+- Ser descriptivo pero conciso
+- Ejemplos: `mit`, `ohne`, `fuer`, `gegen`, `interessieren`, `diskutieren`
+
+### Casos Gramaticales
+- Usar minúsculas: `dativo`, `acusativo`, `genitivo`, `nominativo`
+
+### Uso
+- Describir brevemente el uso específico
+- Ejemplos: "compañía o instrumento", "ausencia", "beneficio o finalidad"
+
+## Ejemplos de Implementación
+
+### Preposición Modal
+```json
+{
+  "id": "mit",
+  "de": "mit",
+  "es": "con",
+  "tag": "preposicion-modal",
+  "caso": "dativo",
+  "uso": "compañía o instrumento"
+}
+```
+
+### Verbo con Preposición Fija
+```json
+{
+  "id": "interessieren",
+  "de": "sich interessieren",
+  "es": "interesarse por",
+  "tag": "verbo-fijo",
+  "preposicion": "für",
+  "caso": "acusativo"
+}
+```
+
+### Sustantivo
+```json
+{
+  "id": "freunde",
+  "de": "die Freunde",
+  "es": "los amigos",
+  "tag": "sustantivo-masculino"
+}
+```
+
+## Integración con Workshop Loader
+
+El archivo debe ser compatible con el sistema de carga definido en [workshop-loader.ts](mdc:src/lib/workshop-loader.ts):
+
+1. **Nombre del archivo**: `variant-{número}-vocabulary.json`
+2. **Clave principal**: Debe coincidir con el `workshopId` del registry
+3. **Función de carga**: Debe tener una función correspondiente en `workshop-loader.ts`
+
+## Validación
+
+- Verificar que todos los elementos tengan `id`, `de`, `es` y `tag`
+- Asegurar que los IDs sean únicos dentro del archivo
+- Validar que los casos gramaticales sean correctos
+- Comprobar que las preposiciones asociadas existan en el mismo archivo
+
+## Referencias
+
+- Ver [workshop-loader.ts](mdc:src/lib/workshop-loader.ts) para el sistema de carga
+- Ver [preposiciones-modales-relaciones/variant-1-vocabulary.json](mdc:src/data/workshops/preposiciones-modales-relaciones/variant-1-vocabulary.json) como ejemplo de implementación
+- Ver [preposiciones-recorrido-orientacion/variant-1-vocabulary.json](mdc:src/data/workshops/preposiciones-recorrido-orientacion/variant-1-vocabulary.json) como referencia adicional

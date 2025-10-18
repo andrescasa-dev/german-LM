@@ -38,6 +38,13 @@ export default function Home() {
       href: "/workshops/preposiciones-recorrido-orientacion",
       status: "available",
     },
+    {
+      id: "preposiciones-modales-relaciones",
+      title: "🔗 Taller de Preposiciones Modales y Relacionales",
+      description: "Nivel A2 | Compañía, finalidad, oposición y ausencia",
+      href: "/workshops/preposiciones-modales-relaciones",
+      status: "available",
+    },
   ];
 
   return (

@@ -1,0 +1,288 @@
+{
+  "preposiciones-modales-relaciones": [
+    {
+      "id": "mit",
+      "de": "mit",
+      "es": "con",
+      "tag": "preposicion-modal",
+      "caso": "dativo",
+      "uso": "compañía o instrumento"
+    },
+    {
+      "id": "ohne",
+      "de": "ohne",
+      "es": "sin",
+      "tag": "preposicion-modal",
+      "caso": "acusativo",
+      "uso": "ausencia"
+    },
+    {
+      "id": "fuer",
+      "de": "für",
+      "es": "para",
+      "tag": "preposicion-modal",
+      "caso": "acusativo",
+      "uso": "beneficio o finalidad"
+    },
+    {
+      "id": "gegen",
+      "de": "gegen",
+      "es": "contra",
+      "tag": "preposicion-modal",
+      "caso": "acusativo",
+      "uso": "oposición"
+    },
+    {
+      "id": "interessieren",
+      "de": "sich interessieren",
+      "es": "interesarse por",
+      "tag": "verbo-fijo",
+      "preposicion": "für",
+      "caso": "acusativo"
+    },
+    {
+      "id": "diskutieren",
+      "de": "diskutieren",
+      "es": "discutir con",
+      "tag": "verbo-fijo",
+      "preposicion": "mit",
+      "caso": "dativo"
+    },
+    {
+      "id": "fragen",
+      "de": "fragen",
+      "es": "preguntar por",
+      "tag": "verbo-fijo",
+      "preposicion": "nach",
+      "caso": "dativo"
+    },
+    {
+      "id": "freunde",
+      "de": "die Freunde",
+      "es": "los amigos",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "stift",
+      "de": "der Stift",
+      "es": "el bolígrafo",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "eltern",
+      "de": "die Eltern",
+      "es": "los padres",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "disko",
+      "de": "die Disko",
+      "es": "la discoteca",
+      "tag": "sustantivo-femenino"
+    },
+    {
+      "id": "restaurant",
+      "de": "das Restaurant",
+      "es": "el restaurante",
+      "tag": "sustantivo-neutro"
+    },
+    {
+      "id": "kaffee",
+      "de": "der Kaffee",
+      "es": "el café",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "milch",
+      "de": "die Milch",
+      "es": "la leche",
+      "tag": "sustantivo-femenino"
+    },
+    {
+      "id": "kuchen",
+      "de": "der Kuchen",
+      "es": "el pastel",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "mehl",
+      "de": "das Mehl",
+      "es": "la harina",
+      "tag": "sustantivo-neutro"
+    },
+    {
+      "id": "geschenk",
+      "de": "das Geschenk",
+      "es": "el regalo",
+      "tag": "sustantivo-neutro"
+    },
+    {
+      "id": "party",
+      "de": "die Party",
+      "es": "la fiesta",
+      "tag": "sustantivo-femenino"
+    },
+    {
+      "id": "sabine",
+      "de": "Sabine",
+      "es": "Sabine",
+      "tag": "nombre-propio"
+    },
+    {
+      "id": "fussball",
+      "de": "der Fußball",
+      "es": "el fútbol",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "feind",
+      "de": "der Feind",
+      "es": "el enemigo",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "nachbarn",
+      "de": "die Nachbarn",
+      "es": "los vecinos",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "musik",
+      "de": "die Musik",
+      "es": "la música",
+      "tag": "sustantivo-femenino"
+    },
+    {
+      "id": "kunst",
+      "de": "die Kunst",
+      "es": "el arte",
+      "tag": "sustantivo-femenino"
+    },
+    {
+      "id": "sprachen",
+      "de": "die Sprachen",
+      "es": "los idiomas",
+      "tag": "sustantivo-femenino"
+    },
+    {
+      "id": "kollegen",
+      "de": "die Kollegen",
+      "es": "los colegas",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "preis",
+      "de": "der Preis",
+      "es": "el precio",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "zeit",
+      "de": "die Zeit",
+      "es": "el tiempo",
+      "tag": "sustantivo-femenino"
+    },
+    {
+      "id": "weg",
+      "de": "der Weg",
+      "es": "el camino",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "hund",
+      "de": "der Hund",
+      "es": "el perro",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "reisen",
+      "de": "reisen",
+      "es": "viajar",
+      "tag": "verbo"
+    },
+    {
+      "id": "trinken",
+      "de": "trinken",
+      "es": "beber",
+      "tag": "verbo"
+    },
+    {
+      "id": "leben",
+      "de": "leben",
+      "es": "vivir",
+      "tag": "verbo"
+    },
+    {
+      "id": "haben",
+      "de": "haben",
+      "es": "tener",
+      "tag": "verbo"
+    },
+    {
+      "id": "planen",
+      "de": "planen",
+      "es": "planear",
+      "tag": "verbo"
+    },
+    {
+      "id": "spielen",
+      "de": "spielen",
+      "es": "jugar",
+      "tag": "verbo"
+    },
+    {
+      "id": "kaempfen",
+      "de": "kämpfen",
+      "es": "luchar",
+      "tag": "verbo"
+    },
+    {
+      "id": "machen",
+      "de": "machen",
+      "es": "hacer",
+      "tag": "verbo"
+    },
+    {
+      "id": "gehen",
+      "de": "gehen",
+      "es": "ir",
+      "tag": "verbo-movimiento"
+    },
+    {
+      "id": "schreiben",
+      "de": "schreiben",
+      "es": "escribir",
+      "tag": "verbo"
+    },
+    {
+      "id": "gern",
+      "de": "gern",
+      "es": "con gusto",
+      "tag": "adverbio"
+    },
+    {
+      "id": "nicht",
+      "de": "nicht",
+      "es": "no",
+      "tag": "adverbio-negacion"
+    },
+    {
+      "id": "schon",
+      "de": "schon",
+      "es": "ya",
+      "tag": "adverbio-tiempo"
+    },
+    {
+      "id": "müssen",
+      "de": "müssen",
+      "es": "deber",
+      "tag": "verbo-modal"
+    },
+    {
+      "id": "können",
+      "de": "können",
+      "es": "poder",
+      "tag": "verbo-modal"
+    }
+  ]
+}

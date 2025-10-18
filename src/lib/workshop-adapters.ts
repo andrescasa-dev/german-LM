@@ -30,6 +30,11 @@ import type {
   PreposicionRecorridoParagraph,
   PreposicionRecorridoCloze,
 } from "@/types/preposiciones-recorrido-orientacion";
+import type {
+  PreposicionModalRelacionalExercise,
+  PreposicionModalRelacionalParagraph,
+  PreposicionModalRelacionalCloze,
+} from "@/types/preposiciones-modales-relaciones";
 
 /**
  * Adaptador para ejercicios de adjetivos (CentralScenario)
@@ -284,6 +289,56 @@ export function adaptPreposicionesRecorridoClozeToBase(
       case: cloze.context.case,
       type: cloze.context.type,
       gender: cloze.context.gender,
+    } as BaseContext,
+  };
+}
+
+/**
+ * Adaptador para ejercicios de preposiciones modales y relacionales
+ */
+export function adaptPreposicionesModalesExerciseToBase(
+  exercise: PreposicionModalRelacionalExercise
+): BaseExercise {
+  return {
+    id: exercise.id,
+    sentence: exercise.sentence,
+    expectedAnswer: exercise.expectedAnswer,
+    context: {
+      explanation: exercise.context.explanation,
+      preposition: exercise.context.preposition,
+      case: exercise.context.case,
+      meaning: exercise.context.meaning,
+    } as BaseContext,
+  };
+}
+
+/**
+ * Adaptador para párrafos de preposiciones modales y relacionales
+ */
+export function adaptPreposicionesModalesParagraphToBase(
+  paragraph: PreposicionModalRelacionalParagraph
+): BaseParagraph {
+  return {
+    id: paragraph.id,
+    text: paragraph.germanText,
+    clozes: paragraph.clozes.map(adaptPreposicionesModalesClozeToBase),
+  };
+}
+
+/**
+ * Adaptador para clozes de preposiciones modales y relacionales
+ */
+export function adaptPreposicionesModalesClozeToBase(
+  cloze: PreposicionModalRelacionalCloze
+): BaseCloze {
+  return {
+    id: cloze.id,
+    expectedAnswer: cloze.expectedAnswer,
+    context: {
+      explanation: cloze.context.explanation,
+      preposition: cloze.context.preposition,
+      case: cloze.context.case,
+      meaning: cloze.context.meaning,
     } as BaseContext,
   };
 }
