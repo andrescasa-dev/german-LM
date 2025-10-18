@@ -1,0 +1,254 @@
+{
+  "preposiciones-recorrido-orientacion": [
+    {
+      "id": "durch",
+      "de": "durch",
+      "es": "a través de",
+      "tag": "preposicion-recorrido",
+      "caso": "acusativo",
+      "uso": "recorrido"
+    },
+    {
+      "id": "um",
+      "de": "um",
+      "es": "alrededor de",
+      "tag": "preposicion-recorrido",
+      "caso": "acusativo",
+      "uso": "recorrido"
+    },
+    {
+      "id": "bis-zu",
+      "de": "bis zu",
+      "es": "hasta",
+      "tag": "preposicion-local",
+      "caso": "dativo",
+      "uso": "destino"
+    },
+    {
+      "id": "am-vorbei",
+      "de": "am...vorbei",
+      "es": "pasar junto a",
+      "tag": "preposicion-local",
+      "caso": "dativo",
+      "uso": "referencia"
+    },
+    {
+      "id": "gegenuber-von",
+      "de": "gegenüber von",
+      "es": "enfrente de",
+      "tag": "preposicion-local",
+      "caso": "dativo",
+      "uso": "posicion"
+    },
+    {
+      "id": "tunnel",
+      "de": "der Tunnel",
+      "es": "el túnel",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "stadt",
+      "de": "die Stadt",
+      "es": "la ciudad",
+      "tag": "sustantivo-femenino"
+    },
+    {
+      "id": "fenster",
+      "de": "das Fenster",
+      "es": "la ventana",
+      "tag": "sustantivo-neutro"
+    },
+    {
+      "id": "see",
+      "de": "der See",
+      "es": "el lago",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "park",
+      "de": "der Park",
+      "es": "el parque",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "post",
+      "de": "die Post",
+      "es": "el correo",
+      "tag": "sustantivo-femenino"
+    },
+    {
+      "id": "bahnhof",
+      "de": "der Bahnhof",
+      "es": "la estación de tren",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "polizei",
+      "de": "die Polizei",
+      "es": "la policía",
+      "tag": "sustantivo-femenino"
+    },
+    {
+      "id": "supermarkt",
+      "de": "der Supermarkt",
+      "es": "el supermercado",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "brucke",
+      "de": "die Brücke",
+      "es": "el puente",
+      "tag": "sustantivo-femenino"
+    },
+    {
+      "id": "platz",
+      "de": "der Platz",
+      "es": "la plaza",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "kirche",
+      "de": "die Kirche",
+      "es": "la iglesia",
+      "tag": "sustantivo-femenino"
+    },
+    {
+      "id": "ampel",
+      "de": "die Ampel",
+      "es": "el semáforo",
+      "tag": "sustantivo-femenino"
+    },
+    {
+      "id": "apotheke",
+      "de": "die Apotheke",
+      "es": "la farmacia",
+      "tag": "sustantivo-femenino"
+    },
+    {
+      "id": "rathaus",
+      "de": "das Rathaus",
+      "es": "el ayuntamiento",
+      "tag": "sustantivo-neutro"
+    },
+    {
+      "id": "bibliothek",
+      "de": "die Bibliothek",
+      "es": "la biblioteca",
+      "tag": "sustantivo-femenino"
+    },
+    {
+      "id": "wald",
+      "de": "der Wald",
+      "es": "el bosque",
+      "tag": "sustantivo-masculino"
+    },
+    {
+      "id": "museum",
+      "de": "das Museum",
+      "es": "el museo",
+      "tag": "sustantivo-neutro"
+    },
+    {
+      "id": "laufen",
+      "de": "laufen",
+      "es": "correr",
+      "tag": "verbo-movimiento"
+    },
+    {
+      "id": "gehen",
+      "de": "gehen",
+      "es": "caminar",
+      "tag": "verbo-movimiento"
+    },
+    {
+      "id": "fahren",
+      "de": "fahren",
+      "es": "conducir",
+      "tag": "verbo-movimiento"
+    },
+    {
+      "id": "spazieren",
+      "de": "spazieren",
+      "es": "pasear",
+      "tag": "verbo-movimiento"
+    },
+    {
+      "id": "scheinen",
+      "de": "scheinen",
+      "es": "brillar",
+      "tag": "verbo"
+    },
+    {
+      "id": "treffen",
+      "de": "sich treffen",
+      "es": "encontrarse",
+      "tag": "verbo"
+    },
+    {
+      "id": "befinden",
+      "de": "sich befinden",
+      "es": "encontrarse",
+      "tag": "verbo"
+    },
+    {
+      "id": "liegen",
+      "de": "liegen",
+      "es": "estar ubicado",
+      "tag": "verbo"
+    },
+    {
+      "id": "geradeaus",
+      "de": "geradeaus",
+      "es": "recto",
+      "tag": "adverbio-direccion"
+    },
+    {
+      "id": "weiter",
+      "de": "weiter",
+      "es": "más adelante",
+      "tag": "adverbio-direccion"
+    },
+    {
+      "id": "zuerst",
+      "de": "zuerst",
+      "es": "primero",
+      "tag": "adverbio-tiempo"
+    },
+    {
+      "id": "danach",
+      "de": "danach",
+      "es": "después",
+      "tag": "adverbio-tiempo"
+    },
+    {
+      "id": "einfach",
+      "de": "einfach",
+      "es": "fácil",
+      "tag": "adjetivo"
+    },
+    {
+      "id": "kurz",
+      "de": "kurz",
+      "es": "corto",
+      "tag": "adjetivo"
+    },
+    {
+      "id": "lang",
+      "de": "lang",
+      "es": "largo",
+      "tag": "adjetivo"
+    },
+    {
+      "id": "nah",
+      "de": "nah",
+      "es": "cerca",
+      "tag": "adjetivo"
+    },
+    {
+      "id": "weit",
+      "de": "weit",
+      "es": "lejos",
+      "tag": "adjetivo"
+    }
+  ]
+}

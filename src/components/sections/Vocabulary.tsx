@@ -3,7 +3,7 @@
 import { useMemo, useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import vocabularyData from "@/data/workshops/vocabulary.json";
+import vocabularyData from "@/data/workshops/legacy_vocabulary.json";
 import { useVariant } from "@/hooks/useVariant";
 import { getVocabularyByVariant } from "@/lib/workshop-loader";
 

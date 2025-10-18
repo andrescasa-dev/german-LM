@@ -1,0 +1,230 @@
+{
+  "workshopId": "preposiciones-modales-relaciones",
+  "sections": {
+    "warmup": [
+      {
+        "id": "warmup-1",
+        "sentence": "Ich reise nicht gerne ____ meinem Hund.",
+        "expectedAnswer": "mit",
+        "context": {
+          "preposition": "mit",
+          "case": "Dativo",
+          "meaning": "con (compañía)",
+          "explanation": "La preposición 'mit' rige Dativo y significa 'con' indicando compañía."
+        }
+      },
+      {
+        "id": "warmup-2",
+        "sentence": "Brauchst du Hilfe ____ das Geld?",
+        "expectedAnswer": "für",
+        "context": {
+          "preposition": "für",
+          "case": "Acusativo",
+          "meaning": "para (finalidad)",
+          "explanation": "La preposición 'für' rige Acusativo y significa 'para' indicando finalidad o beneficio."
+        }
+      },
+      {
+        "id": "warmup-3",
+        "sentence": "Ich kann ____ dich nicht leben.",
+        "expectedAnswer": "ohne",
+        "context": {
+          "preposition": "ohne",
+          "case": "Acusativo",
+          "meaning": "sin (ausencia)",
+          "explanation": "La preposición 'ohne' rige Acusativo y significa 'sin' indicando ausencia."
+        }
+      },
+      {
+        "id": "warmup-4",
+        "sentence": "Wir kämpfen ____ den Feind.",
+        "expectedAnswer": "gegen",
+        "context": {
+          "preposition": "gegen",
+          "case": "Acusativo",
+          "meaning": "contra (oposición)",
+          "explanation": "La preposición 'gegen' rige Acusativo y significa 'contra' indicando oposición."
+        }
+      },
+      {
+        "id": "warmup-5",
+        "sentence": "Wir gehen ____ meinen Großeltern ins Kino.",
+        "expectedAnswer": "mit",
+        "context": {
+          "preposition": "mit",
+          "case": "Dativo",
+          "meaning": "con (compañía)",
+          "explanation": "La preposición 'mit' rige Dativo y significa 'con' indicando compañía."
+        }
+      }
+    ],
+    "central": [
+      {
+        "id": "central-1",
+        "sentence": "Ich plane eine Party ____ Sabine.",
+        "expectedAnswer": "für",
+        "context": {
+          "preposition": "für",
+          "case": "Acusativo",
+          "meaning": "para (beneficio)",
+          "explanation": "La preposición 'für' rige Acusativo indicando finalidad/beneficio."
+        }
+      },
+      {
+        "id": "central-2",
+        "sentence": "Wer kommt ____ dir?",
+        "expectedAnswer": "mit",
+        "context": {
+          "preposition": "mit",
+          "case": "Dativo",
+          "meaning": "con (compañía)",
+          "explanation": "La preposición 'mit' rige Dativo indicando compañía."
+        }
+      },
+      {
+        "id": "central-3",
+        "sentence": "Wir müssen es ____ unseren Nachbarn machen.",
+        "expectedAnswer": "gegen",
+        "context": {
+          "preposition": "gegen",
+          "case": "Acusativo",
+          "meaning": "contra (oposición)",
+          "explanation": "La preposición 'gegen' rige Acusativo indicando oposición."
+        }
+      },
+      {
+        "id": "central-4",
+        "sentence": "Können wir ihn ____ Mehl backen?",
+        "expectedAnswer": "ohne",
+        "context": {
+          "preposition": "ohne",
+          "case": "Acusativo",
+          "meaning": "sin (ausencia)",
+          "explanation": "La preposición 'ohne' rige Acusativo indicando ausencia."
+        }
+      },
+      {
+        "id": "central-5",
+        "sentence": "Ein Kuchen ____ Mehl? Das geht nicht!",
+        "expectedAnswer": "ohne",
+        "context": {
+          "preposition": "ohne",
+          "case": "Acusativo",
+          "meaning": "sin (ausencia)",
+          "explanation": "La preposición 'ohne' rige Acusativo indicando ausencia."
+        }
+      },
+      {
+        "id": "central-6",
+        "sentence": "Das Geschenk ____ Sabine habe ich schon.",
+        "expectedAnswer": "für",
+        "context": {
+          "preposition": "für",
+          "case": "Acusativo",
+          "meaning": "para (finalidad)",
+          "explanation": "La preposición 'für' rige Acusativo indicando finalidad/objeto."
+        }
+      },
+      {
+        "id": "central-7",
+        "sentence": "Er interessiert sich ____ die neue Musik.",
+        "expectedAnswer": "für",
+        "context": {
+          "preposition": "für",
+          "case": "Acusativo",
+          "meaning": "para (verbo fijo)",
+          "explanation": "La combinación 'sich interessieren für' rige Acusativo."
+        }
+      },
+      {
+        "id": "central-8",
+        "sentence": "Ich diskutiere ____ meinen Kollegen.",
+        "expectedAnswer": "mit",
+        "context": {
+          "preposition": "mit",
+          "case": "Dativo",
+          "meaning": "con (verbo fijo)",
+          "explanation": "La combinación 'diskutieren mit' rige Dativo."
+        }
+      }
+    ],
+    "narrative": [
+      {
+        "id": "narrative-1",
+        "germanText": "**Eine Überraschungsparty**\n\nHör mal, ich plane eine Party ____ (1) Sabine. Sie hat morgen Geburtstag und ich möchte sie überraschen. Wer kommt ____ (2) dir zur Party? Alle unsere Freunde werden kommen. Aber wir müssen es ____ (3) unseren Nachbarn machen, sie sind sehr laut und beschweren sich immer.\n\nAh, verstehe. Und der Kuchen? Können wir ihn ____ (4) Mehl backen? Ich habe keins zu Hause. Nein! Ein Kuchen ____ (5) Mehl? Das geht nicht! Wir brauchen Mehl für einen guten Kuchen.\n\nNa gut. Ich kümmere mich darum. Das Geschenk ____ (6) Sabine habe ich schon gekauft. Es ist ein Buch ____ (7) ihre Lieblingsautorin. Sie wird sich sehr freuen!",
+        "clozes": [
+          {
+            "id": "narrative-cloze-1",
+            "expectedAnswer": "für",
+            "context": {
+              "preposition": "für",
+              "case": "Acusativo",
+              "meaning": "para (beneficio)",
+              "explanation": "La preposición 'für' rige Acusativo indicando finalidad/beneficio."
+            }
+          },
+          {
+            "id": "narrative-cloze-2",
+            "expectedAnswer": "mit",
+            "context": {
+              "preposition": "mit",
+              "case": "Dativo",
+              "meaning": "con (compañía)",
+              "explanation": "La preposición 'mit' rige Dativo indicando compañía."
+            }
+          },
+          {
+            "id": "narrative-cloze-3",
+            "expectedAnswer": "gegen",
+            "context": {
+              "preposition": "gegen",
+              "case": "Acusativo",
+              "meaning": "contra (oposición)",
+              "explanation": "La preposición 'gegen' rige Acusativo indicando oposición."
+            }
+          },
+          {
+            "id": "narrative-cloze-4",
+            "expectedAnswer": "ohne",
+            "context": {
+              "preposition": "ohne",
+              "case": "Acusativo",
+              "meaning": "sin (ausencia)",
+              "explanation": "La preposición 'ohne' rige Acusativo indicando ausencia."
+            }
+          },
+          {
+            "id": "narrative-cloze-5",
+            "expectedAnswer": "ohne",
+            "context": {
+              "preposition": "ohne",
+              "case": "Acusativo",
+              "meaning": "sin (ausencia)",
+              "explanation": "La preposición 'ohne' rige Acusativo indicando ausencia."
+            }
+          },
+          {
+            "id": "narrative-cloze-6",
+            "expectedAnswer": "für",
+            "context": {
+              "preposition": "für",
+              "case": "Acusativo",
+              "meaning": "para (finalidad)",
+              "explanation": "La preposición 'für' rige Acusativo indicando finalidad/objeto."
+            }
+          },
+          {
+            "id": "narrative-cloze-7",
+            "expectedAnswer": "von",
+            "context": {
+              "preposition": "von",
+              "case": "Dativo",
+              "meaning": "de (procedencia)",
+              "explanation": "La preposición 'von' rige Dativo indicando procedencia."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

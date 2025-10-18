@@ -5,6 +5,8 @@ import type {
   WerdenFunction,
   WerdenValidationResult,
 } from "@/types/werden";
+import { BaseWorkshopValidator } from "@/lib/validation-interface";
+import type { BaseContext } from "@/types/workshop-base";
 
 // Tabla de conjugación de werden
 const WERDEN_CONJUGATIONS: Record<Tense, Record<Pronoun, string>> = {
@@ -363,4 +365,50 @@ function getPronounLabel(pronoun: Pronoun): string {
     case "sie-plural":
       return "ellos/ellas";
   }
+}
+
+/**
+ * Validador de werden que implementa la interfaz común
+ */
+export class WerdenValidator extends BaseWorkshopValidator<
+  WerdenContext,
+  WerdenValidationResult
+> {
+  validate(answer: string, context: WerdenContext): WerdenValidationResult {
+    return validateWerdenForm(answer, context);
+  }
+
+  generateHint(context: WerdenContext): string {
+    return generateWerdenHint(context);
+  }
+
+  getCorrectAnswer(context: WerdenContext): string {
+    return getExpectedAnswer(context);
+  }
+}
+
+/**
+ * Instancia singleton del validador de werden
+ */
+export const werdenValidator = new WerdenValidator();
+
+/**
+ * Funciones de adaptación para usar con BaseContext
+ */
+export function validateWerdenFromBase(
+  answer: string,
+  baseContext: BaseContext
+): WerdenValidationResult {
+  const context = baseContext as unknown as WerdenContext;
+  return validateWerdenForm(answer, context);
+}
+
+export function generateWerdenHintFromBase(baseContext: BaseContext): string {
+  const context = baseContext as unknown as WerdenContext;
+  return generateWerdenHint(context);
+}
+
+export function getWerdenAnswerFromBase(baseContext: BaseContext): string {
+  const context = baseContext as unknown as WerdenContext;
+  return getExpectedAnswer(context);
 }
