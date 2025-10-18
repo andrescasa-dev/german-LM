@@ -220,6 +220,7 @@ async function loadVocabularyVariant(workshopId: string, variant: number = 1) {
 export async function getVocabularyByVariant(
   workshopId: string,
   variant?: number
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<Record<string, any[]>> {
   if (workshopId === "werden") {
     // Werden workshop uses general vocabulary
