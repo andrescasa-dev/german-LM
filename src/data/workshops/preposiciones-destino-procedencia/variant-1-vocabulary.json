@@ -1,0 +1,436 @@
+{
+  "preposiciones-destino-procedencia": [
+    {
+      "id": "aus",
+      "de": "aus",
+      "es": "desde, de",
+      "tag": "preposicion-local",
+      "caso": "dativo",
+      "uso": "procedencia o lugar del que se sale"
+    },
+    {
+      "id": "nach",
+      "de": "nach",
+      "es": "hacia, a",
+      "tag": "preposicion-local",
+      "caso": "dativo",
+      "uso": "destino o dirección con nombres propios"
+    },
+    {
+      "id": "zu",
+      "de": "zu",
+      "es": "hacia, a",
+      "tag": "preposicion-local",
+      "caso": "dativo",
+      "uso": "destino o dirección con nombres comunes"
+    },
+    {
+      "id": "bei",
+      "de": "bei",
+      "es": "en casa de, junto a",
+      "tag": "preposicion-local",
+      "caso": "dativo",
+      "uso": "ubicación en casa de alguien"
+    },
+    {
+      "id": "von",
+      "de": "von",
+      "es": "de, desde",
+      "tag": "preposicion-local",
+      "caso": "dativo",
+      "uso": "origen o posesión"
+    },
+    {
+      "id": "mit",
+      "de": "mit",
+      "es": "con",
+      "tag": "preposicion-modal",
+      "caso": "dativo",
+      "uso": "compañía o instrumento"
+    },
+    {
+      "id": "seit",
+      "de": "seit",
+      "es": "desde",
+      "tag": "preposicion-temporal",
+      "caso": "dativo",
+      "uso": "duración desde el pasado"
+    },
+    {
+      "id": "bis-zu",
+      "de": "bis zu",
+      "es": "hasta",
+      "tag": "preposicion-local",
+      "caso": "dativo",
+      "uso": "hasta un lugar específico"
+    },
+    {
+      "id": "gegenueber-von",
+      "de": "gegenüber von",
+      "es": "enfrente de",
+      "tag": "preposicion-local",
+      "caso": "dativo",
+      "uso": "posición enfrente de"
+    },
+    {
+      "id": "am-vorbei",
+      "de": "am...vorbei",
+      "es": "pasando por",
+      "tag": "preposicion-local",
+      "caso": "dativo",
+      "uso": "pasar junto a algo"
+    },
+    {
+      "id": "schweiz",
+      "de": "die Schweiz",
+      "es": "Suiza",
+      "tag": "nombre-propio",
+      "caso": "dativo",
+      "uso": "país"
+    },
+    {
+      "id": "italien",
+      "de": "Italien",
+      "es": "Italia",
+      "tag": "nombre-propio",
+      "caso": "dativo",
+      "uso": "país"
+    },
+    {
+      "id": "deutschland",
+      "de": "Deutschland",
+      "es": "Alemania",
+      "tag": "nombre-propio",
+      "caso": "dativo",
+      "uso": "país"
+    },
+    {
+      "id": "oesterreich",
+      "de": "Österreich",
+      "es": "Austria",
+      "tag": "nombre-propio",
+      "caso": "dativo",
+      "uso": "país"
+    },
+    {
+      "id": "arzt",
+      "de": "der Arzt",
+      "es": "el médico",
+      "tag": "sustantivo-masculino",
+      "caso": "dativo",
+      "uso": "profesión"
+    },
+    {
+      "id": "supermarkt",
+      "de": "der Supermarkt",
+      "es": "el supermercado",
+      "tag": "sustantivo-masculino",
+      "caso": "dativo",
+      "uso": "lugar"
+    },
+    {
+      "id": "bibliothek",
+      "de": "die Bibliothek",
+      "es": "la biblioteca",
+      "tag": "sustantivo-femenino",
+      "caso": "dativo",
+      "uso": "lugar"
+    },
+    {
+      "id": "hause",
+      "de": "Hause",
+      "es": "casa",
+      "tag": "nombre-propio",
+      "caso": "dativo",
+      "uso": "expresión fija"
+    },
+    {
+      "id": "grosseltern",
+      "de": "die Großeltern",
+      "es": "los abuelos",
+      "tag": "sustantivo-masculino",
+      "caso": "dativo",
+      "uso": "familia"
+    },
+    {
+      "id": "monaten",
+      "de": "die Monate",
+      "es": "los meses",
+      "tag": "sustantivo-masculino",
+      "caso": "dativo",
+      "uso": "tiempo"
+    },
+    {
+      "id": "schwester",
+      "de": "die Schwester",
+      "es": "la hermana",
+      "tag": "sustantivo-femenino",
+      "caso": "dativo",
+      "uso": "familia"
+    },
+    {
+      "id": "bus",
+      "de": "der Bus",
+      "es": "el autobús",
+      "tag": "sustantivo-masculino",
+      "caso": "dativo",
+      "uso": "transporte"
+    },
+    {
+      "id": "kino",
+      "de": "das Kino",
+      "es": "el cine",
+      "tag": "sustantivo-neutro",
+      "caso": "dativo",
+      "uso": "lugar"
+    },
+    {
+      "id": "ampel",
+      "de": "die Ampel",
+      "es": "el semáforo",
+      "tag": "sustantivo-femenino",
+      "caso": "dativo",
+      "uso": "tráfico"
+    },
+    {
+      "id": "bahnhof",
+      "de": "der Bahnhof",
+      "es": "la estación de tren",
+      "tag": "sustantivo-masculino",
+      "caso": "dativo",
+      "uso": "transporte"
+    },
+    {
+      "id": "krankenhaus",
+      "de": "das Krankenhaus",
+      "es": "el hospital",
+      "tag": "sustantivo-neutro",
+      "caso": "dativo",
+      "uso": "lugar"
+    },
+    {
+      "id": "flughafen",
+      "de": "der Flughafen",
+      "es": "el aeropuerto",
+      "tag": "sustantivo-masculino",
+      "caso": "dativo",
+      "uso": "transporte"
+    },
+    {
+      "id": "hotel",
+      "de": "das Hotel",
+      "es": "el hotel",
+      "tag": "sustantivo-neutro",
+      "caso": "dativo",
+      "uso": "lugar"
+    },
+    {
+      "id": "stadtzentrum",
+      "de": "das Stadtzentrum",
+      "es": "el centro de la ciudad",
+      "tag": "sustantivo-neutro",
+      "caso": "dativo",
+      "uso": "lugar"
+    },
+    {
+      "id": "cafe",
+      "de": "das Café",
+      "es": "el café",
+      "tag": "sustantivo-neutro",
+      "caso": "dativo",
+      "uso": "lugar"
+    },
+    {
+      "id": "museum",
+      "de": "das Museum",
+      "es": "el museo",
+      "tag": "sustantivo-neutro",
+      "caso": "dativo",
+      "uso": "lugar"
+    },
+    {
+      "id": "restaurant",
+      "de": "das Restaurant",
+      "es": "el restaurante",
+      "tag": "sustantivo-neutro",
+      "caso": "dativo",
+      "uso": "lugar"
+    },
+    {
+      "id": "wohnung",
+      "de": "die Wohnung",
+      "es": "el apartamento",
+      "tag": "sustantivo-femenino",
+      "caso": "dativo",
+      "uso": "lugar"
+    },
+    {
+      "id": "naehe",
+      "de": "die Nähe",
+      "es": "la cercanía",
+      "tag": "sustantivo-femenino",
+      "caso": "dativo",
+      "uso": "ubicación"
+    },
+    {
+      "id": "spaziergang",
+      "de": "der Spaziergang",
+      "es": "el paseo",
+      "tag": "sustantivo-masculino",
+      "caso": "dativo",
+      "uso": "actividad"
+    },
+    {
+      "id": "freunde",
+      "de": "die Freunde",
+      "es": "los amigos",
+      "tag": "sustantivo-masculino",
+      "caso": "dativo",
+      "uso": "personas"
+    },
+    {
+      "id": "tasche",
+      "de": "die Tasche",
+      "es": "la bolsa",
+      "tag": "sustantivo-femenino",
+      "caso": "dativo",
+      "uso": "objeto"
+    },
+    {
+      "id": "du",
+      "de": "du",
+      "es": "tú",
+      "tag": "pronombre-personal",
+      "caso": "dativo",
+      "uso": "segunda persona singular"
+    },
+    {
+      "id": "dir",
+      "de": "dir",
+      "es": "a ti",
+      "tag": "pronombre-personal",
+      "caso": "dativo",
+      "uso": "segunda persona singular dativo"
+    },
+    {
+      "id": "meine",
+      "de": "meine",
+      "es": "mi",
+      "tag": "pronombre-posesivo",
+      "caso": "dativo",
+      "uso": "posesivo primera persona"
+    },
+    {
+      "id": "meinen",
+      "de": "meinen",
+      "es": "mis",
+      "tag": "pronombre-posesivo",
+      "caso": "dativo",
+      "uso": "posesivo primera persona plural"
+    },
+    {
+      "id": "meiner",
+      "de": "meiner",
+      "es": "mi",
+      "tag": "pronombre-posesivo",
+      "caso": "dativo",
+      "uso": "posesivo primera persona femenino"
+    },
+    {
+      "id": "ihrer",
+      "de": "ihrer",
+      "es": "su",
+      "tag": "pronombre-posesivo",
+      "caso": "dativo",
+      "uso": "posesivo tercera persona femenino"
+    },
+    {
+      "id": "zwei",
+      "de": "zwei",
+      "es": "dos",
+      "tag": "numero",
+      "caso": "dativo",
+      "uso": "cantidad"
+    },
+    {
+      "id": "dem",
+      "de": "dem",
+      "es": "al",
+      "tag": "articulo",
+      "caso": "dativo",
+      "uso": "artículo masculino/neutro dativo"
+    },
+    {
+      "id": "der",
+      "de": "der",
+      "es": "a la",
+      "tag": "articulo",
+      "caso": "dativo",
+      "uso": "artículo femenino dativo"
+    },
+    {
+      "id": "den",
+      "de": "den",
+      "es": "a los",
+      "tag": "articulo",
+      "caso": "dativo",
+      "uso": "artículo plural dativo"
+    },
+    {
+      "id": "des",
+      "de": "des",
+      "es": "del",
+      "tag": "articulo",
+      "caso": "genitivo",
+      "uso": "artículo masculino/neutro genitivo"
+    },
+    {
+      "id": "zum",
+      "de": "zum",
+      "es": "al",
+      "tag": "contraccion",
+      "caso": "dativo",
+      "uso": "zu + dem"
+    },
+    {
+      "id": "zur",
+      "de": "zur",
+      "es": "a la",
+      "tag": "contraccion",
+      "caso": "dativo",
+      "uso": "zu + der"
+    },
+    {
+      "id": "vom",
+      "de": "vom",
+      "es": "del",
+      "tag": "contraccion",
+      "caso": "dativo",
+      "uso": "von + dem"
+    },
+    {
+      "id": "im",
+      "de": "im",
+      "es": "en el",
+      "tag": "contraccion",
+      "caso": "dativo",
+      "uso": "in + dem"
+    },
+    {
+      "id": "am",
+      "de": "am",
+      "es": "en el",
+      "tag": "contraccion",
+      "caso": "dativo",
+      "uso": "an + dem"
+    },
+    {
+      "id": "ins",
+      "de": "ins",
+      "es": "al",
+      "tag": "contraccion",
+      "caso": "acusativo",
+      "uso": "in + das"
+    }
+  ]
+}

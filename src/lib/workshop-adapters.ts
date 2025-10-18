@@ -35,6 +35,11 @@ import type {
   PreposicionModalRelacionalParagraph,
   PreposicionModalRelacionalCloze,
 } from "@/types/preposiciones-modales-relaciones";
+import type {
+  PreposicionDestinoProcedenciaExercise,
+  PreposicionDestinoProcedenciaParagraph,
+  PreposicionDestinoProcedenciaCloze,
+} from "@/types/preposiciones-destino-procedencia";
 
 /**
  * Adaptador para ejercicios de adjetivos (CentralScenario)
@@ -354,10 +359,55 @@ export function getExerciseType(baseContext: BaseContext): string {
 }
 
 /**
- * Función helper para obtener la respuesta esperada desde el contexto
+ * Adaptador para ejercicios de preposiciones de destino y procedencia
  */
-export function getExpectedAnswerFromContext(baseContext: BaseContext): string {
-  if (baseContext.preposition) return baseContext.preposition as string; // preposiciones
-  if (baseContext.expectedAnswer) return baseContext.expectedAnswer as string; // werden
-  return ""; // adjetivos - se calcula dinámicamente
+export function adaptPreposicionesDestinoProcedenciaExerciseToBase(
+  exercise: PreposicionDestinoProcedenciaExercise
+): BaseExercise {
+  return {
+    id: exercise.id,
+    sentence: exercise.sentence,
+    expectedAnswer: exercise.expectedAnswer,
+    context: {
+      explanation: exercise.context.explanation,
+      preposition: exercise.context.preposition,
+      case: exercise.context.case,
+      gender: exercise.context.gender,
+      type: exercise.context.type,
+    } as BaseContext,
+  };
+}
+
+/**
+ * Adaptador para párrafos de preposiciones de destino y procedencia
+ */
+export function adaptPreposicionesDestinoProcedenciaParagraphToBase(
+  paragraph: PreposicionDestinoProcedenciaParagraph
+): BaseParagraph {
+  return {
+    id: paragraph.id,
+    text: paragraph.germanText,
+    clozes: paragraph.clozes.map(
+      adaptPreposicionesDestinoProcedenciaClozeToBase
+    ),
+  };
+}
+
+/**
+ * Adaptador para clozes de preposiciones de destino y procedencia
+ */
+export function adaptPreposicionesDestinoProcedenciaClozeToBase(
+  cloze: PreposicionDestinoProcedenciaCloze
+): BaseCloze {
+  return {
+    id: cloze.id,
+    expectedAnswer: cloze.expectedAnswer,
+    context: {
+      explanation: cloze.context.explanation,
+      preposition: cloze.context.preposition,
+      case: cloze.context.case,
+      gender: cloze.context.gender,
+      type: cloze.context.type,
+    } as BaseContext,
+  };
 }

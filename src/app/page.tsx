@@ -45,6 +45,13 @@ export default function Home() {
       href: "/workshops/preposiciones-modales-relaciones",
       status: "available",
     },
+    {
+      id: "preposiciones-destino-procedencia",
+      title: "🎯 Taller de Preposiciones de Destino y Procedencia",
+      description: "Nivel A2 | Caso Fijo: Dativo Invariable",
+      href: "/workshops/preposiciones-destino-procedencia",
+      status: "available",
+    },
   ];
 
   return (

@@ -1,0 +1,395 @@
+{
+  "workshopId": "preposiciones-destino-procedencia",
+  "sections": {
+    "warmup": [
+      {
+        "id": "warm-1",
+        "sentence": "Wir kommen ____ (Schweiz, femenino).",
+        "expectedAnswer": "aus der",
+        "context": {
+          "preposition": "aus",
+          "case": "dativo",
+          "gender": "femenino",
+          "type": "procedencia",
+          "explanation": "Aus indica procedencia y rige dativo femenino"
+        }
+      },
+      {
+        "id": "warm-2",
+        "sentence": "Ich fahre ____ (Italien).",
+        "expectedAnswer": "nach",
+        "context": {
+          "preposition": "nach",
+          "case": "dativo",
+          "gender": "nombre-propio",
+          "type": "destino",
+          "explanation": "Nach con nombres propios no se declina"
+        }
+      },
+      {
+        "id": "warm-3",
+        "sentence": "Sie geht ____ (Arzt, masculino).",
+        "expectedAnswer": "zum",
+        "context": {
+          "preposition": "zu",
+          "case": "dativo",
+          "gender": "masculino",
+          "type": "destino",
+          "explanation": "Zu + dem = zum (contracción)"
+        }
+      },
+      {
+        "id": "warm-4",
+        "sentence": "Er kommt ____ (Supermarkt, m).",
+        "expectedAnswer": "aus dem",
+        "context": {
+          "preposition": "aus",
+          "case": "dativo",
+          "gender": "masculino",
+          "type": "procedencia",
+          "explanation": "Aus indica procedencia y rige dativo masculino"
+        }
+      }
+    ],
+    "central": [
+      {
+        "id": "practice-1",
+        "sentence": "Wir gehen ____ (Bibliothek, f).",
+        "expectedAnswer": "zur",
+        "context": {
+          "preposition": "zu",
+          "case": "dativo",
+          "gender": "femenino",
+          "type": "destino",
+          "explanation": "Zu + der = zur (contracción)"
+        }
+      },
+      {
+        "id": "practice-2",
+        "sentence": "Fährst du ____ (Hause)?",
+        "expectedAnswer": "nach",
+        "context": {
+          "preposition": "nach",
+          "case": "dativo",
+          "gender": "nombre-propio",
+          "type": "destino",
+          "explanation": "Nach Hause es expresión fija de destino"
+        }
+      },
+      {
+        "id": "practice-3",
+        "sentence": "Ich bin ____ (meine Großeltern, plural) in Berlin.",
+        "expectedAnswer": "bei meinen",
+        "context": {
+          "preposition": "bei",
+          "case": "dativo",
+          "gender": "plural",
+          "type": "ubicacion",
+          "explanation": "Bei indica ubicación en casa de alguien"
+        }
+      },
+      {
+        "id": "practice-4",
+        "sentence": "Er spricht ____ (du).",
+        "expectedAnswer": "mit dir",
+        "context": {
+          "preposition": "mit",
+          "case": "dativo",
+          "gender": "pronombre",
+          "type": "modo",
+          "explanation": "Mit indica compañía o modo"
+        }
+      },
+      {
+        "id": "practice-5",
+        "sentence": "Sie lernt Deutsch ____ (zwei Monaten, plural).",
+        "expectedAnswer": "seit",
+        "context": {
+          "preposition": "seit",
+          "case": "dativo",
+          "gender": "plural",
+          "type": "tiempo",
+          "explanation": "Seit indica duración desde el pasado"
+        }
+      },
+      {
+        "id": "practice-6",
+        "sentence": "Das ist die Tasche ____ (meiner Schwester, f).",
+        "expectedAnswer": "von meiner",
+        "context": {
+          "preposition": "von",
+          "case": "dativo",
+          "gender": "femenino",
+          "type": "posesion",
+          "explanation": "Von indica posesión u origen"
+        }
+      },
+      {
+        "id": "practice-7",
+        "sentence": "Wir fahren ____ (Bus, masculino).",
+        "expectedAnswer": "mit dem",
+        "context": {
+          "preposition": "mit",
+          "case": "dativo",
+          "gender": "masculino",
+          "type": "instrumento",
+          "explanation": "Mit indica instrumento o medio de transporte"
+        }
+      },
+      {
+        "id": "practice-8",
+        "sentence": "Zuerst müssen Sie ____ (das Kino) vorbei gehen.",
+        "expectedAnswer": "am",
+        "context": {
+          "preposition": "am",
+          "case": "dativo",
+          "gender": "neutro",
+          "type": "local",
+          "explanation": "Am...vorbei es estructura local específica"
+        }
+      },
+      {
+        "id": "practice-9",
+        "sentence": "Dann laufen Sie ____ (die Ampel, f).",
+        "expectedAnswer": "bis zur",
+        "context": {
+          "preposition": "bis zu",
+          "case": "dativo",
+          "gender": "femenino",
+          "type": "local",
+          "explanation": "Bis zu indica hasta un lugar"
+        }
+      },
+      {
+        "id": "practice-10",
+        "sentence": "Das Krankenhaus ist ____ (der Bahnhof, m).",
+        "expectedAnswer": "gegenüber vom",
+        "context": {
+          "preposition": "gegenüber von",
+          "case": "dativo",
+          "gender": "masculino",
+          "type": "local",
+          "explanation": "Gegenüber von indica enfrente de"
+        }
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "germanText": "Mein Name ist Thomas und ich erzähle euch über meine Reise nach Deutschland. {0} Österreich komme ich {1} Deutschland. {2} dem Flughafen fahre ich {3} Hotel. {4} dem Hotel gehe ich {5} Stadtzentrum.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "expectedAnswer": "Aus",
+            "context": {
+              "preposition": "aus",
+              "case": "dativo",
+              "gender": "nombre-propio",
+              "type": "procedencia",
+              "explanation": "Aus indica procedencia"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "expectedAnswer": "nach",
+            "context": {
+              "preposition": "nach",
+              "case": "dativo",
+              "gender": "nombre-propio",
+              "type": "destino",
+              "explanation": "Nach con nombres propios"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "expectedAnswer": "Vom",
+            "context": {
+              "preposition": "von",
+              "case": "dativo",
+              "gender": "masculino",
+              "type": "procedencia",
+              "explanation": "Von + dem = vom"
+            }
+          },
+          {
+            "id": "cloze-4",
+            "expectedAnswer": "zum",
+            "context": {
+              "preposition": "zu",
+              "case": "dativo",
+              "gender": "masculino",
+              "type": "destino",
+              "explanation": "Zu + dem = zum"
+            }
+          },
+          {
+            "id": "cloze-5",
+            "expectedAnswer": "Vom",
+            "context": {
+              "preposition": "von",
+              "case": "dativo",
+              "gender": "masculino",
+              "type": "procedencia",
+              "explanation": "Von + dem = vom"
+            }
+          },
+          {
+            "id": "cloze-6",
+            "expectedAnswer": "ins",
+            "context": {
+              "preposition": "in",
+              "case": "acusativo",
+              "gender": "neutro",
+              "type": "destino",
+              "explanation": "In + das = ins (movimiento)"
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-2",
+        "germanText": "In der Stadt treffe ich mich {0} meinen Freunden {1} Café. {2} dem Café gehen wir {3} Museum. {4} dem Museum besuchen wir {5} Bahnhof meine Schwester.",
+        "clozes": [
+          {
+            "id": "cloze-7",
+            "expectedAnswer": "mit",
+            "context": {
+              "preposition": "mit",
+              "case": "dativo",
+              "gender": "plural",
+              "type": "compañia",
+              "explanation": "Mit indica compañía"
+            }
+          },
+          {
+            "id": "cloze-8",
+            "expectedAnswer": "im",
+            "context": {
+              "preposition": "in",
+              "case": "dativo",
+              "gender": "masculino",
+              "type": "ubicacion",
+              "explanation": "In + dem = im (ubicación)"
+            }
+          },
+          {
+            "id": "cloze-9",
+            "expectedAnswer": "Vom",
+            "context": {
+              "preposition": "von",
+              "case": "dativo",
+              "gender": "masculino",
+              "type": "procedencia",
+              "explanation": "Von + dem = vom"
+            }
+          },
+          {
+            "id": "cloze-10",
+            "expectedAnswer": "zum",
+            "context": {
+              "preposition": "zu",
+              "case": "dativo",
+              "gender": "masculino",
+              "type": "destino",
+              "explanation": "Zu + dem = zum"
+            }
+          },
+          {
+            "id": "cloze-11",
+            "expectedAnswer": "Nach",
+            "context": {
+              "preposition": "nach",
+              "case": "dativo",
+              "gender": "masculino",
+              "type": "destino",
+              "explanation": "Nach indica destino"
+            }
+          },
+          {
+            "id": "cloze-12",
+            "expectedAnswer": "am",
+            "context": {
+              "preposition": "an",
+              "case": "dativo",
+              "gender": "masculino",
+              "type": "ubicacion",
+              "explanation": "An + dem = am"
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-3",
+        "germanText": "Meine Schwester wohnt {0} der Nähe {1} Bahnhof. {2} ihrer Wohnung können wir {3} Stadtzentrum laufen. {4} dem Spaziergang gehen wir {5} Restaurant essen.",
+        "clozes": [
+          {
+            "id": "cloze-13",
+            "expectedAnswer": "in",
+            "context": {
+              "preposition": "in",
+              "case": "dativo",
+              "gender": "femenino",
+              "type": "ubicacion",
+              "explanation": "In indica ubicación"
+            }
+          },
+          {
+            "id": "cloze-14",
+            "expectedAnswer": "des",
+            "context": {
+              "preposition": "von",
+              "case": "genitivo",
+              "gender": "masculino",
+              "type": "posesion",
+              "explanation": "Von + dem = vom (posesión)"
+            }
+          },
+          {
+            "id": "cloze-15",
+            "expectedAnswer": "Von",
+            "context": {
+              "preposition": "von",
+              "case": "dativo",
+              "gender": "femenino",
+              "type": "procedencia",
+              "explanation": "Von indica procedencia"
+            }
+          },
+          {
+            "id": "cloze-16",
+            "expectedAnswer": "ins",
+            "context": {
+              "preposition": "in",
+              "case": "acusativo",
+              "gender": "neutro",
+              "type": "destino",
+              "explanation": "In + das = ins (movimiento)"
+            }
+          },
+          {
+            "id": "cloze-17",
+            "expectedAnswer": "Nach",
+            "context": {
+              "preposition": "nach",
+              "case": "dativo",
+              "gender": "masculino",
+              "type": "destino",
+              "explanation": "Nach indica destino"
+            }
+          },
+          {
+            "id": "cloze-18",
+            "expectedAnswer": "zum",
+            "context": {
+              "preposition": "zu",
+              "case": "dativo",
+              "gender": "masculino",
+              "type": "destino",
+              "explanation": "Zu + dem = zum"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

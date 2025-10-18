@@ -23,6 +23,11 @@ import type {
   PreposicionModalRelacionalParagraph,
   PreposicionModalRelacionalWorkshop,
 } from "@/types/preposiciones-modales-relaciones";
+import type {
+  PreposicionDestinoProcedenciaExercise,
+  PreposicionDestinoProcedenciaParagraph,
+  PreposicionDestinoProcedenciaWorkshop,
+} from "@/types/preposiciones-destino-procedencia";
 
 /**
  * Definición de un taller en el registry
@@ -73,6 +78,13 @@ const WORKSHOP_REGISTRY: Record<string, WorkshopDefinition> = {
     loaderFn: loadPreposicionesModalesVariant,
     vocabularyLoaderFn: loadPreposicionesModalesVocabularyVariant,
   },
+  "preposiciones-destino-procedencia": {
+    id: "preposiciones-destino-procedencia",
+    hasVariants: true,
+    variantCount: 1,
+    loaderFn: loadPreposicionesDestinoProcedenciaVariant,
+    vocabularyLoaderFn: loadPreposicionesDestinoProcedenciaVocabularyVariant,
+  },
 };
 
 export type WorkshopExercises =
@@ -86,7 +98,8 @@ export type WorkshopExercises =
     }
   | PreposicionTemporalWorkshop
   | PreposicionRecorridoWorkshop
-  | PreposicionModalRelacionalWorkshop;
+  | PreposicionModalRelacionalWorkshop
+  | PreposicionDestinoProcedenciaWorkshop;
 
 // Dynamic import function for adjective variants
 async function loadAdjectiveVariant(variant: number = 1) {
@@ -160,6 +173,26 @@ async function loadPreposicionesModalesVariant(variant: number = 1) {
     // Fallback to variant 1
     const variantModule = await import(
       `@/data/workshops/preposiciones-modales-relaciones/variant-1.json`
+    );
+    return variantModule.default;
+  }
+}
+
+// Dynamic import function for preposiciones destino procedencia variants
+async function loadPreposicionesDestinoProcedenciaVariant(variant: number = 1) {
+  try {
+    const variantModule = await import(
+      `@/data/workshops/preposiciones-destino-procedencia/variant-${variant}.json`
+    );
+    return variantModule.default;
+  } catch (error) {
+    console.error(
+      `Failed to load preposiciones destino procedencia variant ${variant}:`,
+      error
+    );
+    // Fallback to variant 1
+    const variantModule = await import(
+      `@/data/workshops/preposiciones-destino-procedencia/variant-1.json`
     );
     return variantModule.default;
   }
@@ -361,6 +394,35 @@ export async function getPreposicionesModalesNarrativeAsync(
   return exercises.sections.narrative as PreposicionModalRelacionalParagraph[];
 }
 
+// Helper functions for preposiciones destino procedencia workshop
+export async function getPreposicionesDestinoProcedenciaWarmupAsync(
+  workshopId: string,
+  variant?: number
+): Promise<PreposicionDestinoProcedenciaExercise[]> {
+  const exercises = await loadWorkshopExercises(workshopId, variant);
+  if ("warmup" in exercises.sections) {
+    return exercises.sections.warmup as PreposicionDestinoProcedenciaExercise[];
+  }
+  return [];
+}
+
+export async function getPreposicionesDestinoProcedenciaCentralAsync(
+  workshopId: string,
+  variant?: number
+): Promise<PreposicionDestinoProcedenciaExercise[]> {
+  const exercises = await loadWorkshopExercises(workshopId, variant);
+  return exercises.sections.central as PreposicionDestinoProcedenciaExercise[];
+}
+
+export async function getPreposicionesDestinoProcedenciaNarrativeAsync(
+  workshopId: string,
+  variant?: number
+): Promise<PreposicionDestinoProcedenciaParagraph[]> {
+  const exercises = await loadWorkshopExercises(workshopId, variant);
+  return exercises.sections
+    .narrative as PreposicionDestinoProcedenciaParagraph[];
+}
+
 // Helper para obtener un ejercicio específico por ID
 export function getExerciseById(
   workshopId: string,
@@ -485,6 +547,28 @@ async function loadPreposicionesModalesVocabularyVariant(variant: number = 1) {
   } catch (error) {
     console.error(
       `Failed to load preposiciones modales vocabulary variant ${variant}:`,
+      error
+    );
+    // Fallback to general vocabulary
+    const generalModule = await import(
+      `@/data/workshops/legacy_vocabulary.json`
+    );
+    return generalModule.default;
+  }
+}
+
+// Dynamic import function for preposiciones destino procedencia vocabulary variants
+async function loadPreposicionesDestinoProcedenciaVocabularyVariant(
+  variant: number = 1
+) {
+  try {
+    const variantModule = await import(
+      `@/data/workshops/preposiciones-destino-procedencia/variant-${variant}-vocabulary.json`
+    );
+    return variantModule.default;
+  } catch (error) {
+    console.error(
+      `Failed to load preposiciones destino procedencia vocabulary variant ${variant}:`,
       error
     );
     // Fallback to general vocabulary
