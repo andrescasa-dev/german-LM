@@ -61,7 +61,7 @@ export default function AdjetivoWorkshop() {
             }
             vocabulary={
               <section id="vocabulario" className="scroll-mt-20">
-                <Vocabulary module="adjetivo" />
+                <Vocabulary module="adjetivo" workshopId="adjetivo" />
               </section>
             }
             contentSections={[

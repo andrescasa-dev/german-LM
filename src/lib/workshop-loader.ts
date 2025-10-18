@@ -201,6 +201,41 @@ export function getWorkshopInfo(workshopId: string) {
   };
 }
 
+// Dynamic import function for vocabulary variants
+async function loadVocabularyVariant(workshopId: string, variant: number = 1) {
+  try {
+    const variantModule = await import(
+      `@/data/workshops/adjective-exercises/variant-${variant}-vocabulary.json`
+    );
+    return variantModule.default;
+  } catch (error) {
+    console.error(`Failed to load vocabulary variant ${variant}:`, error);
+    // Fallback to general vocabulary
+    const generalModule = await import(`@/data/workshops/vocabulary.json`);
+    return generalModule.default;
+  }
+}
+
+// Helper para obtener vocabulario por variante
+export async function getVocabularyByVariant(
+  workshopId: string,
+  variant?: number
+): Promise<Record<string, any[]>> {
+  if (workshopId === "werden") {
+    // Werden workshop uses general vocabulary
+    const generalModule = await import(`@/data/workshops/vocabulary.json`);
+    return generalModule.default;
+  }
+
+  if (workshopId === "adjetivo") {
+    return await loadVocabularyVariant(workshopId, variant);
+  }
+
+  // Fallback to general vocabulary
+  const generalModule = await import(`@/data/workshops/vocabulary.json`);
+  return generalModule.default;
+}
+
 // Helper para obtener variantes disponibles
 export function getAvailableVariants(workshopId: string): number[] {
   if (workshopId === "werden") {
