@@ -1,0 +1,134 @@
+{
+  "adjetivo": [
+    {
+      "id": "computer",
+      "de": "der Computer",
+      "es": "la computadora"
+    },
+    {
+      "id": "modern",
+      "de": "modern",
+      "es": "moderno"
+    },
+    {
+      "id": "programmierer",
+      "de": "der Programmierer",
+      "es": "el programador"
+    },
+    {
+      "id": "software",
+      "de": "die Software",
+      "es": "el software"
+    },
+    {
+      "id": "algorithmus",
+      "de": "der Algorithmus",
+      "es": "el algoritmo"
+    },
+    {
+      "id": "anwendung",
+      "de": "die Anwendung",
+      "es": "la aplicación"
+    },
+    {
+      "id": "system",
+      "de": "das System",
+      "es": "el sistema"
+    },
+    {
+      "id": "funktion",
+      "de": "die Funktion",
+      "es": "la función"
+    },
+    {
+      "id": "nutzer",
+      "de": "der Nutzer",
+      "es": "el usuario"
+    },
+    {
+      "id": "interface",
+      "de": "das Interface",
+      "es": "la interfaz"
+    },
+    {
+      "id": "projekt",
+      "de": "das Projekt",
+      "es": "el proyecto"
+    },
+    {
+      "id": "datenbank",
+      "de": "die Datenbank",
+      "es": "la base de datos"
+    },
+    {
+      "id": "konfiguration",
+      "de": "die Konfiguration",
+      "es": "la configuración"
+    },
+    {
+      "id": "team",
+      "de": "das Team",
+      "es": "el equipo"
+    },
+    {
+      "id": "technologie",
+      "de": "die Technologie",
+      "es": "la tecnología"
+    },
+    {
+      "id": "innovativ",
+      "de": "innovativ",
+      "es": "innovador"
+    },
+    {
+      "id": "effizient",
+      "de": "effizient",
+      "es": "eficiente"
+    },
+    {
+      "id": "benutzerfreundlich",
+      "de": "benutzerfreundlich",
+      "es": "fácil de usar"
+    },
+    {
+      "id": "komplex",
+      "de": "komplex",
+      "es": "complejo"
+    },
+    {
+      "id": "sicherheitsrelevant",
+      "de": "sicherheitsrelevant",
+      "es": "relacionado con seguridad"
+    },
+    {
+      "id": "technikbegeistert",
+      "de": "technikbegeistert",
+      "es": "entusiasta de la tecnología"
+    },
+    {
+      "id": "intuitiv",
+      "de": "intuitiv",
+      "es": "intuitivo"
+    },
+    {
+      "id": "umfangreich",
+      "de": "umfangreich",
+      "es": "extenso"
+    },
+    {
+      "id": "flexibel",
+      "de": "flexibel",
+      "es": "flexible"
+    },
+    {
+      "id": "erfolgreich",
+      "de": "erfolgreich",
+      "es": "exitoso"
+    },
+    {
+      "id": "zuverlässig",
+      "de": "zuverlässig",
+      "es": "confiable"
+    }
+  ]
+}

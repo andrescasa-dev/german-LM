@@ -1,0 +1,114 @@
+{
+  "workshopId": "adjetivo",
+  "sections": {
+    "central": [
+      {
+        "id": "akk-weak",
+        "type": "weak",
+        "sentence": "Ich trage die _____ schwer Tasche.",
+        "adjective": "schwer",
+        "context": {
+          "determiner": {
+            "word": "die",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "feminin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación weak"
+      },
+      {
+        "id": "akk-mixed",
+        "type": "mixed",
+        "sentence": "Ich trage die _____ schwer Tasche.",
+        "adjective": "schwer",
+        "context": {
+          "determiner": {
+            "word": "die",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "feminin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación mixed"
+      },
+      {
+        "id": "akk-strong",
+        "type": "strong",
+        "sentence": "Ich trage die schwer _____ Tasche.",
+        "adjective": "schwer",
+        "context": {
+          "determiner": null,
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación strong"
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "text": "Die Einkäuferin kauft {elegante} Kleider. Mit {vollen} Körben geht sie zu {günstigen} Preisen.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "adjective": "elegant",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "neutrum",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "neutrum",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "adjective": "voll",
+            "context": {
+              "determiner": {
+                "word": "den",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "adjective": "günstig",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "dativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

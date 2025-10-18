@@ -1,0 +1,134 @@
+{
+  "adjetivo": [
+    {
+      "id": "musik",
+      "de": "die Musik",
+      "es": "la música"
+    },
+    {
+      "id": "schön",
+      "de": "schön",
+      "es": "hermoso"
+    },
+    {
+      "id": "musiker",
+      "de": "der Musiker",
+      "es": "el músico"
+    },
+    {
+      "id": "lied",
+      "de": "das Lied",
+      "es": "la canción"
+    },
+    {
+      "id": "ton",
+      "de": "der Ton",
+      "es": "el tono"
+    },
+    {
+      "id": "melodie",
+      "de": "die Melodie",
+      "es": "la melodía"
+    },
+    {
+      "id": "rhythmus",
+      "de": "der Rhythmus",
+      "es": "el ritmo"
+    },
+    {
+      "id": "harmonie",
+      "de": "die Harmonie",
+      "es": "la armonía"
+    },
+    {
+      "id": "zuhörer",
+      "de": "der Zuhörer",
+      "es": "el oyente"
+    },
+    {
+      "id": "text",
+      "de": "der Text",
+      "es": "la letra"
+    },
+    {
+      "id": "konzert",
+      "de": "das Konzert",
+      "es": "el concierto"
+    },
+    {
+      "id": "akkord",
+      "de": "der Akkord",
+      "es": "el acorde"
+    },
+    {
+      "id": "solo",
+      "de": "das Solo",
+      "es": "el solo"
+    },
+    {
+      "id": "fan",
+      "de": "der Fan",
+      "es": "el fan"
+    },
+    {
+      "id": "performance",
+      "de": "die Performance",
+      "es": "la actuación"
+    },
+    {
+      "id": "romantisch",
+      "de": "romantisch",
+      "es": "romántico"
+    },
+    {
+      "id": "sanft",
+      "de": "sanft",
+      "es": "suave"
+    },
+    {
+      "id": "traurig",
+      "de": "traurig",
+      "es": "triste"
+    },
+    {
+      "id": "fröhlich",
+      "de": "fröhlich",
+      "es": "alegre"
+    },
+    {
+      "id": "melodisch",
+      "de": "melodisch",
+      "es": "melódico"
+    },
+    {
+      "id": "begeistert",
+      "de": "begeistert",
+      "es": "entusiasmado"
+    },
+    {
+      "id": "inspirierend",
+      "de": "inspirierend",
+      "es": "inspirador"
+    },
+    {
+      "id": "dramatisch",
+      "de": "dramatisch",
+      "es": "dramático"
+    },
+    {
+      "id": "leidenschaftlich",
+      "de": "leidenschaftlich",
+      "es": "apasionado"
+    },
+    {
+      "id": "entzückt",
+      "de": "entzückt",
+      "es": "encantado"
+    },
+    {
+      "id": "fantastisch",
+      "de": "fantastisch",
+      "es": "fantástico"
+    }
+  ]
+}

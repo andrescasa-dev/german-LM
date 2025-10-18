@@ -1,0 +1,114 @@
+{
+  "workshopId": "adjetivo",
+  "sections": {
+    "central": [
+      {
+        "id": "akk-weak",
+        "type": "weak",
+        "sentence": "Ich fahre das _____ schnell Auto.",
+        "adjective": "schnell",
+        "context": {
+          "determiner": {
+            "word": "das",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "neutrum",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "neutrum",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación weak"
+      },
+      {
+        "id": "akk-mixed",
+        "type": "mixed",
+        "sentence": "Ich fahre das _____ schnell Auto.",
+        "adjective": "schnell",
+        "context": {
+          "determiner": {
+            "word": "das",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "neutrum",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "neutrum",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación mixed"
+      },
+      {
+        "id": "akk-strong",
+        "type": "strong",
+        "sentence": "Ich fahre das schnell _____ Auto.",
+        "adjective": "schnell",
+        "context": {
+          "determiner": null,
+          "case": "akkusativ",
+          "gender": "neutrum",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación strong"
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "text": "Der Fahrer steuert {sicher} Fahrzeuge. Mit {vorsichtigen} Manövern vermeidet er {gefährliche} Situationen.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "adjective": "sicher",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "neutrum",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "neutrum",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "adjective": "vorsichtig",
+            "context": {
+              "determiner": {
+                "word": "den",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "neutrum",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "neutrum",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "adjective": "gefährlich",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "feminin",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

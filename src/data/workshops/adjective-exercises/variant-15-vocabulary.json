@@ -1,0 +1,49 @@
+{
+  "adjetivo": [
+    {
+      "id": "medizin",
+      "de": "die Medizin",
+      "es": "la medicina"
+    },
+    {
+      "id": "bitter",
+      "de": "bitter",
+      "es": "amargo"
+    },
+    {
+      "id": "arzt",
+      "de": "der Arzt",
+      "es": "el médico"
+    },
+    {
+      "id": "behandlung",
+      "de": "die Behandlung",
+      "es": "el tratamiento"
+    },
+    {
+      "id": "untersuchung",
+      "de": "die Untersuchung",
+      "es": "el examen"
+    },
+    {
+      "id": "verletzung",
+      "de": "die Verletzung",
+      "es": "la lesión"
+    },
+    {
+      "id": "wirksam",
+      "de": "wirksam",
+      "es": "eficaz"
+    },
+    {
+      "id": "sorgfältig",
+      "de": "sorgfältig",
+      "es": "cuidadoso"
+    },
+    {
+      "id": "schmerzhaft",
+      "de": "schmerzhaft",
+      "es": "doloroso"
+    }
+  ]
+}

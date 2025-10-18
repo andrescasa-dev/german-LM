@@ -1,0 +1,129 @@
+{
+  "adjetivo": [
+    {
+      "id": "buch",
+      "de": "das Buch",
+      "es": "el libro"
+    },
+    {
+      "id": "teuer",
+      "de": "teuer",
+      "es": "caro"
+    },
+    {
+      "id": "studentin",
+      "de": "die Studentin",
+      "es": "la estudiante"
+    },
+    {
+      "id": "universitaet",
+      "de": "die Universität",
+      "es": "la universidad"
+    },
+    {
+      "id": "bibliothek",
+      "de": "die Bibliothek",
+      "es": "la biblioteca"
+    },
+    {
+      "id": "artikel",
+      "de": "der Artikel",
+      "es": "el artículo"
+    },
+    {
+      "id": "aufsatz",
+      "de": "der Aufsatz",
+      "es": "el ensayo"
+    },
+    {
+      "id": "pruefung",
+      "de": "die Prüfung",
+      "es": "el examen"
+    },
+    {
+      "id": "kommilitone",
+      "de": "der Kommilitone",
+      "es": "el compañero de estudios"
+    },
+    {
+      "id": "thema",
+      "de": "das Thema",
+      "es": "el tema"
+    },
+    {
+      "id": "professor",
+      "de": "der Professor",
+      "es": "el profesor"
+    },
+    {
+      "id": "note",
+      "de": "die Note",
+      "es": "la nota"
+    },
+    {
+      "id": "idee",
+      "de": "die Idee",
+      "es": "la idea"
+    },
+    {
+      "id": "tipp",
+      "de": "der Tipp",
+      "es": "el consejo"
+    },
+    {
+      "id": "ergebnis",
+      "de": "das Ergebnis",
+      "es": "el resultado"
+    },
+    {
+      "id": "groß",
+      "de": "groß",
+      "es": "grande"
+    },
+    {
+      "id": "modern",
+      "de": "modern",
+      "es": "moderno"
+    },
+    {
+      "id": "interessant",
+      "de": "interessant",
+      "es": "interesante"
+    },
+    {
+      "id": "lang",
+      "de": "lang",
+      "es": "largo"
+    },
+    {
+      "id": "kompliziert",
+      "de": "kompliziert",
+      "es": "complicado"
+    },
+    {
+      "id": "fleißig",
+      "de": "fleißig",
+      "es": "aplicado"
+    },
+    {
+      "id": "schwierig",
+      "de": "schwierig",
+      "es": "difícil"
+    },
+    {
+      "id": "kreativ",
+      "de": "kreativ",
+      "es": "creativo"
+    },
+    {
+      "id": "hilfreich",
+      "de": "hilfreich",
+      "es": "útil"
+    },
+    {
+      "id": "besser",
+      "de": "besser",
+      "es": "mejor"
+    }
+  ]
+}

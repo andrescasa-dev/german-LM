@@ -1,0 +1,114 @@
+{
+  "workshopId": "adjetivo",
+  "sections": {
+    "central": [
+      {
+        "id": "akk-weak",
+        "type": "weak",
+        "sentence": "Ich besuche die _____ berühmt Stadt.",
+        "adjective": "berühmt",
+        "context": {
+          "determiner": {
+            "word": "die",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "feminin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación weak"
+      },
+      {
+        "id": "akk-mixed",
+        "type": "mixed",
+        "sentence": "Ich besuche die _____ berühmt Stadt.",
+        "adjective": "berühmt",
+        "context": {
+          "determiner": {
+            "word": "die",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "feminin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación mixed"
+      },
+      {
+        "id": "akk-strong",
+        "type": "strong",
+        "sentence": "Ich besuche die berühmt _____ Stadt.",
+        "adjective": "berühmt",
+        "context": {
+          "determiner": null,
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación strong"
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "text": "Der Tourist besichtigt {historische} Gebäude. Mit {neuen} Eindrücken sammelt er {wunderbare} Erinnerungen.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "adjective": "historisch",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "neutrum",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "neutrum",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "adjective": "neu",
+            "context": {
+              "determiner": {
+                "word": "den",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "adjective": "wunderbar",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "feminin",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

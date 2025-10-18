@@ -1,0 +1,114 @@
+{
+  "workshopId": "adjetivo",
+  "sections": {
+    "central": [
+      {
+        "id": "akk-weak",
+        "type": "weak",
+        "sentence": "Ich lerne die _____ schwierig Sprache.",
+        "adjective": "schwierig",
+        "context": {
+          "determiner": {
+            "word": "die",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "feminin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación weak"
+      },
+      {
+        "id": "akk-mixed",
+        "type": "mixed",
+        "sentence": "Ich lerne die _____ schwierig Sprache.",
+        "adjective": "schwierig",
+        "context": {
+          "determiner": {
+            "word": "die",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "feminin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación mixed"
+      },
+      {
+        "id": "akk-strong",
+        "type": "strong",
+        "sentence": "Ich lerne die schwierig _____ Sprache.",
+        "adjective": "schwierig",
+        "context": {
+          "determiner": null,
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación strong"
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "text": "Die Lehrerin erklärt {komplizierte} Grammatik. Mit {geduldigen} Methoden unterrichtet sie {motivierte} Schüler.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "adjective": "kompliziert",
+            "context": {
+              "determiner": {
+                "word": "eine",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "feminin",
+                "number": "singular"
+              },
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "singular"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "adjective": "geduldig",
+            "context": {
+              "determiner": {
+                "word": "den",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "feminin",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "adjective": "motiviert",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "workshopId": "adjetivo",
+  "sections": {
+    "central": [
+      {
+        "id": "akk-weak",
+        "type": "weak",
+        "sentence": "Ich sehe den _____ hoch Baum.",
+        "adjective": "hoch",
+        "context": {
+          "determiner": {
+            "word": "den",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "maskulin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "maskulin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación weak"
+      },
+      {
+        "id": "akk-mixed",
+        "type": "mixed",
+        "sentence": "Ich sehe den _____ hoch Baum.",
+        "adjective": "hoch",
+        "context": {
+          "determiner": {
+            "word": "den",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "maskulin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "maskulin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación mixed"
+      },
+      {
+        "id": "akk-strong",
+        "type": "strong",
+        "sentence": "Ich sehe den hoch _____ Baum.",
+        "adjective": "hoch",
+        "context": {
+          "determiner": null,
+          "case": "akkusativ",
+          "gender": "maskulin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación strong"
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "text": "Der Wanderer entdeckt {wilde} Tiere. Mit {ruhigen} Schritten beobachtet er {seltene} Vögel.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "adjective": "wild",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "neutrum",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "neutrum",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "adjective": "ruhig",
+            "context": {
+              "determiner": {
+                "word": "den",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "adjective": "selten",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "adjetivo": [
+    {
+      "id": "job",
+      "de": "der Job",
+      "es": "el trabajo"
+    },
+    {
+      "id": "besser",
+      "de": "besser",
+      "es": "mejor"
+    },
+    {
+      "id": "angestellte",
+      "de": "der Angestellte",
+      "es": "el empleado"
+    },
+    {
+      "id": "aufgabe",
+      "de": "die Aufgabe",
+      "es": "la tarea"
+    },
+    {
+      "id": "strategie",
+      "de": "die Strategie",
+      "es": "la estrategia"
+    },
+    {
+      "id": "problem",
+      "de": "das Problem",
+      "es": "el problema"
+    },
+    {
+      "id": "wichtig",
+      "de": "wichtig",
+      "es": "importante"
+    },
+    {
+      "id": "effizient",
+      "de": "effizient",
+      "es": "eficiente"
+    },
+    {
+      "id": "komplex",
+      "de": "komplex",
+      "es": "complejo"
+    }
+  ]
+}

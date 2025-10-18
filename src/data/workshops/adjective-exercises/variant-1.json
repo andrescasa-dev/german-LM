@@ -1,0 +1,224 @@
+{
+  "workshopId": "adjetivo",
+  "sections": {
+    "central": [
+      {
+        "id": "akk-weak",
+        "type": "weak",
+        "sentence": "Ich sehe den _____ Wagen.",
+        "adjective": "neu",
+        "context": {
+          "determiner": {
+            "word": "den",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "maskulin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "maskulin",
+          "number": "singular"
+        },
+        "imageAlt": "Un coche nuevo con artículo definido"
+      },
+      {
+        "id": "akk-mixed",
+        "type": "mixed",
+        "sentence": "Ich sehe einen _____ Wagen.",
+        "adjective": "neu",
+        "context": {
+          "determiner": {
+            "word": "einen",
+            "type": "indefinite",
+            "case": "akkusativ",
+            "gender": "maskulin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "maskulin",
+          "number": "singular"
+        },
+        "imageAlt": "Un coche nuevo con artículo indefinido"
+      },
+      {
+        "id": "akk-strong",
+        "type": "strong",
+        "sentence": "Ich sehe _____ Wagen.",
+        "adjective": "neu",
+        "context": {
+          "determiner": null,
+          "case": "akkusativ",
+          "gender": "maskulin",
+          "number": "singular"
+        },
+        "imageAlt": "Un coche nuevo sin artículo"
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "text": "Der Entdecker erreicht eine {alte} Hütte. In der {dunklen} Nacht sieht er ein {schwaches} Licht.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "adjective": "alt",
+            "context": {
+              "determiner": {
+                "word": "eine",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "feminin",
+                "number": "singular"
+              },
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "singular"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "adjective": "dunkel",
+            "context": {
+              "determiner": {
+                "word": "der",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "feminin",
+                "number": "singular"
+              },
+              "case": "dativ",
+              "gender": "feminin",
+              "number": "singular"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "adjective": "schwach",
+            "context": {
+              "determiner": {
+                "word": "ein",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "neutrum",
+                "number": "singular"
+              },
+              "case": "akkusativ",
+              "gender": "neutrum",
+              "number": "singular"
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-2",
+        "text": "Er findet {warme} Decken und {frisches} Brot. Auf dem {kleinen} Tisch liegt ein {alter} Brief.",
+        "clozes": [
+          {
+            "id": "cloze-4",
+            "adjective": "warm",
+            "context": {
+              "determiner": null,
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-5",
+            "adjective": "frisch",
+            "context": {
+              "determiner": null,
+              "case": "akkusativ",
+              "gender": "neutrum",
+              "number": "singular"
+            }
+          },
+          {
+            "id": "cloze-6",
+            "adjective": "klein",
+            "context": {
+              "determiner": {
+                "word": "dem",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "maskulin",
+                "number": "singular"
+              },
+              "case": "dativ",
+              "gender": "maskulin",
+              "number": "singular"
+            }
+          },
+          {
+            "id": "cloze-7",
+            "adjective": "alt",
+            "context": {
+              "determiner": {
+                "word": "ein",
+                "type": "indefinite",
+                "case": "nominativ",
+                "gender": "maskulin",
+                "number": "singular"
+              },
+              "case": "nominativ",
+              "gender": "maskulin",
+              "number": "singular"
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-3",
+        "text": "Der Brief erwähnt {wichtige} Vorräte: {gutes} Wasser, {trockenes} Holz und einen {warmen} Schlafsack.",
+        "clozes": [
+          {
+            "id": "cloze-8",
+            "adjective": "wichtig",
+            "context": {
+              "determiner": null,
+              "case": "akkusativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-9",
+            "adjective": "gut",
+            "context": {
+              "determiner": null,
+              "case": "akkusativ",
+              "gender": "neutrum",
+              "number": "singular"
+            }
+          },
+          {
+            "id": "cloze-10",
+            "adjective": "trocken",
+            "context": {
+              "determiner": null,
+              "case": "akkusativ",
+              "gender": "neutrum",
+              "number": "singular"
+            }
+          },
+          {
+            "id": "cloze-11",
+            "adjective": "warm",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "maskulin",
+                "number": "singular"
+              },
+              "case": "akkusativ",
+              "gender": "maskulin",
+              "number": "singular"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

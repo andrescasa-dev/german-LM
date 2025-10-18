@@ -1,0 +1,49 @@
+{
+  "adjetivo": [
+    {
+      "id": "wetter",
+      "de": "das Wetter",
+      "es": "el tiempo"
+    },
+    {
+      "id": "schlecht",
+      "de": "schlecht",
+      "es": "malo"
+    },
+    {
+      "id": "meteorologe",
+      "de": "der Meteorologe",
+      "es": "el meteorólogo"
+    },
+    {
+      "id": "klima",
+      "de": "das Klima",
+      "es": "el clima"
+    },
+    {
+      "id": "messung",
+      "de": "die Messung",
+      "es": "la medición"
+    },
+    {
+      "id": "tag",
+      "de": "der Tag",
+      "es": "el día"
+    },
+    {
+      "id": "wechselhaft",
+      "de": "wechselhaft",
+      "es": "variable"
+    },
+    {
+      "id": "genau",
+      "de": "genau",
+      "es": "preciso"
+    },
+    {
+      "id": "stürmisch",
+      "de": "stürmisch",
+      "es": "tempestuoso"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "workshopId": "adjetivo",
+  "sections": {
+    "central": [
+      {
+        "id": "akk-weak",
+        "type": "weak",
+        "sentence": "Ich bekomme den _____ besser Job.",
+        "adjective": "besser",
+        "context": {
+          "determiner": {
+            "word": "den",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "maskulin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "maskulin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación weak"
+      },
+      {
+        "id": "akk-mixed",
+        "type": "mixed",
+        "sentence": "Ich bekomme den _____ besser Job.",
+        "adjective": "besser",
+        "context": {
+          "determiner": {
+            "word": "den",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "maskulin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "maskulin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación mixed"
+      },
+      {
+        "id": "akk-strong",
+        "type": "strong",
+        "sentence": "Ich bekomme den besser _____ Job.",
+        "adjective": "besser",
+        "context": {
+          "determiner": null,
+          "case": "akkusativ",
+          "gender": "maskulin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación strong"
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "text": "Der Angestellte erledigt {wichtige} Aufgaben. Mit {effizienten} Strategien löst er {komplexe} Probleme.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "adjective": "wichtig",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "feminin",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "adjective": "effizient",
+            "context": {
+              "determiner": {
+                "word": "den",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "feminin",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "adjective": "komplex",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "neutrum",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "neutrum",
+              "number": "plural"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

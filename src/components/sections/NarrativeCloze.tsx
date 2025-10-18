@@ -17,213 +17,45 @@ import {
   generateHint,
   getAdjectiveEnding,
 } from "@/lib/adjective-rules";
-import type { AdjectiveContext } from "@/types/adjective";
+import type { NarrativeParagraph, NarrativeCloze } from "@/types/adjective";
 import {
   showParagraphCorrect,
   showParagraphWithErrors,
   showParagraphHints,
 } from "@/lib/toast-service";
+import { getNarrativeParagraphs } from "@/lib/workshop-loader";
 
-interface ClozeItem {
-  id: string;
-  adjective: string;
-  context: AdjectiveContext;
+// Hardcoded titles and emojis for paragraphs (UI content stays in component)
+const PARAGRAPH_TITLES: Record<string, string> = {
+  "para-1": "Llegada a la cabaña",
+  "para-2": "Interior de la cabaña",
+  "para-3": "Suministros",
+};
+
+const PARAGRAPH_EMOJIS: Record<string, string> = {
+  "para-1": "🏔️",
+  "para-2": "🪵",
+  "para-3": "🎒",
+};
+
+interface NarrativeClozeProps {
+  variant?: string;
 }
 
-interface Paragraph {
-  id: string;
-  title: string;
-  text: string;
-  clozes: ClozeItem[];
-  emoji: string;
-}
+export function NarrativeCloze({ variant = "variant-1" }: NarrativeClozeProps) {
+  const paragraphs = getNarrativeParagraphs("adjetivo", variant);
+  const totalClozes = paragraphs.reduce(
+    (sum, para) => sum + para.clozes.length,
+    0
+  );
 
-const NARRATIVE: Paragraph[] = [
-  {
-    id: "para-1",
-    title: "Llegada a la cabaña",
-    emoji: "🏔️",
-    text: "Der Entdecker erreicht eine {alte} Hütte. In der {dunklen} Nacht sieht er ein {schwaches} Licht.",
-    clozes: [
-      {
-        id: "cloze-1",
-        adjective: "alt",
-        context: {
-          determiner: {
-            word: "eine",
-            type: "indefinite",
-            case: "akkusativ",
-            gender: "feminin",
-            number: "singular",
-          },
-          case: "akkusativ",
-          gender: "feminin",
-          number: "singular",
-        },
-      },
-      {
-        id: "cloze-2",
-        adjective: "dunkel",
-        context: {
-          determiner: {
-            word: "der",
-            type: "definite",
-            case: "dativ",
-            gender: "feminin",
-            number: "singular",
-          },
-          case: "dativ",
-          gender: "feminin",
-          number: "singular",
-        },
-      },
-      {
-        id: "cloze-3",
-        adjective: "schwach",
-        context: {
-          determiner: {
-            word: "ein",
-            type: "indefinite",
-            case: "akkusativ",
-            gender: "neutrum",
-            number: "singular",
-          },
-          case: "akkusativ",
-          gender: "neutrum",
-          number: "singular",
-        },
-      },
-    ],
-  },
-  {
-    id: "para-2",
-    title: "Interior de la cabaña",
-    emoji: "🪵",
-    text: "Er findet {warme} Decken und {frisches} Brot. Auf dem {kleinen} Tisch liegt ein {alter} Brief.",
-    clozes: [
-      {
-        id: "cloze-4",
-        adjective: "warm",
-        context: {
-          determiner: null,
-          case: "akkusativ",
-          gender: "feminin",
-          number: "plural",
-        },
-      },
-      {
-        id: "cloze-5",
-        adjective: "frisch",
-        context: {
-          determiner: null,
-          case: "akkusativ",
-          gender: "neutrum",
-          number: "singular",
-        },
-      },
-      {
-        id: "cloze-6",
-        adjective: "klein",
-        context: {
-          determiner: {
-            word: "dem",
-            type: "definite",
-            case: "dativ",
-            gender: "maskulin",
-            number: "singular",
-          },
-          case: "dativ",
-          gender: "maskulin",
-          number: "singular",
-        },
-      },
-      {
-        id: "cloze-7",
-        adjective: "alt",
-        context: {
-          determiner: {
-            word: "ein",
-            type: "indefinite",
-            case: "nominativ",
-            gender: "maskulin",
-            number: "singular",
-          },
-          case: "nominativ",
-          gender: "maskulin",
-          number: "singular",
-        },
-      },
-    ],
-  },
-  {
-    id: "para-3",
-    title: "Suministros",
-    emoji: "🎒",
-    text: "Der Brief erwähnt {wichtige} Vorräte: {gutes} Wasser, {trockenes} Holz und einen {warmen} Schlafsack.",
-    clozes: [
-      {
-        id: "cloze-8",
-        adjective: "wichtig",
-        context: {
-          determiner: null,
-          case: "akkusativ",
-          gender: "maskulin",
-          number: "plural",
-        },
-      },
-      {
-        id: "cloze-9",
-        adjective: "gut",
-        context: {
-          determiner: null,
-          case: "akkusativ",
-          gender: "neutrum",
-          number: "singular",
-        },
-      },
-      {
-        id: "cloze-10",
-        adjective: "trocken",
-        context: {
-          determiner: null,
-          case: "akkusativ",
-          gender: "neutrum",
-          number: "singular",
-        },
-      },
-      {
-        id: "cloze-11",
-        adjective: "warm",
-        context: {
-          determiner: {
-            word: "einen",
-            type: "indefinite",
-            case: "akkusativ",
-            gender: "maskulin",
-            number: "singular",
-          },
-          case: "akkusativ",
-          gender: "maskulin",
-          number: "singular",
-        },
-      },
-    ],
-  },
-];
-
-const TOTAL_CLOZES = NARRATIVE.reduce(
-  (sum, para) => sum + para.clozes.length,
-  0
-);
-
-export function NarrativeCloze() {
   const {
     progress,
     answers: userAnswers,
     recordAnswer,
     recordHintUsed,
     resetSection,
-  } = useSectionState("narrative-cloze", TOTAL_CLOZES);
+  } = useSectionState("narrative-cloze", totalClozes);
 
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [verifiedParagraphs, setVerifiedParagraphs] = useState<Set<string>>(
@@ -232,7 +64,7 @@ export function NarrativeCloze() {
 
   const handleKeyDownInput = (
     e: React.KeyboardEvent<HTMLInputElement>,
-    paragraph: Paragraph
+    paragraph: NarrativeParagraph
   ) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -246,7 +78,7 @@ export function NarrativeCloze() {
     }
   };
 
-  const handleVerifyParagraph = (paragraph: Paragraph) => {
+  const handleVerifyParagraph = (paragraph: NarrativeParagraph) => {
     let correctCount = 0;
     const results: string[] = [];
 
@@ -269,26 +101,26 @@ export function NarrativeCloze() {
     if (allCorrect) {
       setVerifiedParagraphs((prev) => new Set([...prev, paragraph.id]));
       showParagraphCorrect(
-        paragraph.title,
+        PARAGRAPH_TITLES[paragraph.id],
         correctCount,
         paragraph.clozes.length
       );
     } else {
-      showParagraphWithErrors(paragraph.title, results);
+      showParagraphWithErrors(PARAGRAPH_TITLES[paragraph.id], results);
     }
   };
 
-  const handleHintForParagraph = (paragraph: Paragraph) => {
+  const handleHintForParagraph = (paragraph: NarrativeParagraph) => {
     const hints = paragraph.clozes.map((cloze) => {
       const hint = generateHint(cloze.context);
       return `💡 <strong>${cloze.adjective}</strong>: ${hint}`;
     });
 
     recordHintUsed();
-    showParagraphHints(paragraph.title, hints);
+    showParagraphHints(PARAGRAPH_TITLES[paragraph.id], hints);
   };
 
-  const handleFillParagraph = (paragraph: Paragraph) => {
+  const handleFillParagraph = (paragraph: NarrativeParagraph) => {
     setAnswers((prev) => {
       const next = { ...prev };
       paragraph.clozes.forEach((cloze) => {
@@ -299,7 +131,7 @@ export function NarrativeCloze() {
     });
   };
 
-  const renderParagraphText = (paragraph: Paragraph) => {
+  const renderParagraphText = (paragraph: NarrativeParagraph) => {
     const nodes: React.ReactNode[] = [];
     const regex = /\{([^}]+)\}/g;
     let lastIndex = 0;
@@ -401,14 +233,16 @@ export function NarrativeCloze() {
           </p>
         </div>
 
-        {NARRATIVE.map((paragraph) => (
+        {paragraphs.map((paragraph) => (
           <div
             key={paragraph.id}
             className="border border-border rounded-lg p-6 space-y-4"
           >
             <div className="flex items-center gap-3">
-              <span className="text-3xl">{paragraph.emoji}</span>
-              <h3 className="font-semibold text-lg">{paragraph.title}</h3>
+              <span className="text-3xl">{PARAGRAPH_EMOJIS[paragraph.id]}</span>
+              <h3 className="font-semibold text-lg">
+                {PARAGRAPH_TITLES[paragraph.id]}
+              </h3>
             </div>
 
             <div className="bg-muted/30 rounded-lg p-4 leading-relaxed">
@@ -434,7 +268,9 @@ export function NarrativeCloze() {
                 <Button
                   variant="secondary"
                   onClick={() => handleFillParagraph(paragraph)}
-                  aria-label={`Rellenar todas las terminaciones del párrafo ${paragraph.title}`}
+                  aria-label={`Rellenar todas las terminaciones del párrafo ${
+                    PARAGRAPH_TITLES[paragraph.id]
+                  }`}
                   className="w-full md:w-auto"
                 >
                   🪄 Rellenar
@@ -452,7 +288,7 @@ export function NarrativeCloze() {
         ))}
 
         {/* Producción opcional */}
-        {verifiedParagraphs.size === NARRATIVE.length && (
+        {verifiedParagraphs.size === paragraphs.length && (
           <div className="bg-purple-50 dark:bg-purple-950 border border-purple-200 dark:border-purple-800 rounded-lg p-6">
             <h3 className="font-semibold text-lg mb-3 text-purple-900 dark:text-purple-100">
               ✍️ Producción opcional

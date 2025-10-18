@@ -1,0 +1,49 @@
+{
+  "adjetivo": [
+    {
+      "id": "familie",
+      "de": "die Familie",
+      "es": "la familia"
+    },
+    {
+      "id": "groß",
+      "de": "groß",
+      "es": "grande"
+    },
+    {
+      "id": "großmutter",
+      "de": "die Großmutter",
+      "es": "la abuela"
+    },
+    {
+      "id": "geschichte",
+      "de": "die Geschichte",
+      "es": "la historia"
+    },
+    {
+      "id": "wort",
+      "de": "das Wort",
+      "es": "la palabra"
+    },
+    {
+      "id": "kind",
+      "de": "das Kind",
+      "es": "el niño"
+    },
+    {
+      "id": "alt",
+      "de": "alt",
+      "es": "viejo"
+    },
+    {
+      "id": "liebevoll",
+      "de": "liebevoll",
+      "es": "cariñoso"
+    },
+    {
+      "id": "aufgeregt",
+      "de": "aufgeregt",
+      "es": "emocionado"
+    }
+  ]
+}

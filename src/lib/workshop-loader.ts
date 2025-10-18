@@ -1,15 +1,23 @@
 import werdenExercises from "@/data/workshops/werden-exercises.json";
+import adjectiveExercises from "@/data/workshops/adjective-exercises/variant-1.json";
 import type {
   WarmupExercise,
   CentralExercise,
   NarrativeParagraph,
 } from "@/types/werden";
+import type {
+  CentralScenario,
+  NarrativeParagraph as AdjectiveNarrativeParagraph,
+} from "@/types/adjective";
 
-export type WorkshopExercises = typeof werdenExercises;
+export type WorkshopExercises =
+  | typeof werdenExercises
+  | typeof adjectiveExercises;
 
 export function loadWorkshopExercises(workshopId: string): WorkshopExercises {
   const workshops: Record<string, WorkshopExercises> = {
     werden: werdenExercises,
+    adjetivo: adjectiveExercises,
   };
 
   const exercises = workshops[workshopId];
@@ -22,7 +30,11 @@ export function loadWorkshopExercises(workshopId: string): WorkshopExercises {
 
 // Helpers para acceder a ejercicios específicos
 export function getWarmupExercises(workshopId: string): WarmupExercise[] {
-  return loadWorkshopExercises(workshopId).sections.warmup as WarmupExercise[];
+  const exercises = loadWorkshopExercises(workshopId);
+  if ("warmup" in exercises.sections) {
+    return exercises.sections.warmup as WarmupExercise[];
+  }
+  return [];
 }
 
 export function getCentralExercises(workshopId: string): CentralExercise[] {
@@ -37,6 +49,19 @@ export function getNarrativeExercises(
     .narrative as NarrativeParagraph[];
 }
 
+// Helper functions for adjective workshop
+export function getCentralScenarios(workshopId: string): CentralScenario[] {
+  return loadWorkshopExercises(workshopId).sections
+    .central as CentralScenario[];
+}
+
+export function getNarrativeParagraphs(
+  workshopId: string
+): AdjectiveNarrativeParagraph[] {
+  return loadWorkshopExercises(workshopId).sections
+    .narrative as AdjectiveNarrativeParagraph[];
+}
+
 // Helper para obtener un ejercicio específico por ID
 export function getExerciseById(
   workshopId: string,
@@ -45,7 +70,7 @@ export function getExerciseById(
 ) {
   const exercises = loadWorkshopExercises(workshopId);
 
-  if (section === "warmup") {
+  if (section === "warmup" && "warmup" in exercises.sections) {
     return exercises.sections.warmup.find((ex) => ex.id === exerciseId);
   }
 
@@ -82,7 +107,8 @@ export function getWorkshopInfo(workshopId: string) {
 
   return {
     id: exercises.workshopId,
-    warmupCount: exercises.sections.warmup.length,
+    warmupCount:
+      "warmup" in exercises.sections ? exercises.sections.warmup.length : 0,
     centralCount: exercises.sections.central.length,
     narrativeParagraphs: exercises.sections.narrative.length,
     totalClozes: exercises.sections.narrative.reduce(

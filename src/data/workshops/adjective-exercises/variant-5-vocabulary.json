@@ -1,0 +1,134 @@
+{
+  "adjetivo": [
+    {
+      "id": "roman",
+      "de": "der Roman",
+      "es": "la novela"
+    },
+    {
+      "id": "spannend",
+      "de": "spannend",
+      "es": "emocionante"
+    },
+    {
+      "id": "autorin",
+      "de": "die Autorin",
+      "es": "la autora"
+    },
+    {
+      "id": "geschichte",
+      "de": "die Geschichte",
+      "es": "la historia"
+    },
+    {
+      "id": "beschreibung",
+      "de": "die Beschreibung",
+      "es": "la descripción"
+    },
+    {
+      "id": "abenteuer",
+      "de": "das Abenteuer",
+      "es": "la aventura"
+    },
+    {
+      "id": "charakter",
+      "de": "der Charakter",
+      "es": "el personaje"
+    },
+    {
+      "id": "wendung",
+      "de": "die Wendung",
+      "es": "el giro"
+    },
+    {
+      "id": "leser",
+      "de": "der Leser",
+      "es": "el lector"
+    },
+    {
+      "id": "atmosphäre",
+      "de": "die Atmosphäre",
+      "es": "la atmósfera"
+    },
+    {
+      "id": "buch",
+      "de": "das Buch",
+      "es": "el libro"
+    },
+    {
+      "id": "thema",
+      "de": "das Thema",
+      "es": "el tema"
+    },
+    {
+      "id": "moment",
+      "de": "der Moment",
+      "es": "el momento"
+    },
+    {
+      "id": "kritiker",
+      "de": "der Kritiker",
+      "es": "el crítico"
+    },
+    {
+      "id": "qualitaet",
+      "de": "die Qualität",
+      "es": "la calidad"
+    },
+    {
+      "id": "komplex",
+      "de": "komplex",
+      "es": "complejo"
+    },
+    {
+      "id": "detailliert",
+      "de": "detailliert",
+      "es": "detallado"
+    },
+    {
+      "id": "faszinierend",
+      "de": "faszinierend",
+      "es": "fascinante"
+    },
+    {
+      "id": "interessant",
+      "de": "interessant",
+      "es": "interesante"
+    },
+    {
+      "id": "unvorhersehbar",
+      "de": "unvorhersehbar",
+      "es": "impredecible"
+    },
+    {
+      "id": "neugierig",
+      "de": "neugierig",
+      "es": "curioso"
+    },
+    {
+      "id": "mysteriös",
+      "de": "mysteriös",
+      "es": "misterioso"
+    },
+    {
+      "id": "tiefgründig",
+      "de": "tiefgründig",
+      "es": "profundo"
+    },
+    {
+      "id": "berührend",
+      "de": "berührend",
+      "es": "conmovedor"
+    },
+    {
+      "id": "beeindruckt",
+      "de": "beeindruckt",
+      "es": "impresionado"
+    },
+    {
+      "id": "außergewöhnlich",
+      "de": "außergewöhnlich",
+      "es": "extraordinario"
+    }
+  ]
+}

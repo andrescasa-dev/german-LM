@@ -1,0 +1,224 @@
+{
+  "workshopId": "adjetivo",
+  "sections": {
+    "central": [
+      {
+        "id": "akk-weak",
+        "type": "weak",
+        "sentence": "Ich kaufe das _____ Buch.",
+        "adjective": "teuer",
+        "context": {
+          "determiner": {
+            "word": "das",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "neutrum",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "neutrum",
+          "number": "singular"
+        },
+        "imageAlt": "Un libro caro con artículo definido"
+      },
+      {
+        "id": "akk-mixed",
+        "type": "mixed",
+        "sentence": "Ich kaufe ein _____ Buch.",
+        "adjective": "teuer",
+        "context": {
+          "determiner": {
+            "word": "ein",
+            "type": "indefinite",
+            "case": "akkusativ",
+            "gender": "neutrum",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "neutrum",
+          "number": "singular"
+        },
+        "imageAlt": "Un libro caro con artículo indefinido"
+      },
+      {
+        "id": "akk-strong",
+        "type": "strong",
+        "sentence": "Ich kaufe _____ Buch.",
+        "adjective": "teuer",
+        "context": {
+          "determiner": null,
+          "case": "akkusativ",
+          "gender": "neutrum",
+          "number": "singular"
+        },
+        "imageAlt": "Un libro caro sin artículo"
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "text": "Die Studentin besucht eine {große} Universität. In der {modernen} Bibliothek liest sie {interessante} Artikel.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "adjective": "groß",
+            "context": {
+              "determiner": {
+                "word": "eine",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "feminin",
+                "number": "singular"
+              },
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "singular"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "adjective": "modern",
+            "context": {
+              "determiner": {
+                "word": "der",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "feminin",
+                "number": "singular"
+              },
+              "case": "dativ",
+              "gender": "feminin",
+              "number": "singular"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "adjective": "interessant",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "maskulin",
+                "number": "singular"
+              },
+              "case": "akkusativ",
+              "gender": "maskulin",
+              "number": "singular"
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-2",
+        "text": "Sie schreibt {lange} Aufsätze und {komplizierte} Prüfungen. Mit {fleißigen} Kommilitonen diskutiert sie {schwierige} Themen.",
+        "clozes": [
+          {
+            "id": "cloze-4",
+            "adjective": "lang",
+            "context": {
+              "determiner": null,
+              "case": "akkusativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-5",
+            "adjective": "kompliziert",
+            "context": {
+              "determiner": null,
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-6",
+            "adjective": "fleißig",
+            "context": {
+              "determiner": {
+                "word": "den",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-7",
+            "adjective": "schwierig",
+            "context": {
+              "determiner": {
+                "word": "ein",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "neutrum",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "neutrum",
+              "number": "plural"
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-3",
+        "text": "Der Professor lobt {gute} Noten und {kreative} Ideen. Er gibt {hilfreiche} Tipps für {bessere} Ergebnisse.",
+        "clozes": [
+          {
+            "id": "cloze-8",
+            "adjective": "gut",
+            "context": {
+              "determiner": null,
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-9",
+            "adjective": "kreativ",
+            "context": {
+              "determiner": null,
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-10",
+            "adjective": "hilfreich",
+            "context": {
+              "determiner": null,
+              "case": "akkusativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-11",
+            "adjective": "besser",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "maskulin",
+                "number": "singular"
+              },
+              "case": "akkusativ",
+              "gender": "maskulin",
+              "number": "singular"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "adjetivo": [
+    {
+      "id": "tasche",
+      "de": "die Tasche",
+      "es": "la bolsa"
+    },
+    {
+      "id": "schwer",
+      "de": "schwer",
+      "es": "pesado"
+    },
+    {
+      "id": "einkaeuferin",
+      "de": "die Einkäuferin",
+      "es": "la compradora"
+    },
+    {
+      "id": "kleid",
+      "de": "das Kleid",
+      "es": "el vestido"
+    },
+    {
+      "id": "korb",
+      "de": "der Korb",
+      "es": "la canasta"
+    },
+    {
+      "id": "preis",
+      "de": "der Preis",
+      "es": "el precio"
+    },
+    {
+      "id": "elegant",
+      "de": "elegant",
+      "es": "elegante"
+    },
+    {
+      "id": "voll",
+      "de": "voll",
+      "es": "lleno"
+    },
+    {
+      "id": "günstig",
+      "de": "günstig",
+      "es": "barato"
+    }
+  ]
+}

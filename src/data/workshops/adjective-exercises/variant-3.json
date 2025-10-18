@@ -1,0 +1,224 @@
+{
+  "workshopId": "adjetivo",
+  "sections": {
+    "central": [
+      {
+        "id": "akk-weak",
+        "type": "weak",
+        "sentence": "Ich trinke die _____ Milch.",
+        "adjective": "frisch",
+        "context": {
+          "determiner": {
+            "word": "die",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "feminin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Leche fresca con artículo definido"
+      },
+      {
+        "id": "akk-mixed",
+        "type": "mixed",
+        "sentence": "Ich trinke eine _____ Milch.",
+        "adjective": "frisch",
+        "context": {
+          "determiner": {
+            "word": "eine",
+            "type": "indefinite",
+            "case": "akkusativ",
+            "gender": "feminin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Leche fresca con artículo indefinido"
+      },
+      {
+        "id": "akk-strong",
+        "type": "strong",
+        "sentence": "Ich trinke _____ Milch.",
+        "adjective": "frisch",
+        "context": {
+          "determiner": null,
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Leche fresca sin artículo"
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "text": "Der Koch bereitet ein {leckeres} Gericht. Mit {frischen} Zutaten macht er {gesunde} Salate.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "adjective": "lecker",
+            "context": {
+              "determiner": {
+                "word": "ein",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "neutrum",
+                "number": "singular"
+              },
+              "case": "akkusativ",
+              "gender": "neutrum",
+              "number": "singular"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "adjective": "frisch",
+            "context": {
+              "determiner": {
+                "word": "den",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "feminin",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "adjective": "gesund",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-2",
+        "text": "Er kocht {heiße} Suppen und {würzige} Soßen. Für {hungrige} Gäste serviert er {süße} Desserts.",
+        "clozes": [
+          {
+            "id": "cloze-4",
+            "adjective": "heiß",
+            "context": {
+              "determiner": null,
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-5",
+            "adjective": "würzig",
+            "context": {
+              "determiner": null,
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-6",
+            "adjective": "hungrig",
+            "context": {
+              "determiner": {
+                "word": "den",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-7",
+            "adjective": "süß",
+            "context": {
+              "determiner": {
+                "word": "ein",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "neutrum",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "neutrum",
+              "number": "plural"
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-3",
+        "text": "Die Küche riecht nach {duftenden} Gewürzen und {knusprigem} Brot. {Zufriedene} Kunden loben {ausgezeichnete} Qualität.",
+        "clozes": [
+          {
+            "id": "cloze-8",
+            "adjective": "duftend",
+            "context": {
+              "determiner": null,
+              "case": "dativ",
+              "gender": "neutrum",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-9",
+            "adjective": "knusprig",
+            "context": {
+              "determiner": null,
+              "case": "dativ",
+              "gender": "neutrum",
+              "number": "singular"
+            }
+          },
+          {
+            "id": "cloze-10",
+            "adjective": "zufrieden",
+            "context": {
+              "determiner": null,
+              "case": "nominativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-11",
+            "adjective": "ausgezeichnet",
+            "context": {
+              "determiner": {
+                "word": "einer",
+                "type": "indefinite",
+                "case": "dativ",
+                "gender": "feminin",
+                "number": "singular"
+              },
+              "case": "dativ",
+              "gender": "feminin",
+              "number": "singular"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

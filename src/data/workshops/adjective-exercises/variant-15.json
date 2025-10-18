@@ -1,0 +1,114 @@
+{
+  "workshopId": "adjetivo",
+  "sections": {
+    "central": [
+      {
+        "id": "akk-weak",
+        "type": "weak",
+        "sentence": "Ich nehme die _____ bitter Medizin.",
+        "adjective": "bitter",
+        "context": {
+          "determiner": {
+            "word": "die",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "feminin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación weak"
+      },
+      {
+        "id": "akk-mixed",
+        "type": "mixed",
+        "sentence": "Ich nehme die _____ bitter Medizin.",
+        "adjective": "bitter",
+        "context": {
+          "determiner": {
+            "word": "die",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "feminin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación mixed"
+      },
+      {
+        "id": "akk-strong",
+        "type": "strong",
+        "sentence": "Ich nehme die bitter _____ Medizin.",
+        "adjective": "bitter",
+        "context": {
+          "determiner": null,
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación strong"
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "text": "Der Arzt verschreibt {wirksame} Behandlungen. Mit {sorgfältigen} Untersuchungen heilt er {schmerzhafte} Verletzungen.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "adjective": "wirksam",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "feminin",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "adjective": "sorgfältig",
+            "context": {
+              "determiner": {
+                "word": "den",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "feminin",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "adjective": "schmerzhaft",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "feminin",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

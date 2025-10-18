@@ -1,0 +1,49 @@
+{
+  "adjetivo": [
+    {
+      "id": "sprache",
+      "de": "die Sprache",
+      "es": "el idioma"
+    },
+    {
+      "id": "schwierig",
+      "de": "schwierig",
+      "es": "difícil"
+    },
+    {
+      "id": "lehrerin",
+      "de": "die Lehrerin",
+      "es": "la profesora"
+    },
+    {
+      "id": "grammatik",
+      "de": "die Grammatik",
+      "es": "la gramática"
+    },
+    {
+      "id": "methode",
+      "de": "die Methode",
+      "es": "el método"
+    },
+    {
+      "id": "schüler",
+      "de": "der Schüler",
+      "es": "el estudiante"
+    },
+    {
+      "id": "kompliziert",
+      "de": "kompliziert",
+      "es": "complicado"
+    },
+    {
+      "id": "geduldig",
+      "de": "geduldig",
+      "es": "paciente"
+    },
+    {
+      "id": "motiviert",
+      "de": "motiviert",
+      "es": "motivado"
+    }
+  ]
+}

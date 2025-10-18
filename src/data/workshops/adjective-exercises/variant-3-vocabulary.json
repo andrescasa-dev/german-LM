@@ -1,0 +1,129 @@
+{
+  "adjetivo": [
+    {
+      "id": "milch",
+      "de": "die Milch",
+      "es": "la leche"
+    },
+    {
+      "id": "frisch",
+      "de": "frisch",
+      "es": "fresco"
+    },
+    {
+      "id": "koch",
+      "de": "der Koch",
+      "es": "el cocinero"
+    },
+    {
+      "id": "gericht",
+      "de": "das Gericht",
+      "es": "el plato"
+    },
+    {
+      "id": "zutat",
+      "de": "die Zutat",
+      "es": "el ingrediente"
+    },
+    {
+      "id": "salat",
+      "de": "der Salat",
+      "es": "la ensalada"
+    },
+    {
+      "id": "suppe",
+      "de": "die Suppe",
+      "es": "la sopa"
+    },
+    {
+      "id": "soße",
+      "de": "die Soße",
+      "es": "la salsa"
+    },
+    {
+      "id": "gast",
+      "de": "der Gast",
+      "es": "el invitado"
+    },
+    {
+      "id": "dessert",
+      "de": "das Dessert",
+      "es": "el postre"
+    },
+    {
+      "id": "kueche",
+      "de": "die Küche",
+      "es": "la cocina"
+    },
+    {
+      "id": "gewuerz",
+      "de": "das Gewürz",
+      "es": "la especia"
+    },
+    {
+      "id": "brot",
+      "de": "das Brot",
+      "es": "el pan"
+    },
+    {
+      "id": "kunde",
+      "de": "der Kunde",
+      "es": "el cliente"
+    },
+    {
+      "id": "qualitaet",
+      "de": "die Qualität",
+      "es": "la calidad"
+    },
+    {
+      "id": "lecker",
+      "de": "lecker",
+      "es": "delicioso"
+    },
+    {
+      "id": "gesund",
+      "de": "gesund",
+      "es": "saludable"
+    },
+    {
+      "id": "heiß",
+      "de": "heiß",
+      "es": "caliente"
+    },
+    {
+      "id": "würzig",
+      "de": "würzig",
+      "es": "picante"
+    },
+    {
+      "id": "hungrig",
+      "de": "hungrig",
+      "es": "hambriento"
+    },
+    {
+      "id": "süß",
+      "de": "süß",
+      "es": "dulce"
+    },
+    {
+      "id": "duftend",
+      "de": "duftend",
+      "es": "aromático"
+    },
+    {
+      "id": "knusprig",
+      "de": "knusprig",
+      "es": "crujiente"
+    },
+    {
+      "id": "zufrieden",
+      "de": "zufrieden",
+      "es": "satisfecho"
+    },
+    {
+      "id": "ausgezeichnet",
+      "de": "ausgezeichnet",
+      "es": "excelente"
+    }
+  ]
+}

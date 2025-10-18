@@ -74,3 +74,33 @@ export interface UserAnswer {
   hintsUsed: number;
   timestamp: Date;
 }
+
+/**
+ * Escenario para ejercicios centrales
+ */
+export interface CentralScenario {
+  id: string;
+  type: "weak" | "mixed" | "strong";
+  sentence: string;
+  adjective: string;
+  context: AdjectiveContext;
+  imageAlt: string;
+}
+
+/**
+ * Cloze individual en párrafos narrativos
+ */
+export interface NarrativeCloze {
+  id: string;
+  adjective: string;
+  context: AdjectiveContext;
+}
+
+/**
+ * Párrafo narrativo con clozes
+ */
+export interface NarrativeParagraph {
+  id: string;
+  text: string;
+  clozes: NarrativeCloze[];
+}

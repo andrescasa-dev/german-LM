@@ -17,95 +17,44 @@ import {
   generateHint,
   getAdjectiveEnding,
 } from "@/lib/adjective-rules";
-import type { AdjectiveContext } from "@/types/adjective";
+import type { CentralScenario } from "@/types/adjective";
 import {
   showCorrectAnswer,
   showIncorrectAnswer,
   showHintToast,
   showExtraAttempt,
 } from "@/lib/toast-service";
+import { getCentralScenarios } from "@/lib/workshop-loader";
 
-interface Scenario {
-  id: string;
-  type: "weak" | "mixed" | "strong";
-  title: string;
-  sentence: string;
-  adjective: string;
-  context: AdjectiveContext;
-  imageAlt: string;
-}
+// Hardcoded titles and emojis for scenarios (UI content stays in component)
+const SCENARIO_TITLES: Record<string, string> = {
+  "akk-weak": "Escenario 1: Declinación débil",
+  "akk-mixed": "Escenario 2: Declinación mixta",
+  "akk-strong": "Escenario 3: Declinación fuerte",
+};
 
-const SCENARIOS: Scenario[] = [
-  {
-    id: "akk-weak",
-    type: "weak",
-    title: "Escenario 1: Declinación débil",
-    sentence: "Ich sehe den _____ Wagen.",
-    adjective: "neu",
-    context: {
-      determiner: {
-        word: "den",
-        type: "definite",
-        case: "akkusativ",
-        gender: "maskulin",
-        number: "singular",
-      },
-      case: "akkusativ",
-      gender: "maskulin",
-      number: "singular",
-    },
-    imageAlt: "Un coche nuevo con artículo definido",
-  },
-  {
-    id: "akk-mixed",
-    type: "mixed",
-    title: "Escenario 2: Declinación mixta",
-    sentence: "Ich sehe einen _____ Wagen.",
-    adjective: "neu",
-    context: {
-      determiner: {
-        word: "einen",
-        type: "indefinite",
-        case: "akkusativ",
-        gender: "maskulin",
-        number: "singular",
-      },
-      case: "akkusativ",
-      gender: "maskulin",
-      number: "singular",
-    },
-    imageAlt: "Un coche nuevo con artículo indefinido",
-  },
-  {
-    id: "akk-strong",
-    type: "strong",
-    title: "Escenario 3: Declinación fuerte",
-    sentence: "Ich sehe _____ Wagen.",
-    adjective: "neu",
-    context: {
-      determiner: null,
-      case: "akkusativ",
-      gender: "maskulin",
-      number: "singular",
-    },
-    imageAlt: "Un coche nuevo sin artículo",
-  },
-];
+const SCENARIO_EMOJIS: Record<string, string> = {
+  "akk-weak": "🚗",
+  "akk-mixed": "🚙",
+  "akk-strong": "🚕",
+};
 
 export function ExerciseAkkusativMasculine() {
+  const scenarios = getCentralScenarios("adjetivo");
+
   const {
     progress,
     answers: userAnswers,
     recordAnswer,
     recordHintUsed,
     resetSection,
-  } = useSectionState("exercise-akkusativ", SCENARIOS.length);
+  } = useSectionState("exercise-akkusativ", scenarios.length);
 
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showDemo, setShowDemo] = useState(true);
   const [attempts, setAttempts] = useState<Record<string, number>>({});
 
-  const handleSubmit = (scenario: Scenario) => {
+  const handleSubmit = (scenario: CentralScenario) => {
     const answer = answers[scenario.id] || "";
     const result = validateAdjectiveEnding(answer, scenario.context);
     const currentAttempts = attempts[scenario.id] || 0;
@@ -124,7 +73,7 @@ export function ExerciseAkkusativMasculine() {
     }
   };
 
-  const handleHint = (scenario: Scenario) => {
+  const handleHint = (scenario: CentralScenario) => {
     const hint = generateHint(scenario.context);
     recordHintUsed();
     showHintToast(hint);
@@ -196,14 +145,16 @@ export function ExerciseAkkusativMasculine() {
         {/* Escenarios */}
         {!showDemo && (
           <div className="space-y-6">
-            {SCENARIOS.map((scenario, index) => (
+            {scenarios.map((scenario) => (
               <div
                 key={scenario.id}
                 className="border border-border rounded-lg p-6 space-y-4"
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <h3 className="font-semibold text-lg">{scenario.title}</h3>
+                    <h3 className="font-semibold text-lg">
+                      {SCENARIO_TITLES[scenario.id]}
+                    </h3>
                     <p className="text-sm text-muted-foreground mt-1">
                       Tipo:{" "}
                       {scenario.type === "weak"
@@ -213,9 +164,7 @@ export function ExerciseAkkusativMasculine() {
                         : "Fuerte"}
                     </p>
                   </div>
-                  <div className="text-4xl">
-                    {index === 0 ? "🚗" : index === 1 ? "🚙" : "🚕"}
-                  </div>
+                  <div className="text-4xl">{SCENARIO_EMOJIS[scenario.id]}</div>
                 </div>
 
                 <div className="bg-muted/50 rounded p-4">

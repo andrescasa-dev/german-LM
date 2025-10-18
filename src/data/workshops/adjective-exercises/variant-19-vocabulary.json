@@ -1,0 +1,49 @@
+{
+  "adjetivo": [
+    {
+      "id": "auto",
+      "de": "das Auto",
+      "es": "el coche"
+    },
+    {
+      "id": "schnell",
+      "de": "schnell",
+      "es": "rápido"
+    },
+    {
+      "id": "fahrer",
+      "de": "der Fahrer",
+      "es": "el conductor"
+    },
+    {
+      "id": "fahrzeug",
+      "de": "das Fahrzeug",
+      "es": "el vehículo"
+    },
+    {
+      "id": "manöver",
+      "de": "das Manöver",
+      "es": "la maniobra"
+    },
+    {
+      "id": "situation",
+      "de": "die Situation",
+      "es": "la situación"
+    },
+    {
+      "id": "sicher",
+      "de": "sicher",
+      "es": "seguro"
+    },
+    {
+      "id": "vorsichtig",
+      "de": "vorsichtig",
+      "es": "cuidadoso"
+    },
+    {
+      "id": "gefährlich",
+      "de": "gefährlich",
+      "es": "peligroso"
+    }
+  ]
+}

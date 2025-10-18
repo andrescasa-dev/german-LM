@@ -1,0 +1,114 @@
+{
+  "workshopId": "adjetivo",
+  "sections": {
+    "central": [
+      {
+        "id": "akk-weak",
+        "type": "weak",
+        "sentence": "Ich spiele das _____ schnell Spiel.",
+        "adjective": "schnell",
+        "context": {
+          "determiner": {
+            "word": "das",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "neutrum",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "neutrum",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación weak"
+      },
+      {
+        "id": "akk-mixed",
+        "type": "mixed",
+        "sentence": "Ich spiele das _____ schnell Spiel.",
+        "adjective": "schnell",
+        "context": {
+          "determiner": {
+            "word": "das",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "neutrum",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "neutrum",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación mixed"
+      },
+      {
+        "id": "akk-strong",
+        "type": "strong",
+        "sentence": "Ich spiele das schnell _____ Spiel.",
+        "adjective": "schnell",
+        "context": {
+          "determiner": null,
+          "case": "akkusativ",
+          "gender": "neutrum",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación strong"
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "text": "Der Sportler trainiert {intensive} Übungen. Mit {starken} Muskeln macht er {anstrengende} Bewegungen.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "adjective": "intensiv",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "adjective": "stark",
+            "context": {
+              "determiner": {
+                "word": "den",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "adjective": "anstrengend",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "feminin",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

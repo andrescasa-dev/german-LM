@@ -1,0 +1,114 @@
+{
+  "workshopId": "adjetivo",
+  "sections": {
+    "central": [
+      {
+        "id": "akk-weak",
+        "type": "weak",
+        "sentence": "Ich erlebe das _____ schlecht Wetter.",
+        "adjective": "schlecht",
+        "context": {
+          "determiner": {
+            "word": "das",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "neutrum",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "neutrum",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación weak"
+      },
+      {
+        "id": "akk-mixed",
+        "type": "mixed",
+        "sentence": "Ich erlebe das _____ schlecht Wetter.",
+        "adjective": "schlecht",
+        "context": {
+          "determiner": {
+            "word": "das",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "neutrum",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "neutrum",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación mixed"
+      },
+      {
+        "id": "akk-strong",
+        "type": "strong",
+        "sentence": "Ich erlebe das schlecht _____ Wetter.",
+        "adjective": "schlecht",
+        "context": {
+          "determiner": null,
+          "case": "akkusativ",
+          "gender": "neutrum",
+          "number": "singular"
+        },
+        "imageAlt": "Ejemplo con declinación strong"
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "text": "Der Meteorologe beobachtet {wechselhaftes} Klima. Mit {genauen} Messungen prognostiziert er {stürmische} Tage.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "adjective": "wechselhaft",
+            "context": {
+              "determiner": {
+                "word": "ein",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "neutrum",
+                "number": "singular"
+              },
+              "case": "akkusativ",
+              "gender": "neutrum",
+              "number": "singular"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "adjective": "genau",
+            "context": {
+              "determiner": {
+                "word": "den",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "feminin",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "adjective": "stürmisch",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "adjetivo": [
+    {
+      "id": "baum",
+      "de": "der Baum",
+      "es": "el árbol"
+    },
+    {
+      "id": "hoch",
+      "de": "hoch",
+      "es": "alto"
+    },
+    {
+      "id": "wanderer",
+      "de": "der Wanderer",
+      "es": "el excursionista"
+    },
+    {
+      "id": "tier",
+      "de": "das Tier",
+      "es": "el animal"
+    },
+    {
+      "id": "schritt",
+      "de": "der Schritt",
+      "es": "el paso"
+    },
+    {
+      "id": "vogel",
+      "de": "der Vogel",
+      "es": "el pájaro"
+    },
+    {
+      "id": "wild",
+      "de": "wild",
+      "es": "salvaje"
+    },
+    {
+      "id": "ruhig",
+      "de": "ruhig",
+      "es": "tranquilo"
+    },
+    {
+      "id": "selten",
+      "de": "selten",
+      "es": "raro"
+    }
+  ]
+}

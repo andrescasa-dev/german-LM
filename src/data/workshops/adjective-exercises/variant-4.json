@@ -1,0 +1,224 @@
+{
+  "workshopId": "adjetivo",
+  "sections": {
+    "central": [
+      {
+        "id": "akk-weak",
+        "type": "weak",
+        "sentence": "Ich höre die _____ Musik.",
+        "adjective": "schön",
+        "context": {
+          "determiner": {
+            "word": "die",
+            "type": "definite",
+            "case": "akkusativ",
+            "gender": "feminin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Música hermosa con artículo definido"
+      },
+      {
+        "id": "akk-mixed",
+        "type": "mixed",
+        "sentence": "Ich höre eine _____ Musik.",
+        "adjective": "schön",
+        "context": {
+          "determiner": {
+            "word": "eine",
+            "type": "indefinite",
+            "case": "akkusativ",
+            "gender": "feminin",
+            "number": "singular"
+          },
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Música hermosa con artículo indefinido"
+      },
+      {
+        "id": "akk-strong",
+        "type": "strong",
+        "sentence": "Ich höre _____ Musik.",
+        "adjective": "schön",
+        "context": {
+          "determiner": null,
+          "case": "akkusativ",
+          "gender": "feminin",
+          "number": "singular"
+        },
+        "imageAlt": "Música hermosa sin artículo"
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "text": "Der Musiker spielt ein {romantisches} Lied. Mit {sanften} Tönen singt er {traurige} Melodien.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "adjective": "romantisch",
+            "context": {
+              "determiner": {
+                "word": "ein",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "neutrum",
+                "number": "singular"
+              },
+              "case": "akkusativ",
+              "gender": "neutrum",
+              "number": "singular"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "adjective": "sanft",
+            "context": {
+              "determiner": {
+                "word": "den",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "adjective": "traurig",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-2",
+        "text": "Er komponiert {fröhliche} Rhythmen und {melodische} Harmonien. Für {begeisterte} Zuhörer schreibt er {inspirierende} Texte.",
+        "clozes": [
+          {
+            "id": "cloze-4",
+            "adjective": "fröhlich",
+            "context": {
+              "determiner": null,
+              "case": "akkusativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-5",
+            "adjective": "melodisch",
+            "context": {
+              "determiner": null,
+              "case": "akkusativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-6",
+            "adjective": "begeistert",
+            "context": {
+              "determiner": {
+                "word": "den",
+                "type": "definite",
+                "case": "dativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-7",
+            "adjective": "inspirierend",
+            "context": {
+              "determiner": {
+                "word": "einen",
+                "type": "indefinite",
+                "case": "akkusativ",
+                "gender": "maskulin",
+                "number": "plural"
+              },
+              "case": "akkusativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-3",
+        "text": "Das Konzert beginnt mit {dramatischen} Akkorden und {leidenschaftlichen} Soli. {Entzückte} Fans applaudieren {fantastischen} Performances.",
+        "clozes": [
+          {
+            "id": "cloze-8",
+            "adjective": "dramatisch",
+            "context": {
+              "determiner": null,
+              "case": "dativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-9",
+            "adjective": "leidenschaftlich",
+            "context": {
+              "determiner": null,
+              "case": "dativ",
+              "gender": "neutrum",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-10",
+            "adjective": "entzückt",
+            "context": {
+              "determiner": null,
+              "case": "nominativ",
+              "gender": "maskulin",
+              "number": "plural"
+            }
+          },
+          {
+            "id": "cloze-11",
+            "adjective": "fantastisch",
+            "context": {
+              "determiner": {
+                "word": "einer",
+                "type": "indefinite",
+                "case": "dativ",
+                "gender": "feminin",
+                "number": "plural"
+              },
+              "case": "dativ",
+              "gender": "feminin",
+              "number": "plural"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

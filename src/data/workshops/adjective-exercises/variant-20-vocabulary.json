@@ -1,0 +1,49 @@
+{
+  "adjetivo": [
+    {
+      "id": "spiel",
+      "de": "das Spiel",
+      "es": "el juego"
+    },
+    {
+      "id": "schnell",
+      "de": "schnell",
+      "es": "rápido"
+    },
+    {
+      "id": "sportler",
+      "de": "der Sportler",
+      "es": "el deportista"
+    },
+    {
+      "id": "übung",
+      "de": "die Übung",
+      "es": "el ejercicio"
+    },
+    {
+      "id": "muskel",
+      "de": "der Muskel",
+      "es": "el músculo"
+    },
+    {
+      "id": "bewegung",
+      "de": "die Bewegung",
+      "es": "el movimiento"
+    },
+    {
+      "id": "intensiv",
+      "de": "intensiv",
+      "es": "intensivo"
+    },
+    {
+      "id": "stark",
+      "de": "stark",
+      "es": "fuerte"
+    },
+    {
+      "id": "anstrengend",
+      "de": "anstrengend",
+      "es": "agotador"
+    }
+  ]
+}
