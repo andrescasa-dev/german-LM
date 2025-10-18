@@ -1,3 +1,6 @@
+# Paradigma de programación
+- Paradigma funcional.
+
 # Preguntas del taller
 - Debe existir la opción de rellenar con la respuesta correcta para cada pregunta. 
 

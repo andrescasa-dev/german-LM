@@ -22,7 +22,7 @@ export default function Home() {
       title: "⚡ Taller del Verbo WERDEN",
       description: "Nivel A2 | Verbo pleno, Futuro y Pasiva",
       href: "/workshops/werden",
-      status: "available",
+      status: "not-available",
     },
     {
       id: "preposiciones-temporales",
