@@ -1,0 +1,444 @@
+{
+  "preposiciones-temporales": [
+    {
+      "id": "um",
+      "de": "um",
+      "es": "a (hora)",
+      "tag": "preposicion-temporal",
+      "caso": "acusativo",
+      "uso": "hora"
+    },
+    {
+      "id": "am",
+      "de": "am",
+      "es": "en (días, momentos del día)",
+      "tag": "preposicion-temporal",
+      "caso": "dativo",
+      "uso": "dias-momentos-festividades"
+    },
+    {
+      "id": "im",
+      "de": "im",
+      "es": "en (meses, estaciones)",
+      "tag": "preposicion-temporal",
+      "caso": "dativo",
+      "uso": "meses-estaciones"
+    },
+    {
+      "id": "seit",
+      "de": "seit",
+      "es": "desde",
+      "tag": "preposicion-temporal",
+      "caso": "dativo",
+      "uso": "duracion"
+    },
+    {
+      "id": "nach",
+      "de": "nach",
+      "es": "después de",
+      "tag": "preposicion-temporal",
+      "caso": "dativo",
+      "uso": "secuencia"
+    },
+    {
+      "id": "bis",
+      "de": "bis",
+      "es": "hasta",
+      "tag": "preposicion-temporal",
+      "caso": "acusativo",
+      "uso": "limite"
+    },
+    {
+      "id": "von",
+      "de": "von",
+      "es": "desde",
+      "tag": "preposicion-temporal",
+      "caso": "dativo",
+      "uso": "inicio-periodo"
+    },
+    {
+      "id": "montag",
+      "de": "der Montag",
+      "es": "el lunes",
+      "tag": "dia-semana"
+    },
+    {
+      "id": "dienstag",
+      "de": "der Dienstag",
+      "es": "el martes",
+      "tag": "dia-semana"
+    },
+    {
+      "id": "mittwoch",
+      "de": "der Mittwoch",
+      "es": "el miércoles",
+      "tag": "dia-semana"
+    },
+    {
+      "id": "donnerstag",
+      "de": "der Donnerstag",
+      "es": "el jueves",
+      "tag": "dia-semana"
+    },
+    {
+      "id": "freitag",
+      "de": "der Freitag",
+      "es": "el viernes",
+      "tag": "dia-semana"
+    },
+    {
+      "id": "samstag",
+      "de": "der Samstag",
+      "es": "el sábado",
+      "tag": "dia-semana"
+    },
+    {
+      "id": "sonntag",
+      "de": "der Sonntag",
+      "es": "el domingo",
+      "tag": "dia-semana"
+    },
+    {
+      "id": "morgen",
+      "de": "der Morgen",
+      "es": "la mañana",
+      "tag": "momento-dia"
+    },
+    {
+      "id": "mittag",
+      "de": "der Mittag",
+      "es": "el mediodía",
+      "tag": "momento-dia"
+    },
+    {
+      "id": "nachmittag",
+      "de": "der Nachmittag",
+      "es": "la tarde",
+      "tag": "momento-dia"
+    },
+    {
+      "id": "abend",
+      "de": "der Abend",
+      "es": "la tarde/noche",
+      "tag": "momento-dia"
+    },
+    {
+      "id": "nacht",
+      "de": "die Nacht",
+      "es": "la noche",
+      "tag": "momento-dia"
+    },
+    {
+      "id": "januar",
+      "de": "der Januar",
+      "es": "enero",
+      "tag": "mes"
+    },
+    {
+      "id": "februar",
+      "de": "der Februar",
+      "es": "febrero",
+      "tag": "mes"
+    },
+    {
+      "id": "märz",
+      "de": "der März",
+      "es": "marzo",
+      "tag": "mes"
+    },
+    {
+      "id": "april",
+      "de": "der April",
+      "es": "abril",
+      "tag": "mes"
+    },
+    {
+      "id": "mai",
+      "de": "der Mai",
+      "es": "mayo",
+      "tag": "mes"
+    },
+    {
+      "id": "juni",
+      "de": "der Juni",
+      "es": "junio",
+      "tag": "mes"
+    },
+    {
+      "id": "juli",
+      "de": "der Juli",
+      "es": "julio",
+      "tag": "mes"
+    },
+    {
+      "id": "august",
+      "de": "der August",
+      "es": "agosto",
+      "tag": "mes"
+    },
+    {
+      "id": "september",
+      "de": "der September",
+      "es": "septiembre",
+      "tag": "mes"
+    },
+    {
+      "id": "oktober",
+      "de": "der Oktober",
+      "es": "octubre",
+      "tag": "mes"
+    },
+    {
+      "id": "november",
+      "de": "der November",
+      "es": "noviembre",
+      "tag": "mes"
+    },
+    {
+      "id": "dezember",
+      "de": "der Dezember",
+      "es": "diciembre",
+      "tag": "mes"
+    },
+    {
+      "id": "frühling",
+      "de": "der Frühling",
+      "es": "la primavera",
+      "tag": "estacion"
+    },
+    {
+      "id": "sommer",
+      "de": "der Sommer",
+      "es": "el verano",
+      "tag": "estacion"
+    },
+    {
+      "id": "herbst",
+      "de": "der Herbst",
+      "es": "el otoño",
+      "tag": "estacion"
+    },
+    {
+      "id": "winter",
+      "de": "der Winter",
+      "es": "el invierno",
+      "tag": "estacion"
+    },
+    {
+      "id": "wochenende",
+      "de": "das Wochenende",
+      "es": "el fin de semana",
+      "tag": "periodo-tiempo"
+    },
+    {
+      "id": "geburtstag",
+      "de": "der Geburtstag",
+      "es": "el cumpleaños",
+      "tag": "festividad"
+    },
+    {
+      "id": "weihnachten",
+      "de": "Weihnachten",
+      "es": "Navidad",
+      "tag": "festividad"
+    },
+    {
+      "id": "ostern",
+      "de": "Ostern",
+      "es": "Pascua",
+      "tag": "festividad"
+    },
+    {
+      "id": "jahre",
+      "de": "die Jahre",
+      "es": "los años",
+      "tag": "tiempo-duracion"
+    },
+    {
+      "id": "monate",
+      "de": "die Monate",
+      "es": "los meses",
+      "tag": "tiempo-duracion"
+    },
+    {
+      "id": "wochen",
+      "de": "die Wochen",
+      "es": "las semanas",
+      "tag": "tiempo-duracion"
+    },
+    {
+      "id": "tage",
+      "de": "die Tage",
+      "es": "los días",
+      "tag": "tiempo-duracion"
+    },
+    {
+      "id": "stunden",
+      "de": "die Stunden",
+      "es": "las horas",
+      "tag": "tiempo-duracion"
+    },
+    {
+      "id": "minuten",
+      "de": "die Minuten",
+      "es": "los minutos",
+      "tag": "tiempo-duracion"
+    },
+    {
+      "id": "unterricht",
+      "de": "der Unterricht",
+      "es": "la clase",
+      "tag": "actividad"
+    },
+    {
+      "id": "essen",
+      "de": "das Essen",
+      "es": "la comida",
+      "tag": "actividad"
+    },
+    {
+      "id": "museum",
+      "de": "das Museum",
+      "es": "el museo",
+      "tag": "lugar"
+    },
+    {
+      "id": "kino",
+      "de": "das Kino",
+      "es": "el cine",
+      "tag": "lugar"
+    },
+    {
+      "id": "berge",
+      "de": "die Berge",
+      "es": "las montañas",
+      "tag": "lugar"
+    },
+    {
+      "id": "deutschland",
+      "de": "Deutschland",
+      "es": "Alemania",
+      "tag": "lugar"
+    },
+    {
+      "id": "kaffee",
+      "de": "der Kaffee",
+      "es": "el café",
+      "tag": "bebida"
+    },
+    {
+      "id": "tee",
+      "de": "der Tee",
+      "es": "el té",
+      "tag": "bebida"
+    },
+    {
+      "id": "urlaub",
+      "de": "der Urlaub",
+      "es": "las vacaciones",
+      "tag": "actividad"
+    },
+    {
+      "id": "warten",
+      "de": "warten",
+      "es": "esperar",
+      "tag": "verbo"
+    },
+    {
+      "id": "arbeiten",
+      "de": "arbeiten",
+      "es": "trabajar",
+      "tag": "verbo"
+    },
+    {
+      "id": "treffen",
+      "de": "sich treffen",
+      "es": "encontrarse",
+      "tag": "verbo"
+    },
+    {
+      "id": "gehen",
+      "de": "gehen",
+      "es": "ir",
+      "tag": "verbo"
+    },
+    {
+      "id": "fliegen",
+      "de": "fliegen",
+      "es": "volar",
+      "tag": "verbo"
+    },
+    {
+      "id": "trinken",
+      "de": "trinken",
+      "es": "beber",
+      "tag": "verbo"
+    },
+    {
+      "id": "lernen",
+      "de": "lernen",
+      "es": "aprender",
+      "tag": "verbo"
+    },
+    {
+      "id": "haben",
+      "de": "haben",
+      "es": "tener",
+      "tag": "verbo"
+    },
+    {
+      "id": "sein",
+      "de": "sein",
+      "es": "ser/estar",
+      "tag": "verbo"
+    },
+    {
+      "id": "können",
+      "de": "können",
+      "es": "poder",
+      "tag": "verbo"
+    },
+    {
+      "id": "möchten",
+      "de": "möchten",
+      "es": "querer",
+      "tag": "verbo"
+    },
+    {
+      "id": "immer",
+      "de": "immer",
+      "es": "siempre",
+      "tag": "adverbio"
+    },
+    {
+      "id": "leider",
+      "de": "leider",
+      "es": "desafortunadamente",
+      "tag": "adverbio"
+    },
+    {
+      "id": "bald",
+      "de": "bald",
+      "es": "pronto",
+      "tag": "adverbio"
+    },
+    {
+      "id": "jetzt",
+      "de": "jetzt",
+      "es": "ahora",
+      "tag": "adverbio"
+    },
+    {
+      "id": "hier",
+      "de": "hier",
+      "es": "aquí",
+      "tag": "adverbio"
+    },
+    {
+      "id": "dort",
+      "de": "dort",
+      "es": "allí",
+      "tag": "adverbio"
+    }
+  ]
+}

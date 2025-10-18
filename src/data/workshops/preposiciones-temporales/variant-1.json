@@ -1,0 +1,269 @@
+{
+  "workshopId": "preposiciones-temporales",
+  "sections": {
+    "warmup": [
+      {
+        "id": "warm-1",
+        "sentence": "Ich habe Geburtstag ____ Mai.",
+        "expectedAnswer": "im",
+        "context": {
+          "preposition": "im",
+          "case": "dativo",
+          "timeUnit": "mes",
+          "explanation": "Meses usan 'im'"
+        }
+      },
+      {
+        "id": "warm-2",
+        "sentence": "Wir treffen uns ____ 17:30 Uhr.",
+        "expectedAnswer": "um",
+        "context": {
+          "preposition": "um",
+          "case": "acusativo",
+          "timeUnit": "hora",
+          "explanation": "La hora usa 'um'"
+        }
+      },
+      {
+        "id": "warm-3",
+        "sentence": "____ Wochenende gehen wir ins Kino.",
+        "expectedAnswer": "Am",
+        "context": {
+          "preposition": "am",
+          "case": "dativo",
+          "timeUnit": "festividad-dia",
+          "explanation": "Festividades/Días usan 'am'"
+        }
+      },
+      {
+        "id": "warm-4",
+        "sentence": "Fahrt ihr ____ Winter in die Berge?",
+        "expectedAnswer": "im",
+        "context": {
+          "preposition": "im",
+          "case": "dativo",
+          "timeUnit": "estacion",
+          "explanation": "Estaciones usan 'im'"
+        }
+      }
+    ],
+    "central": [
+      {
+        "id": "practice-1",
+        "sentence": "Er arbeitet ____ Nachmittag.",
+        "expectedAnswer": "am",
+        "context": {
+          "preposition": "am",
+          "case": "dativo",
+          "timeUnit": "momento-dia",
+          "explanation": "Momentos del día usan 'am'"
+        }
+      },
+      {
+        "id": "practice-2",
+        "sentence": "____ 4. Juli fliegen wir nach Deutschland.",
+        "expectedAnswer": "Am",
+        "context": {
+          "preposition": "am",
+          "case": "dativo",
+          "timeUnit": "fecha",
+          "explanation": "Fechas usan 'am'"
+        }
+      },
+      {
+        "id": "practice-3",
+        "sentence": "Ich lerne Deutsch ____ drei Jahren.",
+        "expectedAnswer": "seit",
+        "context": {
+          "preposition": "seit",
+          "case": "dativo",
+          "timeUnit": "duracion",
+          "explanation": "'Seit' indica duración desde el pasado"
+        }
+      },
+      {
+        "id": "practice-4",
+        "sentence": "Wir treffen uns ____ dem Unterricht.",
+        "expectedAnswer": "nach",
+        "context": {
+          "preposition": "nach",
+          "case": "dativo",
+          "timeUnit": "secuencia",
+          "explanation": "'Nach' significa 'después de'"
+        }
+      },
+      {
+        "id": "practice-5",
+        "sentence": "Das Museum ist geöffnet ____ 10:00 Uhr ____ 18:00 Uhr.",
+        "expectedAnswer": "von... bis",
+        "context": {
+          "preposition": "von... bis",
+          "case": "dativo... acusativo",
+          "timeUnit": "periodo-completo",
+          "explanation": "'Von... bis' indica período completo"
+        }
+      },
+      {
+        "id": "practice-6",
+        "sentence": "Ich kann leider ____ Freitag nicht mitkommen.",
+        "expectedAnswer": "bis",
+        "context": {
+          "preposition": "bis",
+          "case": "acusativo",
+          "timeUnit": "limite",
+          "explanation": "'Bis' indica límite temporal"
+        }
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "germanText": "Mein Name ist Anna und ich erzähle euch über meinen Alltag. {0} Montag stehe ich {1} 7 Uhr auf. {2} Morgen trinke ich immer einen Kaffee. {3} Nachmittag arbeite ich im Büro.",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "expectedAnswer": "Am",
+            "context": {
+              "preposition": "am",
+              "case": "dativo",
+              "timeUnit": "dia-semana",
+              "explanation": "Días de la semana usan 'am'"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "expectedAnswer": "um",
+            "context": {
+              "preposition": "um",
+              "case": "acusativo",
+              "timeUnit": "hora",
+              "explanation": "La hora usa 'um'"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "expectedAnswer": "Am",
+            "context": {
+              "preposition": "am",
+              "case": "dativo",
+              "timeUnit": "momento-dia",
+              "explanation": "Momentos del día usan 'am'"
+            }
+          },
+          {
+            "id": "cloze-4",
+            "expectedAnswer": "Am",
+            "context": {
+              "preposition": "am",
+              "case": "dativo",
+              "timeUnit": "momento-dia",
+              "explanation": "Momentos del día usan 'am'"
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-2",
+        "germanText": "{0} dem Essen gehe ich oft spazieren. {1} zwei Jahren wohne ich hier in Berlin. {2} dem Spaziergang komme ich nach Hause und lese ein Buch. {3} Abend schaue ich fernsehen.",
+        "clozes": [
+          {
+            "id": "cloze-5",
+            "expectedAnswer": "Nach",
+            "context": {
+              "preposition": "nach",
+              "case": "dativo",
+              "timeUnit": "secuencia",
+              "explanation": "'Nach' significa 'después de'"
+            }
+          },
+          {
+            "id": "cloze-6",
+            "expectedAnswer": "Seit",
+            "context": {
+              "preposition": "seit",
+              "case": "dativo",
+              "timeUnit": "duracion",
+              "explanation": "'Seit' indica duración desde el pasado"
+            }
+          },
+          {
+            "id": "cloze-7",
+            "expectedAnswer": "Nach",
+            "context": {
+              "preposition": "nach",
+              "case": "dativo",
+              "timeUnit": "secuencia",
+              "explanation": "'Nach' significa 'después de'"
+            }
+          },
+          {
+            "id": "cloze-8",
+            "expectedAnswer": "Am",
+            "context": {
+              "preposition": "am",
+              "case": "dativo",
+              "timeUnit": "momento-dia",
+              "explanation": "Momentos del día usan 'am'"
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-3",
+        "germanText": "Meine Freunde besuchen mich {0} Wochenende. {1} Sommer fahren wir oft an die Ostsee. {2} dem Urlaub bin ich immer sehr entspannt. Das Museum ist {3} 9 Uhr {4} 17 Uhr geöffnet.",
+        "clozes": [
+          {
+            "id": "cloze-9",
+            "expectedAnswer": "am",
+            "context": {
+              "preposition": "am",
+              "case": "dativo",
+              "timeUnit": "festividad-dia",
+              "explanation": "Festividades/Días usan 'am'"
+            }
+          },
+          {
+            "id": "cloze-10",
+            "expectedAnswer": "Im",
+            "context": {
+              "preposition": "im",
+              "case": "dativo",
+              "timeUnit": "estacion",
+              "explanation": "Estaciones usan 'im'"
+            }
+          },
+          {
+            "id": "cloze-11",
+            "expectedAnswer": "Nach",
+            "context": {
+              "preposition": "nach",
+              "case": "dativo",
+              "timeUnit": "secuencia",
+              "explanation": "'Nach' significa 'después de'"
+            }
+          },
+          {
+            "id": "cloze-12",
+            "expectedAnswer": "von",
+            "context": {
+              "preposition": "von",
+              "case": "dativo",
+              "timeUnit": "inicio-periodo",
+              "explanation": "'Von' indica inicio de período"
+            }
+          },
+          {
+            "id": "cloze-13",
+            "expectedAnswer": "bis",
+            "context": {
+              "preposition": "bis",
+              "case": "acusativo",
+              "timeUnit": "limite",
+              "explanation": "'Bis' indica límite temporal"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

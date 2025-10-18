@@ -24,6 +24,13 @@ export default function Home() {
       href: "/workshops/werden",
       status: "available",
     },
+    {
+      id: "preposiciones-temporales",
+      title: "⏰ Taller de Preposiciones Temporales",
+      description: "Nivel A2 | Preposiciones de tiempo en alemán",
+      href: "/workshops/preposiciones-temporales",
+      status: "available",
+    },
   ];
 
   return (
