@@ -7,6 +7,11 @@ globs: src/app/workshops/**/*.tsx,src/components/sections/*.tsx,src/types/*.ts,s
 
 Esta regla define el patrón estándar para implementar nuevos talleres en la aplicación de aprendizaje de alemán usando la nueva arquitectura de componentes base y reutilizables.
 
+# Actividades
+Todas las actividades son de tipo cloze, y su visualización debe ser igual a la del taller de adjetivos.
+
+Quiero que apliques a la aplicación el nuevo taller con su respectivo vocabulario. No debes usar el legacy_vobulario. Debes crear registrarlo en el workshops en @page.tsx y crearle una nueva pagina de Next.js para poder redireccionar al usuario. Ten en cuenta los componente que ya han sido creados, reutiliza componentes y lógica. recuerda que es muy importante agregar el botón de "Rellenar" para darle al usuario la posibilidad de rellenar la pregunta con la respuesta correcta, evita el uso de preguntas múltiples, sigue una estructura similar al taller de adjetivos.
+
 ## Arquitectura Refactorizada
 
 ### Componentes Base Reutilizables
