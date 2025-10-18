@@ -77,6 +77,19 @@ export function ExerciseAkkusativMasculine() {
   const [showDemo, setShowDemo] = useState(true);
   const [attempts, setAttempts] = useState<Record<string, number>>({});
 
+  // Listen for section reset events
+  useEffect(() => {
+    const handleReset = () => {
+      setAnswers({});
+      setAttempts({});
+      setShowDemo(true);
+      resetSection();
+    };
+
+    window.addEventListener("resetAllSections", handleReset);
+    return () => window.removeEventListener("resetAllSections", handleReset);
+  }, [resetSection]);
+
   const handleSubmit = (scenario: CentralScenario) => {
     const answer = answers[scenario.id] || "";
     const result = validateAdjectiveEnding(answer, scenario.context);

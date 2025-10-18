@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -149,6 +149,20 @@ export function SectionIntro() {
   >({});
   const [surveyCompleted, setSurveyCompleted] = useState(false);
   const [showHint, setShowHint] = useState<string | null>(null);
+
+  // Listen for section reset events
+  useEffect(() => {
+    const handleReset = () => {
+      setSurveyAnswers({});
+      setPracticeAnswers({});
+      setSurveyCompleted(false);
+      setShowHint(null);
+      resetSection();
+    };
+
+    window.addEventListener("resetAllSections", handleReset);
+    return () => window.removeEventListener("resetAllSections", handleReset);
+  }, [resetSection]);
 
   const handleSurveySubmit = () => {
     let correct = 0;

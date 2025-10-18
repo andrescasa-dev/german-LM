@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Vocabulary } from "@/components/sections/Vocabulary";
 import TopTabs from "@/components/TopTabs";
+import { WorkshopTitle } from "@/components/WorkshopTitle";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -31,18 +32,10 @@ export default function AdjetivoWorkshop() {
               <ThemeToggle />
             </div>
           </div>
-          <div className="relative z-10 container mx-auto px-4 py-12 md:py-16 text-center">
-            <h1 className="text-3xl md:text-4xl font-bold">
-              <span className="inline-block bg-background text-foreground rounded-xl px-4 py-2 shadow-sm">
-                🧙‍♀️ Taller de Declinación del Adjetivo Alemán
-              </span>
-            </h1>
-            <p className="mt-3">
-              <span className="inline-block bg-background text-foreground rounded-full px-3 py-1 shadow-sm">
-                Nivel A2.2–B1 | Enfoque comunicativo
-              </span>
-            </p>
-          </div>
+          <WorkshopTitle
+            title="🧙‍♀️ Taller de Declinación del Adjetivo Alemán"
+            subtitle="Nivel A2.2–B1 | Enfoque comunicativo"
+          />
         </header>
 
         <main className="container mx-auto px-4 py-8 space-y-8">

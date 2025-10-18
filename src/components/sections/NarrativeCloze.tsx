@@ -85,6 +85,18 @@ export function NarrativeCloze() {
     new Set()
   );
 
+  // Listen for section reset events
+  useEffect(() => {
+    const handleReset = () => {
+      setAnswers({});
+      setVerifiedParagraphs(new Set());
+      resetSection();
+    };
+
+    window.addEventListener("resetAllSections", handleReset);
+    return () => window.removeEventListener("resetAllSections", handleReset);
+  }, [resetSection]);
+
   const handleKeyDownInput = (
     e: React.KeyboardEvent<HTMLInputElement>,
     paragraph: NarrativeParagraph
