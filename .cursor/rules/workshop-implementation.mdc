@@ -1,0 +1,265 @@
+---
+description: Guía para implementar nuevos talleres en la aplicación de alemán
+globs: src/app/workshops/**/*.tsx,src/components/sections/*.tsx,src/types/*.ts,src/lib/workshop-loader.ts,src/lib/*-rules.ts
+---
+
+# Guía de Implementación de Talleres - Versión Refactorizada
+
+Esta regla define el patrón estándar para implementar nuevos talleres en la aplicación de aprendizaje de alemán usando la nueva arquitectura de componentes base y reutilizables.
+
+## Arquitectura Refactorizada
+
+### Componentes Base Reutilizables
+- **WorkshopLayout**: Layout común para todas las páginas de talleres
+- **BaseExerciseSection**: Componente base para secciones de ejercicios
+- **BaseNarrativeSection**: Componente base para secciones narrativas  
+- **BaseIntroSection**: Componente base para secciones de repaso/diagnóstico
+- **FillAnswerButton**: Botón reutilizable para rellenar respuestas correctas
+
+### Sistema de Tipos y Adaptadores
+- **workshop-base.ts**: Tipos base comunes para todos los talleres
+- **workshop-adapters.ts**: Adaptadores para convertir entre tipos específicos y base
+- **validation-interface.ts**: Interfaz común para validadores
+
+### Hooks Genéricos
+- **useExerciseValidation**: Hook que abstrae la lógica de validación común
+- **useSectionState**: Hook existente para manejo de estado de secciones
+
+### Utilidades Compartidas
+- **exercise-utils.ts**: Funciones comunes para ejercicios
+- **workshop-loader.ts**: Sistema de registry declarativo para talleres
+
+## Implementación Simplificada de Nuevos Talleres
+
+### 1. Crear Tipos Específicos
+Crear archivo `src/types/[workshop-id].ts` con tipos específicos del taller:
+
+```typescript
+export interface [WorkshopName]Exercise {
+  id: string;
+  sentence: string;
+  expectedAnswer: string;
+  context: {
+    // Campos específicos del taller
+    explanation: string;
+  };
+}
+
+export interface [WorkshopName]Workshop {
+  workshopId: string;
+  sections: {
+    warmup: [WorkshopName]Exercise[];
+    central: [WorkshopName]Exercise[];
+    narrative: [WorkshopName]Paragraph[];
+  };
+}
+```
+
+### 2. Crear Adaptadores
+Agregar funciones de adaptación en `src/lib/workshop-adapters.ts`:
+
+```typescript
+export function adapt[WorkshopName]ToBase(exercise: [WorkshopName]Exercise): BaseExercise {
+  return {
+    id: exercise.id,
+    sentence: exercise.sentence,
+    expectedAnswer: exercise.expectedAnswer,
+    context: {
+      explanation: exercise.context.explanation,
+      // ... otros campos específicos
+    } as BaseContext,
+  };
+}
+```
+
+### 3. Crear Reglas de Validación
+Crear archivo `src/lib/[workshop-id]-rules.ts` implementando la interfaz común:
+
+```typescript
+import { BaseWorkshopValidator } from "@/lib/validation-interface";
+
+export class [WorkshopName]Validator extends BaseWorkshopValidator<[WorkshopName]Context, [WorkshopName]ValidationResult> {
+  validate(answer: string, context: [WorkshopName]Context): [WorkshopName]ValidationResult {
+    // Lógica de validación específica
+  }
+
+  generateHint(context: [WorkshopName]Context): string {
+    // Lógica de pistas específica
+  }
+
+  getCorrectAnswer(context: [WorkshopName]Context): string {
+    // Lógica para obtener respuesta correcta
+  }
+}
+
+export const [workshopName]Validator = new [WorkshopName]Validator();
+```
+
+### 4. Registrar en Workshop Loader
+Agregar el nuevo taller al registry en `src/lib/workshop-loader.ts`:
+
+```typescript
+const WORKSHOP_REGISTRY: Record<string, WorkshopDefinition> = {
+  // ... talleres existentes
+  '[workshop-id]': {
+    id: '[workshop-id]',
+    hasVariants: true,
+    variantCount: 5, // número de variantes
+    loaderFn: load[WorkshopName]Variant,
+    vocabularyLoaderFn: load[WorkshopName]VocabularyVariant,
+  },
+};
+```
+
+### 5. Crear Componentes Específicos (Opcional)
+Si necesitas componentes específicos, crear wrappers que usen los componentes base:
+
+```typescript
+export function Exercise[WorkshopName]() {
+  return (
+    <BaseExerciseSection
+      sectionId="exercise-[workshop-name]"
+      title="🎯 Ejercicio Central: [Título]"
+      description="Descripción del ejercicio"
+      icon="🎯"
+      workshopId="[workshop-id]"
+      loadExercises={load[WorkshopName]Exercises}
+      renderExercise={render[WorkshopName]Exercise}
+      validateFn={[workshopName]Validator.validate}
+      getHintFn={[workshopName]Validator.generateHint}
+      getAnswerFn={[workshopName]Validator.getCorrectAnswer}
+    />
+  );
+}
+```
+
+### 6. Crear Página Next.js Simplificada
+Crear `src/app/workshops/[workshop-id]/page.tsx` usando WorkshopLayout:
+
+```typescript
+import { WorkshopLayout } from "@/components/workshop/WorkshopLayout";
+import { Section[WorkshopName]Intro } from "@/components/sections/Section[WorkshopName]Intro";
+import { Exercise[WorkshopName] } from "@/components/sections/Exercise[WorkshopName]";
+import { Narrative[WorkshopName]Cloze } from "@/components/sections/Narrative[WorkshopName]Cloze";
+import { Resources[WorkshopName]List } from "@/components/sections/Resources[WorkshopName]List";
+
+export default function [WorkshopName]Workshop() {
+  return (
+    <WorkshopLayout
+      title="🎯 [Título del Taller]"
+      subtitle="Nivel [X] | [Descripción]"
+      workshopId="[workshop-id]"
+      introSection={<Section[WorkshopName]Intro />}
+      centralSection={<Exercise[WorkshopName] />}
+      narrativeSection={<Narrative[WorkshopName]Cloze />}
+      resourcesSection={<Resources[WorkshopName]List />}
+      contentSections={[
+        { id: "repaso", label: "I. Repaso & Diagnóstico" },
+        { id: "ejercicio-central", label: "II. Ejercicio central" },
+        { id: "relato", label: "III. Relato contextualizado" },
+        { id: "recursos", label: "IV. Recursos" },
+      ]}
+      vocabularyModule="[workshop-id]"
+    />
+  );
+}
+```
+
+### 7. Registrar en Página Principal
+Agregar el nuevo taller al array `workshops` en `src/app/page.tsx`:
+
+```typescript
+{
+  id: "[workshop-id]",
+  title: "🎯 [Título del Taller]",
+  description: "Nivel [X] | [Descripción]",
+  href: "/workshops/[workshop-id]",
+  status: "available",
+}
+```
+
+## Patrones de Implementación Refactorizados
+
+### Uso de Componentes Base
+Los componentes base encapsulan toda la lógica común:
+- **Carga de variantes**: Automática basada en `useVariant`
+- **Estado de progreso**: Gestionado por `useSectionState`
+- **Sistema de reset**: Eventos globales manejados automáticamente
+- **Estadísticas**: Cálculo automático de progreso y precisión
+
+### Botón "Rellenar" Obligatorio
+**SIEMPRE** usar el componente `FillAnswerButton` en todos los ejercicios:
+
+```typescript
+import { FillAnswerButton } from "@/components/workshop/FillAnswerButton";
+
+<FillAnswerButton
+  exerciseId={exercise.id}
+  getAnswer={() => validator.getCorrectAnswer(exercise.context)}
+  onFill={(answer) => setAnswers(prev => ({...prev, [exercise.id]: answer}))}
+/>
+```
+
+### Uso de Hooks Genéricos
+Para ejercicios complejos, usar `useExerciseValidation`:
+
+```typescript
+const {
+  answers,
+  handleSubmit,
+  handleHint,
+  handleFill,
+  getProgressStats
+} = useExerciseValidation({
+  sectionId: "exercise-central",
+  exercises: centralExercises,
+  validateFn: validator.validate,
+  getHintFn: validator.generateHint,
+  getAnswerFn: validator.getCorrectAnswer,
+  recordAnswer,
+  recordHintUsed,
+});
+```
+
+### Sistema de Registry
+El registry declarativo simplifica la gestión de talleres:
+
+```typescript
+// Agregar nuevo taller al registry
+WORKSHOP_REGISTRY['nuevo-taller'] = {
+  id: 'nuevo-taller',
+  hasVariants: true,
+  variantCount: 10,
+  loaderFn: loadNuevoTallerVariant,
+  vocabularyLoaderFn: loadNuevoTallerVocabularyVariant,
+};
+```
+
+## Checklist de Implementación Simplificado
+
+- [ ] Crear archivos de datos (ejercicios + vocabulario)
+- [ ] Definir tipos TypeScript específicos
+- [ ] Crear adaptadores en `workshop-adapters.ts`
+- [ ] Implementar validador con interfaz común
+- [ ] Registrar taller en `workshop-loader.ts`
+- [ ] Crear página usando `WorkshopLayout`
+- [ ] Registrar en página principal
+- [ ] Probar integración completa
+
+## Beneficios de la Nueva Arquitectura
+
+1. **Reducción de código**: ~70% menos código para nuevos talleres
+2. **Consistencia**: Comportamiento uniforme automático
+3. **Mantenibilidad**: Cambios en lógica común se propagan automáticamente
+4. **Escalabilidad**: Agregar talleres requiere mínimo código
+5. **Testing**: Componentes base facilitan testing unitario
+6. **Flexibilidad**: Cada taller mantiene su lógica específica
+
+## Migración de Talleres Existentes
+
+Los talleres existentes ya han sido migrados a la nueva arquitectura:
+- ✅ `adjetivo` - Migrado a `WorkshopLayout`
+- ✅ `werden` - Migrado a `WorkshopLayout`  
+- ✅ `preposiciones-temporales` - Migrado a `WorkshopLayout`
+
+Todos mantienen su funcionalidad específica mientras aprovechan los componentes base.

@@ -9,6 +9,8 @@ import type {
   ValidationResult,
   ArticleType,
 } from "@/types/adjective";
+import { BaseWorkshopValidator } from "@/lib/validation-interface";
+import type { BaseContext } from "@/types/workshop-base";
 
 /**
  * Terminaciones para declinación DÉBIL (con artículo definido)
@@ -281,4 +283,52 @@ export function generateHint(context: AdjectiveContext): string {
   };
 
   return hints[declensionType];
+}
+
+/**
+ * Validador de adjetivos que implementa la interfaz común
+ */
+export class AdjectiveValidator extends BaseWorkshopValidator<
+  AdjectiveContext,
+  ValidationResult
+> {
+  validate(answer: string, context: AdjectiveContext): ValidationResult {
+    return validateAdjectiveEnding(answer, context);
+  }
+
+  generateHint(context: AdjectiveContext): string {
+    return generateHint(context);
+  }
+
+  getCorrectAnswer(context: AdjectiveContext): string {
+    return getAdjectiveEnding(context);
+  }
+}
+
+/**
+ * Instancia singleton del validador de adjetivos
+ */
+export const adjectiveValidator = new AdjectiveValidator();
+
+/**
+ * Funciones de adaptación para usar con BaseContext
+ */
+export function validateAdjectiveFromBase(
+  answer: string,
+  baseContext: BaseContext
+): ValidationResult {
+  const context = baseContext as unknown as AdjectiveContext;
+  return validateAdjectiveEnding(answer, context);
+}
+
+export function generateAdjectiveHintFromBase(
+  baseContext: BaseContext
+): string {
+  const context = baseContext as unknown as AdjectiveContext;
+  return generateHint(context);
+}
+
+export function getAdjectiveAnswerFromBase(baseContext: BaseContext): string {
+  const context = baseContext as unknown as AdjectiveContext;
+  return getAdjectiveEnding(context);
 }

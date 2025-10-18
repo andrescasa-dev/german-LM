@@ -14,6 +14,43 @@ import type {
   PreposicionTemporalWorkshop,
 } from "@/types/preposiciones-temporales";
 
+/**
+ * Definición de un taller en el registry
+ */
+export interface WorkshopDefinition {
+  id: string;
+  hasVariants: boolean;
+  variantCount: number;
+  loaderFn: (variant: number) => Promise<WorkshopExercises>;
+  vocabularyLoaderFn?: (variant: number) => Promise<Record<string, unknown[]>>;
+}
+
+/**
+ * Registry declarativo de talleres
+ */
+const WORKSHOP_REGISTRY: Record<string, WorkshopDefinition> = {
+  adjetivo: {
+    id: "adjetivo",
+    hasVariants: true,
+    variantCount: 20,
+    loaderFn: loadAdjectiveVariant,
+    vocabularyLoaderFn: loadAdjectiveVocabularyVariant,
+  },
+  werden: {
+    id: "werden",
+    hasVariants: false,
+    variantCount: 1,
+    loaderFn: () => Promise.resolve(werdenExercises),
+  },
+  "preposiciones-temporales": {
+    id: "preposiciones-temporales",
+    hasVariants: true,
+    variantCount: 1,
+    loaderFn: loadPreposicionesTemporalesVariant,
+    vocabularyLoaderFn: loadPreposicionesVocabularyVariant,
+  },
+};
+
 export type WorkshopExercises =
   | typeof werdenExercises
   | {
@@ -66,19 +103,18 @@ export async function loadWorkshopExercises(
   workshopId: string,
   variant?: number
 ): Promise<WorkshopExercises> {
-  if (workshopId === "werden") {
-    return werdenExercises;
+  const workshop = WORKSHOP_REGISTRY[workshopId];
+  if (!workshop) {
+    throw new Error(`Workshop "${workshopId}" not found`);
   }
 
-  if (workshopId === "adjetivo") {
-    return await loadAdjectiveVariant(variant);
+  try {
+    return await workshop.loaderFn(variant || 1);
+  } catch (error) {
+    console.error(`Failed to load workshop ${workshopId}:`, error);
+    // Fallback to variant 1
+    return await workshop.loaderFn(1);
   }
-
-  if (workshopId === "preposiciones-temporales") {
-    return await loadPreposicionesTemporalesVariant(variant);
-  }
-
-  throw new Error(`Workshop "${workshopId}" not found`);
 }
 
 // Synchronous version for backward compatibility
@@ -232,57 +268,41 @@ export function getExerciseById(
   return null;
 }
 
-// Helper para validar que un workshop existe
+// Helper para obtener información de un taller desde el registry
+export function getWorkshopInfo(workshopId: string): WorkshopDefinition | null {
+  return WORKSHOP_REGISTRY[workshopId] || null;
+}
+
+// Helper para listar todos los talleres disponibles
+export function getAllWorkshops(): WorkshopDefinition[] {
+  return Object.values(WORKSHOP_REGISTRY);
+}
+
+// Helper para verificar si un taller existe
 export function workshopExists(workshopId: string): boolean {
-  try {
-    loadWorkshopExercisesSync(workshopId);
-    return true;
-  } catch {
-    return false;
-  }
+  return workshopId in WORKSHOP_REGISTRY;
 }
 
-// Helper para obtener información básica del workshop
-export function getWorkshopInfo(workshopId: string) {
-  const exercises = loadWorkshopExercisesSync(workshopId);
-
-  return {
-    id: exercises.workshopId,
-    warmupCount:
-      "warmup" in exercises.sections ? exercises.sections.warmup.length : 0,
-    centralCount: exercises.sections.central.length,
-    narrativeParagraphs: exercises.sections.narrative.length,
-    totalClozes: exercises.sections.narrative.reduce(
-      (sum, para) => sum + para.clozes.length,
-      0
-    ),
-  };
+// Helper para registrar un nuevo taller dinámicamente
+export function registerWorkshop(
+  workshopId: string,
+  definition: WorkshopDefinition
+): void {
+  WORKSHOP_REGISTRY[workshopId] = definition;
 }
 
-// Dynamic import function for vocabulary variants
-async function loadVocabularyVariant(workshopId: string, variant: number = 1) {
+// Dynamic import function for adjective vocabulary variants
+async function loadAdjectiveVocabularyVariant(variant: number = 1) {
   try {
-    if (workshopId === "adjetivo") {
-      const variantModule = await import(
-        `@/data/workshops/adjective-exercises/variant-${variant}-vocabulary.json`
-      );
-      return variantModule.default;
-    }
-
-    if (workshopId === "preposiciones-temporales") {
-      const variantModule = await import(
-        `@/data/workshops/preposiciones-temporales/variant-${variant}-vocabulary.json`
-      );
-      return variantModule.default;
-    }
-
-    // Fallback to general vocabulary
-    const generalModule = await import(
-      `@/data/workshops/legacy_vocabulary.json`
+    const variantModule = await import(
+      `@/data/workshops/adjective-exercises/variant-${variant}-vocabulary.json`
     );
-    return generalModule.default;
+    return variantModule.default;
   } catch (error) {
-    console.error(`Failed to load vocabulary variant ${variant}:`, error);
+    console.error(
+      `Failed to load adjective vocabulary variant ${variant}:`,
+      error
+    );
     // Fallback to general vocabulary
     const generalModule = await import(
       `@/data/workshops/legacy_vocabulary.json`
@@ -291,22 +311,52 @@ async function loadVocabularyVariant(workshopId: string, variant: number = 1) {
   }
 }
 
-// Helper para obtener vocabulario por variante
+// Dynamic import function for preposiciones vocabulary variants
+async function loadPreposicionesVocabularyVariant(variant: number = 1) {
+  try {
+    const variantModule = await import(
+      `@/data/workshops/preposiciones-temporales/variant-${variant}-vocabulary.json`
+    );
+    return variantModule.default;
+  } catch (error) {
+    console.error(
+      `Failed to load preposiciones vocabulary variant ${variant}:`,
+      error
+    );
+    // Fallback to general vocabulary
+    const generalModule = await import(
+      `@/data/workshops/legacy_vocabulary.json`
+    );
+    return generalModule.default;
+  }
+}
+
+// Helper para obtener vocabulario por variante usando el registry
 export async function getVocabularyByVariant(
   workshopId: string,
   variant?: number
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<Record<string, any[]>> {
-  if (workshopId === "werden") {
-    // Werden workshop uses general vocabulary
+  const workshop = WORKSHOP_REGISTRY[workshopId];
+  if (!workshop) {
+    // Fallback to general vocabulary
     const generalModule = await import(
       `@/data/workshops/legacy_vocabulary.json`
     );
     return generalModule.default;
   }
 
-  if (workshopId === "adjetivo" || workshopId === "preposiciones-temporales") {
-    return await loadVocabularyVariant(workshopId, variant);
+  if (workshop.vocabularyLoaderFn) {
+    try {
+      return await workshop.vocabularyLoaderFn(variant || 1);
+    } catch (error) {
+      console.error(`Failed to load vocabulary for ${workshopId}:`, error);
+      // Fallback to general vocabulary
+      const generalModule = await import(
+        `@/data/workshops/legacy_vocabulary.json`
+      );
+      return generalModule.default;
+    }
   }
 
   // Fallback to general vocabulary
@@ -314,21 +364,16 @@ export async function getVocabularyByVariant(
   return generalModule.default;
 }
 
-// Helper para obtener variantes disponibles
+// Helper para obtener variantes disponibles usando el registry
 export function getAvailableVariants(workshopId: string): number[] {
-  if (workshopId === "werden") {
-    return [1]; // Werden workshop has no variants
+  const workshop = WORKSHOP_REGISTRY[workshopId];
+  if (!workshop) {
+    return [];
   }
 
-  if (workshopId === "adjetivo") {
-    // Return variants 1-20 based on the files we saw
-    return Array.from({ length: 20 }, (_, i) => i + 1);
-  }
-
-  if (workshopId === "preposiciones-temporales") {
-    // Return variants 1 for now, can be extended
+  if (!workshop.hasVariants) {
     return [1];
   }
 
-  return [];
+  return Array.from({ length: workshop.variantCount }, (_, i) => i + 1);
 }

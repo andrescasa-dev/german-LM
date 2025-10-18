@@ -1,4 +1,6 @@
-import type { PreposicionTemporalExercise, PreposicionTemporalCloze } from "@/types/preposiciones-temporales";
+import type { PreposicionTemporalExercise } from "@/types/preposiciones-temporales";
+import { BaseWorkshopValidator } from "@/lib/validation-interface";
+import type { BaseContext } from "@/types/workshop-base";
 
 export interface PreposicionValidationResult {
   isCorrect: boolean;
@@ -32,7 +34,8 @@ export function validatePreposicionTemporal(
       example = "Ejemplo: um 8 Uhr (a las 8)";
       break;
     case "am":
-      explanation += "Para días de la semana, momentos del día y fechas se usa 'am'.";
+      explanation +=
+        "Para días de la semana, momentos del día y fechas se usa 'am'.";
       example = "Ejemplo: am Montag (el lunes), am Morgen (por la mañana)";
       break;
     case "im":
@@ -67,9 +70,11 @@ export function validatePreposicionTemporal(
   };
 }
 
-export function generatePreposicionHint(context: PreposicionTemporalExercise["context"]): string {
+export function generatePreposicionHint(
+  context: PreposicionTemporalExercise["context"]
+): string {
   const timeUnit = context.timeUnit;
-  
+
   switch (timeUnit) {
     case "hora":
       return "💡 Pista: Para horas específicas siempre usa 'um'";
@@ -96,7 +101,64 @@ export function generatePreposicionHint(context: PreposicionTemporalExercise["co
   }
 }
 
-export function getPreposicionAnswer(context: PreposicionTemporalExercise["context"]): string {
+export function getPreposicionAnswer(
+  context: PreposicionTemporalExercise["context"]
+): string {
   return context.preposition;
 }
 
+/**
+ * Validador de preposiciones temporales que implementa la interfaz común
+ */
+export class PreposicionesValidator extends BaseWorkshopValidator<
+  PreposicionTemporalExercise["context"],
+  PreposicionValidationResult
+> {
+  validate(
+    answer: string,
+    context: PreposicionTemporalExercise["context"]
+  ): PreposicionValidationResult {
+    return validatePreposicionTemporal(answer, context);
+  }
+
+  generateHint(context: PreposicionTemporalExercise["context"]): string {
+    return generatePreposicionHint(context);
+  }
+
+  getCorrectAnswer(context: PreposicionTemporalExercise["context"]): string {
+    return getPreposicionAnswer(context);
+  }
+}
+
+/**
+ * Instancia singleton del validador de preposiciones
+ */
+export const preposicionesValidator = new PreposicionesValidator();
+
+/**
+ * Funciones de adaptación para usar con BaseContext
+ */
+export function validatePreposicionesFromBase(
+  answer: string,
+  baseContext: BaseContext
+): PreposicionValidationResult {
+  const context =
+    baseContext as unknown as PreposicionTemporalExercise["context"];
+  return validatePreposicionTemporal(answer, context);
+}
+
+export function generatePreposicionesHintFromBase(
+  baseContext: BaseContext
+): string {
+  const context =
+    baseContext as unknown as PreposicionTemporalExercise["context"];
+  return generatePreposicionHint(context);
+}
+
+export function getPreposicionesAnswerFromBase(
+  baseContext: BaseContext
+): string {
+  const context =
+    baseContext as unknown as PreposicionTemporalExercise["context"];
+  return getPreposicionAnswer(context);
+}
