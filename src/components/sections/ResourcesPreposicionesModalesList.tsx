@@ -80,39 +80,45 @@ export function ResourcesPreposicionesModalesList() {
               🔗 Preposiciones Modales y Relacionales
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {(vocabulary.preposiciones_modales as any[]).map(
-                (prep, index) => (
-                  <div
-                    key={index}
-                    className="border border-border rounded-lg p-4 space-y-3"
-                  >
-                    <div className="flex items-center gap-2">
-                      <span className="font-bold text-lg">
-                        {prep.preposition}
-                      </span>
-                      <span className="text-sm px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded">
-                        {prep.case}
-                      </span>
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">{prep.meaning}</p>
-                      <p className="text-xs text-muted-foreground">
-                        {prep.usage}
-                      </p>
-                    </div>
-                    <div className="space-y-1">
-                      {(prep.examples as string[]).map((example, exIndex) => (
-                        <p
-                          key={exIndex}
-                          className="text-sm italic text-muted-foreground"
-                        >
-                          "{example}"
-                        </p>
-                      ))}
-                    </div>
+              {(
+                vocabulary.preposiciones_modales as Array<{
+                  preposition: string;
+                  case: string;
+                  meaning: string;
+                  usage: string;
+                  examples: string[];
+                }>
+              ).map((prep, index) => (
+                <div
+                  key={index}
+                  className="border border-border rounded-lg p-4 space-y-3"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-lg">
+                      {prep.preposition}
+                    </span>
+                    <span className="text-sm px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded">
+                      {prep.case}
+                    </span>
                   </div>
-                )
-              )}
+                  <div>
+                    <p className="font-medium text-sm">{prep.meaning}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {prep.usage}
+                    </p>
+                  </div>
+                  <div className="space-y-1">
+                    {(prep.examples as string[]).map((example, exIndex) => (
+                      <p
+                        key={exIndex}
+                        className="text-sm italic text-muted-foreground"
+                      >
+                        &ldquo;{example}&rdquo;
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}
@@ -124,7 +130,15 @@ export function ResourcesPreposicionesModalesList() {
               🔄 Verbos con Preposición Fija (A2 → B1)
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {(vocabulary.verbos_fijos as any[]).map((verb, index) => (
+              {(
+                vocabulary.verbos_fijos as Array<{
+                  verb: string;
+                  preposition: string;
+                  case: string;
+                  meaning: string;
+                  examples: string[];
+                }>
+              ).map((verb, index) => (
                 <div
                   key={index}
                   className="border border-border rounded-lg p-4 space-y-3"
@@ -144,7 +158,7 @@ export function ResourcesPreposicionesModalesList() {
                         key={exIndex}
                         className="text-sm italic text-muted-foreground"
                       >
-                        "{example}"
+                        &ldquo;{example}&rdquo;
                       </p>
                     ))}
                   </div>
@@ -161,7 +175,13 @@ export function ResourcesPreposicionesModalesList() {
               📋 Reglas de Caso Fijo
             </h3>
             <div className="space-y-3">
-              {(vocabulary.reglas_caso as any[]).map((rule, index) => (
+              {(
+                vocabulary.reglas_caso as Array<{
+                  rule: string;
+                  prepositions: string[];
+                  explanation: string;
+                }>
+              ).map((rule, index) => (
                 <div
                   key={index}
                   className="border border-border rounded-lg p-4 space-y-2"
@@ -188,24 +208,31 @@ export function ResourcesPreposicionesModalesList() {
               💡 Ejemplos Contextuales
             </h3>
             <div className="space-y-3">
-              {(vocabulary.ejemplos_contextuales as any[]).map(
-                (example, index) => (
-                  <div
-                    key={index}
-                    className="border border-border rounded-lg p-4 space-y-2"
-                  >
-                    <p className="font-mono text-sm">"{example.sentence}"</p>
-                    <div className="flex items-center gap-2 text-xs">
-                      <span className="px-2 py-1 bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 rounded">
-                        {example.preposition} ({example.case})
-                      </span>
-                      <span className="text-muted-foreground">
-                        {example.explanation}
-                      </span>
-                    </div>
+              {(
+                vocabulary.ejemplos_contextuales as Array<{
+                  sentence: string;
+                  preposition: string;
+                  case: string;
+                  explanation: string;
+                }>
+              ).map((example, index) => (
+                <div
+                  key={index}
+                  className="border border-border rounded-lg p-4 space-y-2"
+                >
+                  <p className="font-mono text-sm">
+                    &ldquo;{example.sentence}&rdquo;
+                  </p>
+                  <div className="flex items-center gap-2 text-xs">
+                    <span className="px-2 py-1 bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 rounded">
+                      {example.preposition} ({example.case})
+                    </span>
+                    <span className="text-muted-foreground">
+                      {example.explanation}
+                    </span>
                   </div>
-                )
-              )}
+                </div>
+              ))}
             </div>
           </div>
         )}
@@ -223,14 +250,15 @@ export function ResourcesPreposicionesModalesList() {
             </p>
             <p>
               <strong>Memorización contextualizada:</strong> Memoriza las
-              preposiciones con ejemplos clave como "Ich trinke meinen Kaffee
-              ohne Milch" o "Wir spielen Fußball gegen unsere Freunde".
+              preposiciones con ejemplos clave como &ldquo;Ich trinke meinen
+              Kaffee ohne Milch&rdquo; o &ldquo;Wir spielen Fußball gegen unsere
+              Freunde&rdquo;.
             </p>
             <p>
               <strong>Avance al B1:</strong> Al pasar al nivel B1, estudia los
-              verbos que funcionan con preposición fija (como "sich
-              interessieren für" o "diskutieren mit"), donde la preposición rige
-              un caso inamovible.
+              verbos que funcionan con preposición fija (como &ldquo;sich
+              interessieren für&rdquo; o &ldquo;diskutieren mit&rdquo;), donde
+              la preposición rige un caso inamovible.
             </p>
           </div>
         </div>

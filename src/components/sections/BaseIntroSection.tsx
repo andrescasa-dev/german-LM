@@ -15,13 +15,14 @@ import type {
   BaseExercise,
   BaseSectionProps,
   BaseContext,
+  BaseValidationResult,
 } from "@/types/workshop-base";
 
 interface BaseIntroSectionProps<T extends BaseExercise>
   extends BaseSectionProps {
   surveyQuestions: T[];
   practiceQuestions: T[];
-  renderQuestion: (question: T, handlers: QuestionHandlers) => ReactNode;
+  renderQuestion: (question: T, handlers: QuestionHandlers<T>) => ReactNode;
   validateFn: (answer: string, context: BaseContext) => unknown;
   getHintFn: (context: BaseContext) => string;
   getAnswerFn: (context: BaseContext) => string;
@@ -29,7 +30,7 @@ interface BaseIntroSectionProps<T extends BaseExercise>
   showPractice?: boolean;
 }
 
-interface QuestionHandlers {
+interface QuestionHandlers<T extends BaseExercise> {
   onSubmit: (question: T) => unknown;
   onHint: (question: T) => string;
   onFill: (question: T) => void;
@@ -72,7 +73,6 @@ export function BaseIntroSection<T extends BaseExercise>({
   useEffect(() => {
     const handleReset = () => {
       setAnswers({});
-      setCurrentPhase("survey");
       setSurveyCompleted(false);
       resetSection();
     };
@@ -83,7 +83,7 @@ export function BaseIntroSection<T extends BaseExercise>({
 
   const handleSubmit = (question: T) => {
     const answer = answers[question.id] || "";
-    const result = validateFn(answer, question.context);
+    const result = validateFn(answer, question.context) as BaseValidationResult;
 
     recordAnswer(question.id, answer, result.isCorrect, 0);
 

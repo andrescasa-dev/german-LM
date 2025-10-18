@@ -11,9 +11,20 @@ import {
 import { getVocabularyByVariant } from "@/lib/workshop-loader";
 import { useVariant } from "@/hooks/useVariant";
 
+interface VocabularyItem {
+  id: string;
+  de: string;
+  es: string;
+  tag: string;
+  caso?: string;
+  uso?: string;
+}
+
 export function ResourcesPreposicionesDestinoProcedenciaList() {
   const { currentVariant } = useVariant();
-  const [vocabulary, setVocabulary] = useState<Record<string, unknown[]>>({});
+  const [vocabulary, setVocabulary] = useState<
+    Record<string, VocabularyItem[]>
+  >({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,7 +35,7 @@ export function ResourcesPreposicionesDestinoProcedenciaList() {
           "preposiciones-destino-procedencia",
           currentVariant
         );
-        setVocabulary(data);
+        setVocabulary(data as Record<string, VocabularyItem[]>);
       } catch (error) {
         console.error("Failed to load vocabulary:", error);
         // Fallback to variant 1
@@ -32,7 +43,7 @@ export function ResourcesPreposicionesDestinoProcedenciaList() {
           "preposiciones-destino-procedencia",
           1
         );
-        setVocabulary(data);
+        setVocabulary(data as Record<string, VocabularyItem[]>);
       } finally {
         setLoading(false);
       }
@@ -67,24 +78,22 @@ export function ResourcesPreposicionesDestinoProcedenciaList() {
 
   // Categorizar vocabulario
   const prepositions = workshopVocabulary.filter(
-    (item: { tag: string }) =>
+    (item) =>
       item.tag === "preposicion-local" ||
       item.tag === "preposicion-modal" ||
       item.tag === "preposicion-temporal"
   );
   const nouns = workshopVocabulary.filter(
-    (item: { tag: string }) =>
-      item.tag?.includes("sustantivo") || item.tag === "nombre-propio"
+    (item) => item.tag?.includes("sustantivo") || item.tag === "nombre-propio"
   );
-  const pronouns = workshopVocabulary.filter((item: { tag: string }) =>
+  const pronouns = workshopVocabulary.filter((item) =>
     item.tag?.includes("pronombre")
   );
   const articles = workshopVocabulary.filter(
-    (item: { tag: string }) =>
-      item.tag === "articulo" || item.tag === "contraccion"
+    (item) => item.tag === "articulo" || item.tag === "contraccion"
   );
   const others = workshopVocabulary.filter(
-    (item: { tag: string }) =>
+    (item) =>
       !item.tag?.includes("preposicion") &&
       !item.tag?.includes("sustantivo") &&
       !item.tag?.includes("pronombre") &&
@@ -95,13 +104,7 @@ export function ResourcesPreposicionesDestinoProcedenciaList() {
 
   const renderVocabularySection = (
     title: string,
-    items: {
-      id: string;
-      de: string;
-      es: string;
-      caso?: string;
-      uso?: string;
-    }[],
+    items: VocabularyItem[],
     icon: string
   ) => {
     if (items.length === 0) return null;
@@ -112,37 +115,29 @@ export function ResourcesPreposicionesDestinoProcedenciaList() {
           {icon} {title}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          {items.map(
-            (item: {
-              id: string;
-              de: string;
-              es: string;
-              caso?: string;
-              uso?: string;
-            }) => (
-              <div
-                key={item.id}
-                className="bg-muted/50 rounded-lg p-3 border border-border"
-              >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-semibold text-lg">{item.de}</p>
-                    <p className="text-sm text-muted-foreground">{item.es}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-xs font-medium text-blue-600 dark:text-blue-400">
-                      {item.caso}
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="bg-muted/50 rounded-lg p-3 border border-border"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-semibold text-lg">{item.de}</p>
+                  <p className="text-sm text-muted-foreground">{item.es}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-xs font-medium text-blue-600 dark:text-blue-400">
+                    {item.caso}
+                  </p>
+                  {item.uso && (
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {item.uso}
                     </p>
-                    {item.uso && (
-                      <p className="text-xs text-muted-foreground mt-1">
-                        {item.uso}
-                      </p>
-                    )}
-                  </div>
+                  )}
                 </div>
               </div>
-            )
-          )}
+            </div>
+          ))}
         </div>
       </div>
     );

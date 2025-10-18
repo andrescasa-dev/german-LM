@@ -4,10 +4,7 @@
  * Este archivo demuestra cómo TODA la lógica de ejercicios puede ser declarativa
  */
 
-import {
-  createExerciseComponentConfig,
-  createDefaultExtractors,
-} from "@/lib/exercise-factory";
+import { createExerciseComponentConfig } from "@/lib/exercise-factory";
 import {
   validateAdjectiveEnding,
   generateHint,

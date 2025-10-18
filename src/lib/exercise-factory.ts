@@ -4,7 +4,6 @@
  * Este archivo demuestra cómo eliminar casi TODO el código duplicado
  */
 
-import type { ComponentType } from "react";
 import type { BaseContext } from "@/types/workshop-base";
 
 // Tipos funcionales puros
@@ -63,7 +62,8 @@ export const createDefaultExtractors = <
 >() => ({
   sentenceExtractor: (exercise: T) => exercise.sentence,
   placeholderExtractor: () => "Escribe tu respuesta...",
-  contextExtractor: (exercise: T & { context: any }) => exercise.context,
+  contextExtractor: (exercise: T & { context: BaseContext }) =>
+    exercise.context,
 });
 
 /**

@@ -20,13 +20,13 @@ import type {
 interface BaseNarrativeSectionProps<T extends BaseParagraph>
   extends BaseSectionProps {
   loadParagraphs: (variant: number) => Promise<T[]>;
-  renderParagraph: (paragraph: T, handlers: ParagraphHandlers) => ReactNode;
+  renderParagraph: (paragraph: T, handlers: ParagraphHandlers<T>) => ReactNode;
   validateFn: (answer: string, context: BaseContext) => unknown;
   getHintFn: (context: BaseContext) => string;
   getAnswerFn: (context: BaseContext) => string;
 }
 
-interface ParagraphHandlers {
+interface ParagraphHandlers<T extends BaseParagraph> {
   answers: Record<string, string>;
   setAnswers: React.Dispatch<React.SetStateAction<Record<string, string>>>;
   verifiedParagraphs: Set<string>;

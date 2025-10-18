@@ -144,28 +144,28 @@ export function SectionPreposicionesModalesIntro() {
                   <strong>mit (Dativo):</strong> Con (compañía o instrumento)
                   <br />
                   <span className="text-muted-foreground">
-                    → "Ich gehe mit meinen Freunden in die Disko."
+                    → &ldquo;Ich gehe mit meinen Freunden in die Disko.&rdquo;
                   </span>
                 </p>
                 <p>
                   <strong>ohne (Acusativo):</strong> Sin (ausencia)
                   <br />
                   <span className="text-muted-foreground">
-                    → "Ich trinke meinen Kaffee ohne Milch."
+                    → &ldquo;Ich trinke meinen Kaffee ohne Milch.&rdquo;
                   </span>
                 </p>
                 <p>
                   <strong>für (Acusativo):</strong> Para (beneficio o finalidad)
                   <br />
                   <span className="text-muted-foreground">
-                    → "Ich habe ein Geschenk für dich."
+                    → &ldquo;Ich habe ein Geschenk für dich.&rdquo;
                   </span>
                 </p>
                 <p>
                   <strong>gegen (Acusativo):</strong> Contra (oposición)
                   <br />
                   <span className="text-muted-foreground">
-                    → "Wir spielen Fußball gegen unsere Freunde."
+                    → &ldquo;Wir spielen Fußball gegen unsere Freunde.&rdquo;
                   </span>
                 </p>
                 <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-950 border border-yellow-200 dark:border-yellow-800 rounded">
