@@ -9,10 +9,11 @@ import TopTabs from "@/components/TopTabs";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { VariantProvider } from "@/hooks/useVariant";
 
 export default function AdjetivoWorkshop() {
   return (
-    <>
+    <VariantProvider>
       <div className="min-h-screen bg-background">
         <header className="relative border-b overflow-hidden">
           <div className="absolute inset-0">
@@ -76,6 +77,7 @@ export default function AdjetivoWorkshop() {
               { id: "relato", label: "III. Relato contextualizado" },
               { id: "recursos", label: "IV. Recursos" },
             ]}
+            workshopId="adjetivo"
           />
         </main>
 
@@ -86,6 +88,6 @@ export default function AdjetivoWorkshop() {
         </footer>
       </div>
       <Toaster />
-    </>
+    </VariantProvider>
   );
 }

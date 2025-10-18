@@ -1,5 +1,4 @@
 import werdenExercises from "@/data/workshops/werden-exercises.json";
-import adjectiveExercises from "@/data/workshops/adjective-exercises/variant-1.json";
 import type {
   WarmupExercise,
   CentralExercise,
@@ -12,12 +11,52 @@ import type {
 
 export type WorkshopExercises =
   | typeof werdenExercises
-  | typeof adjectiveExercises;
+  | {
+      workshopId: string;
+      sections: {
+        central: CentralScenario[];
+        narrative: AdjectiveNarrativeParagraph[];
+      };
+    };
 
-export function loadWorkshopExercises(workshopId: string): WorkshopExercises {
+// Dynamic import function for adjective variants
+async function loadAdjectiveVariant(variant: number = 1) {
+  try {
+    const variantModule = await import(
+      `@/data/workshops/adjective-exercises/variant-${variant}.json`
+    );
+    return variantModule.default;
+  } catch (error) {
+    console.error(`Failed to load variant ${variant}:`, error);
+    // Fallback to variant 1
+    const variantModule = await import(
+      `@/data/workshops/adjective-exercises/variant-1.json`
+    );
+    return variantModule.default;
+  }
+}
+
+export async function loadWorkshopExercises(
+  workshopId: string,
+  variant?: number
+): Promise<WorkshopExercises> {
+  if (workshopId === "werden") {
+    return werdenExercises;
+  }
+
+  if (workshopId === "adjetivo") {
+    return await loadAdjectiveVariant(variant);
+  }
+
+  throw new Error(`Workshop "${workshopId}" not found`);
+}
+
+// Synchronous version for backward compatibility
+export function loadWorkshopExercisesSync(
+  workshopId: string
+): WorkshopExercises {
   const workshops: Record<string, WorkshopExercises> = {
     werden: werdenExercises,
-    adjetivo: adjectiveExercises,
   };
 
   const exercises = workshops[workshopId];
@@ -28,9 +67,9 @@ export function loadWorkshopExercises(workshopId: string): WorkshopExercises {
   return exercises;
 }
 
-// Helpers para acceder a ejercicios específicos
+// Helper functions for synchronous access (backward compatibility)
 export function getWarmupExercises(workshopId: string): WarmupExercise[] {
-  const exercises = loadWorkshopExercises(workshopId);
+  const exercises = loadWorkshopExercisesSync(workshopId);
   if ("warmup" in exercises.sections) {
     return exercises.sections.warmup as WarmupExercise[];
   }
@@ -38,28 +77,72 @@ export function getWarmupExercises(workshopId: string): WarmupExercise[] {
 }
 
 export function getCentralExercises(workshopId: string): CentralExercise[] {
-  return loadWorkshopExercises(workshopId).sections
+  return loadWorkshopExercisesSync(workshopId).sections
     .central as CentralExercise[];
 }
 
 export function getNarrativeExercises(
   workshopId: string
 ): NarrativeParagraph[] {
-  return loadWorkshopExercises(workshopId).sections
+  return loadWorkshopExercisesSync(workshopId).sections
     .narrative as NarrativeParagraph[];
 }
 
 // Helper functions for adjective workshop
 export function getCentralScenarios(workshopId: string): CentralScenario[] {
-  return loadWorkshopExercises(workshopId).sections
+  return loadWorkshopExercisesSync(workshopId).sections
     .central as CentralScenario[];
 }
 
 export function getNarrativeParagraphs(
   workshopId: string
 ): AdjectiveNarrativeParagraph[] {
-  return loadWorkshopExercises(workshopId).sections
+  return loadWorkshopExercisesSync(workshopId).sections
     .narrative as AdjectiveNarrativeParagraph[];
+}
+
+// Async helper functions for variant support
+export async function getWarmupExercisesAsync(
+  workshopId: string,
+  variant?: number
+): Promise<WarmupExercise[]> {
+  const exercises = await loadWorkshopExercises(workshopId, variant);
+  if ("warmup" in exercises.sections) {
+    return exercises.sections.warmup as WarmupExercise[];
+  }
+  return [];
+}
+
+export async function getCentralExercisesAsync(
+  workshopId: string,
+  variant?: number
+): Promise<CentralExercise[]> {
+  const exercises = await loadWorkshopExercises(workshopId, variant);
+  return exercises.sections.central as CentralExercise[];
+}
+
+export async function getNarrativeExercisesAsync(
+  workshopId: string,
+  variant?: number
+): Promise<NarrativeParagraph[]> {
+  const exercises = await loadWorkshopExercises(workshopId, variant);
+  return exercises.sections.narrative as NarrativeParagraph[];
+}
+
+export async function getCentralScenariosAsync(
+  workshopId: string,
+  variant?: number
+): Promise<CentralScenario[]> {
+  const exercises = await loadWorkshopExercises(workshopId, variant);
+  return exercises.sections.central as CentralScenario[];
+}
+
+export async function getNarrativeParagraphsAsync(
+  workshopId: string,
+  variant?: number
+): Promise<AdjectiveNarrativeParagraph[]> {
+  const exercises = await loadWorkshopExercises(workshopId, variant);
+  return exercises.sections.narrative as AdjectiveNarrativeParagraph[];
 }
 
 // Helper para obtener un ejercicio específico por ID
@@ -68,7 +151,7 @@ export function getExerciseById(
   section: "warmup" | "central" | "narrative",
   exerciseId: string
 ) {
-  const exercises = loadWorkshopExercises(workshopId);
+  const exercises = loadWorkshopExercisesSync(workshopId);
 
   if (section === "warmup" && "warmup" in exercises.sections) {
     return exercises.sections.warmup.find((ex) => ex.id === exerciseId);
@@ -94,7 +177,7 @@ export function getExerciseById(
 // Helper para validar que un workshop existe
 export function workshopExists(workshopId: string): boolean {
   try {
-    loadWorkshopExercises(workshopId);
+    loadWorkshopExercisesSync(workshopId);
     return true;
   } catch {
     return false;
@@ -103,7 +186,7 @@ export function workshopExists(workshopId: string): boolean {
 
 // Helper para obtener información básica del workshop
 export function getWorkshopInfo(workshopId: string) {
-  const exercises = loadWorkshopExercises(workshopId);
+  const exercises = loadWorkshopExercisesSync(workshopId);
 
   return {
     id: exercises.workshopId,
@@ -116,4 +199,18 @@ export function getWorkshopInfo(workshopId: string) {
       0
     ),
   };
+}
+
+// Helper para obtener variantes disponibles
+export function getAvailableVariants(workshopId: string): number[] {
+  if (workshopId === "werden") {
+    return [1]; // Werden workshop has no variants
+  }
+
+  if (workshopId === "adjetivo") {
+    // Return variants 1-20 based on the files we saw
+    return Array.from({ length: 20 }, (_, i) => i + 1);
+  }
+
+  return [];
 }

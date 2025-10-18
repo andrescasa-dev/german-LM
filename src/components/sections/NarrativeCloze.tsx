@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { useSectionState } from "@/hooks/useSectionState";
+import { useVariant } from "@/hooks/useVariant";
 import {
   validateAdjectiveEnding,
   generateHint,
@@ -23,7 +24,7 @@ import {
   showParagraphWithErrors,
   showParagraphHints,
 } from "@/lib/toast-service";
-import { getNarrativeParagraphs } from "@/lib/workshop-loader";
+import { getNarrativeParagraphsAsync } from "@/lib/workshop-loader";
 
 // Hardcoded titles and emojis for paragraphs (UI content stays in component)
 const PARAGRAPH_TITLES: Record<string, string> = {
@@ -38,12 +39,34 @@ const PARAGRAPH_EMOJIS: Record<string, string> = {
   "para-3": "🎒",
 };
 
-interface NarrativeClozeProps {
-  variant?: string;
-}
+export function NarrativeCloze() {
+  const { currentVariant } = useVariant();
+  const [paragraphs, setParagraphs] = useState<NarrativeParagraph[]>([]);
+  const [loading, setLoading] = useState(true);
 
-export function NarrativeCloze({ variant = "variant-1" }: NarrativeClozeProps) {
-  const paragraphs = getNarrativeParagraphs("adjetivo", variant);
+  // Load paragraphs based on current variant
+  useEffect(() => {
+    const loadParagraphs = async () => {
+      setLoading(true);
+      try {
+        const data = await getNarrativeParagraphsAsync(
+          "adjetivo",
+          currentVariant
+        );
+        setParagraphs(data);
+      } catch (error) {
+        console.error("Failed to load paragraphs:", error);
+        // Fallback to default paragraphs
+        const data = await getNarrativeParagraphsAsync("adjetivo", 1);
+        setParagraphs(data);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadParagraphs();
+  }, [currentVariant]);
+
   const totalClozes = paragraphs.reduce(
     (sum, para) => sum + para.clozes.length,
     0
@@ -223,129 +246,140 @@ export function NarrativeCloze({ variant = "variant-1" }: NarrativeClozeProps) {
       </CardHeader>
 
       <CardContent className="space-y-8">
-        <div className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
-          <h3 className="font-semibold mb-2 text-amber-900 dark:text-amber-100">
-            📖 Diario del Explorador
-          </h3>
-          <p className="text-sm text-muted-foreground">
-            Completa las terminaciones de los adjetivos en este relato. Presta
-            atención a las preposiciones y artículos que indican el caso.
-          </p>
-        </div>
-
-        {paragraphs.map((paragraph) => (
-          <div
-            key={paragraph.id}
-            className="border border-border rounded-lg p-6 space-y-4"
-          >
-            <div className="flex items-center gap-3">
-              <span className="text-3xl">{PARAGRAPH_EMOJIS[paragraph.id]}</span>
-              <h3 className="font-semibold text-lg">
-                {PARAGRAPH_TITLES[paragraph.id]}
+        {loading ? (
+          <div className="flex items-center justify-center py-8">
+            <div className="text-muted-foreground">Cargando variante...</div>
+          </div>
+        ) : (
+          <>
+            <div className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+              <h3 className="font-semibold mb-2 text-amber-900 dark:text-amber-100">
+                📖 Diario del Explorador
               </h3>
+              <p className="text-sm text-muted-foreground">
+                Completa las terminaciones de los adjetivos en este relato.
+                Presta atención a las preposiciones y artículos que indican el
+                caso.
+              </p>
             </div>
 
-            <div className="bg-muted/30 rounded-lg p-4 leading-relaxed">
-              <p className="text-base">{renderParagraphText(paragraph)}</p>
-            </div>
+            {paragraphs.map((paragraph) => (
+              <div
+                key={paragraph.id}
+                className="border border-border rounded-lg p-6 space-y-4"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">
+                    {PARAGRAPH_EMOJIS[paragraph.id]}
+                  </span>
+                  <h3 className="font-semibold text-lg">
+                    {PARAGRAPH_TITLES[paragraph.id]}
+                  </h3>
+                </div>
 
-            {!verifiedParagraphs.has(paragraph.id) && (
-              <div className="flex flex-col md:flex-row gap-2">
-                <Button
-                  onClick={() => handleVerifyParagraph(paragraph)}
-                  disabled={paragraph.clozes.some((c) => !answers[c.id])}
-                  className="w-full md:w-auto"
-                >
-                  🪄 Verificar párrafo
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={() => handleHintForParagraph(paragraph)}
-                  className="w-full md:w-auto"
-                >
-                  💡 Pistas
-                </Button>
-                <Button
-                  variant="secondary"
-                  onClick={() => handleFillParagraph(paragraph)}
-                  aria-label={`Rellenar todas las terminaciones del párrafo ${
-                    PARAGRAPH_TITLES[paragraph.id]
-                  }`}
-                  className="w-full md:w-auto"
-                >
-                  🪄 Rellenar
-                </Button>
+                <div className="bg-muted/30 rounded-lg p-4 leading-relaxed">
+                  <p className="text-base">{renderParagraphText(paragraph)}</p>
+                </div>
+
+                {!verifiedParagraphs.has(paragraph.id) && (
+                  <div className="flex flex-col md:flex-row gap-2">
+                    <Button
+                      onClick={() => handleVerifyParagraph(paragraph)}
+                      disabled={paragraph.clozes.some((c) => !answers[c.id])}
+                      className="w-full md:w-auto"
+                    >
+                      🪄 Verificar párrafo
+                    </Button>
+                    <Button
+                      variant="outline"
+                      onClick={() => handleHintForParagraph(paragraph)}
+                      className="w-full md:w-auto"
+                    >
+                      💡 Pistas
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      onClick={() => handleFillParagraph(paragraph)}
+                      aria-label={`Rellenar todas las terminaciones del párrafo ${
+                        PARAGRAPH_TITLES[paragraph.id]
+                      }`}
+                      className="w-full md:w-auto"
+                    >
+                      🪄 Rellenar
+                    </Button>
+                  </div>
+                )}
+
+                {verifiedParagraphs.has(paragraph.id) && (
+                  <div className="text-sm text-green-600 dark:text-green-400 flex items-center gap-2">
+                    <span>✓</span>
+                    <span>Párrafo verificado</span>
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {/* Producción opcional */}
+            {verifiedParagraphs.size === paragraphs.length && (
+              <div className="bg-purple-50 dark:bg-purple-950 border border-purple-200 dark:border-purple-800 rounded-lg p-6">
+                <h3 className="font-semibold text-lg mb-3 text-purple-900 dark:text-purple-100">
+                  ✍️ Producción opcional
+                </h3>
+                <p className="text-sm mb-4">
+                  Reescribe estas oraciones cambiando el artículo para forzar
+                  una regla distinta:
+                </p>
+                <div className="space-y-3 text-sm">
+                  <p>
+                    1. &ldquo;Der Entdecker sieht <strong>einen alten</strong>{" "}
+                    Brief&rdquo;
+                    <br />
+                    <span className="text-muted-foreground">
+                      → Reescribe sin artículo (declinación fuerte)
+                    </span>
+                  </p>
+                  <p>
+                    2. &ldquo;Er findet <strong>warme</strong> Decken&rdquo;
+                    <br />
+                    <span className="text-muted-foreground">
+                      → Reescribe con artículo definido (declinación débil)
+                    </span>
+                  </p>
+                </div>
               </div>
             )}
 
-            {verifiedParagraphs.has(paragraph.id) && (
-              <div className="text-sm text-green-600 dark:text-green-400 flex items-center gap-2">
-                <span>✓</span>
-                <span>Párrafo verificado</span>
+            {/* Botón de reset */}
+            <div className="flex justify-end pt-4 border-t">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setAnswers({});
+                  setVerifiedParagraphs(new Set());
+                  resetSection();
+                }}
+              >
+                Reiniciar sección
+              </Button>
+            </div>
+
+            {/* Medalla si completado */}
+            {progress.completed && (
+              <div
+                className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-lg p-4 text-center"
+                role="status"
+                aria-live="polite"
+              >
+                <div className="text-4xl mb-2">🏅</div>
+                <p className="font-semibold text-green-900 dark:text-green-100">
+                  ¡Relato completado con {progress.score}%!
+                </p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Has aplicado las reglas en contexto narrativo con éxito.
+                </p>
               </div>
             )}
-          </div>
-        ))}
-
-        {/* Producción opcional */}
-        {verifiedParagraphs.size === paragraphs.length && (
-          <div className="bg-purple-50 dark:bg-purple-950 border border-purple-200 dark:border-purple-800 rounded-lg p-6">
-            <h3 className="font-semibold text-lg mb-3 text-purple-900 dark:text-purple-100">
-              ✍️ Producción opcional
-            </h3>
-            <p className="text-sm mb-4">
-              Reescribe estas oraciones cambiando el artículo para forzar una
-              regla distinta:
-            </p>
-            <div className="space-y-3 text-sm">
-              <p>
-                1. &ldquo;Der Entdecker sieht <strong>einen alten</strong>{" "}
-                Brief&rdquo;
-                <br />
-                <span className="text-muted-foreground">
-                  → Reescribe sin artículo (declinación fuerte)
-                </span>
-              </p>
-              <p>
-                2. &ldquo;Er findet <strong>warme</strong> Decken&rdquo;
-                <br />
-                <span className="text-muted-foreground">
-                  → Reescribe con artículo definido (declinación débil)
-                </span>
-              </p>
-            </div>
-          </div>
-        )}
-
-        {/* Botón de reset */}
-        <div className="flex justify-end pt-4 border-t">
-          <Button
-            variant="outline"
-            onClick={() => {
-              setAnswers({});
-              setVerifiedParagraphs(new Set());
-              resetSection();
-            }}
-          >
-            Reiniciar sección
-          </Button>
-        </div>
-
-        {/* Medalla si completado */}
-        {progress.completed && (
-          <div
-            className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-lg p-4 text-center"
-            role="status"
-            aria-live="polite"
-          >
-            <div className="text-4xl mb-2">🏅</div>
-            <p className="font-semibold text-green-900 dark:text-green-100">
-              ¡Relato completado con {progress.score}%!
-            </p>
-            <p className="text-sm text-muted-foreground mt-1">
-              Has aplicado las reglas en contexto narrativo con éxito.
-            </p>
-          </div>
+          </>
         )}
       </CardContent>
     </Card>

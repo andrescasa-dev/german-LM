@@ -1,25 +1,53 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import LeftSectionNav from "@/components/LeftSectionNav";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Menu } from "lucide-react";
+import { useVariant } from "@/hooks/useVariant";
+import { getAvailableVariants } from "@/lib/workshop-loader";
 
 export default function TopTabs({
   content,
   vocabulary,
   contentSections,
+  workshopId,
 }: {
   content: React.ReactNode;
   vocabulary: React.ReactNode;
   contentSections?: { id: string; label: string }[];
+  workshopId?: string;
 }) {
   const [activeTab, setActiveTab] = useState<"contenido" | "vocabulario">(
     "contenido"
   );
   const [mobileOpen, setMobileOpen] = useState(false);
   const [drawerMounted, setDrawerMounted] = useState(false);
+  const {
+    currentVariant,
+    setCurrentVariant,
+    availableVariants,
+    setAvailableVariants,
+  } = useVariant();
+
+  // Initialize available variants when workshopId changes
+  useEffect(() => {
+    if (workshopId) {
+      const variants = getAvailableVariants(workshopId);
+      setAvailableVariants(variants);
+      // Reset to variant 1 when switching workshops
+      setCurrentVariant(1);
+    }
+  }, [workshopId, setAvailableVariants, setCurrentVariant]);
+
   const openMobile = useCallback(() => {
     setDrawerMounted(true);
     // Permite que el panel monte antes de iniciar la animación
@@ -33,7 +61,7 @@ export default function TopTabs({
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center gap-4">
         <div className="inline-flex rounded-xl border border-border bg-background overflow-hidden">
           <button
             className={`px-4 py-2 text-sm font-medium transition-colors ${
@@ -58,6 +86,28 @@ export default function TopTabs({
             Vocabulario
           </button>
         </div>
+
+        {/* Variant Selector - only show if there are multiple variants */}
+        {availableVariants.length > 1 && (
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-muted-foreground">Variante:</span>
+            <Select
+              value={currentVariant.toString()}
+              onValueChange={(value) => setCurrentVariant(parseInt(value))}
+            >
+              <SelectTrigger className="w-20">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {availableVariants.map((variant) => (
+                  <SelectItem key={variant} value={variant.toString()}>
+                    {variant}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        )}
       </div>
 
       {/* Contenido - siempre montado pero oculto cuando no está activo */}

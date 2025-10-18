@@ -9,10 +9,11 @@ import TopTabs from "@/components/TopTabs";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { VariantProvider } from "@/hooks/useVariant";
 
 export default function WerdenWorkshop() {
   return (
-    <>
+    <VariantProvider>
       <div className="min-h-screen bg-background">
         <header className="relative border-b overflow-hidden">
           <div className="absolute inset-0">
@@ -76,6 +77,7 @@ export default function WerdenWorkshop() {
               { id: "relato", label: "III. Relato Contextualizado" },
               { id: "recursos", label: "IV. Recursos Adicionales" },
             ]}
+            workshopId="werden"
           />
         </main>
 
@@ -86,6 +88,6 @@ export default function WerdenWorkshop() {
         </footer>
       </div>
       <Toaster />
-    </>
+    </VariantProvider>
   );
 }
