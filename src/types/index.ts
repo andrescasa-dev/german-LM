@@ -64,6 +64,29 @@ export type {
 } from "./workshop-variants";
 
 // ============================================================================
+// TIPOS ESPECÍFICOS DE WERDEN
+// ============================================================================
+
+export type {
+  // Tipos de werden
+  WerdenFunction,
+  Tense,
+  Pronoun,
+  WerdenContext,
+  WerdenValidationResult,
+  WerdenExercise,
+  WarmupExercise,
+  CentralExercise,
+  NarrativeParagraph,
+} from "./werden";
+
+// Secciones y variantes de werden (definidas en workshop-implementation.ts)
+export type {
+  WerdenWorkshopSections,
+  WerdenWorkshopVariant,
+} from "./workshop-implementation";
+
+// ============================================================================
 // TIPOS GENÉRICOS Y UNION TYPES
 // ============================================================================
 
@@ -88,6 +111,15 @@ export type {
   SectionProgress,
   ExerciseHookConfig,
 } from "./workshop-variants";
+
+// Union types extendidos con werden
+export type {
+  AnyWorkshopVariantExtended,
+  AnyExerciseExtended,
+  AnyExerciseContextExtended,
+  AnyValidationResultExtended,
+  AnyNarrativeParagraphExtended,
+} from "./workshop-implementation";
 
 // ============================================================================
 // TIPOS PARA IMPLEMENTACIÓN Y LOADERS
@@ -135,6 +167,28 @@ export type {
   EmptyAnswerChecker,
   ProgressCalculator,
   FeedbackFormatter,
+
+  // Tipos específicos de werden
+  WerdenExerciseAdapter,
+  WerdenWarmupAdapter,
+  WerdenCentralAdapter,
+  WerdenValidator,
+  WerdenExerciseProps,
+  WerdenWarmupProps,
+  WerdenCentralProps,
+  WerdenNarrativeProps,
+  UseWerdenExercisesConfig,
+  UseWerdenExercisesReturn,
+  WerdenExerciseConfig,
+  WerdenFeedbackHandler,
+  WerdenHintHandler,
+  WerdenFeedbackHandlerFactory,
+  WerdenHintHandlerFactory,
+  WerdenAnswerNormalizer,
+  WerdenEmptyAnswerChecker,
+  WerdenProgressCalculator,
+  WerdenFeedbackFormatter,
+  WerdenContextualHintGenerator,
 } from "./workshop-implementation";
 
 // ============================================================================
@@ -196,22 +250,40 @@ export type {
   AdjectiveExercise as AdjectiveExerciseType,
   PrepositionTemporalExercise as PrepositionTemporalExerciseType,
   AnyExercise as AnyExerciseType,
+} from "./workshop-variants";
 
+export type {
+  WerdenExercise as WerdenExerciseType,
+  WarmupExercise as WarmupExerciseType,
+  CentralExercise as CentralExerciseType,
+} from "./werden";
+
+export type {
   // Tipos de contextos más usados
   AdjectiveExerciseContext as AdjectiveContextType,
   PrepositionTemporalContext as PrepositionTemporalContextType,
   AnyExerciseContext as AnyContextType,
+} from "./workshop-variants";
 
+export type { WerdenContext as WerdenContextType } from "./werden";
+
+export type {
   // Tipos de variantes más usados
   AdjectiveWorkshopVariant as AdjectiveVariantType,
   PrepositionTemporalWorkshopVariant as PrepositionTemporalVariantType,
   AnyWorkshopVariant as AnyVariantType,
+} from "./workshop-variants";
 
+export type { WerdenWorkshopVariant as WerdenVariantType } from "./workshop-implementation";
+
+export type {
   // Tipos de validación más usados
   AdjectiveValidationResult as AdjectiveValidationType,
   PrepositionTemporalValidationResult as PrepositionTemporalValidationType,
   AnyValidationResult as AnyValidationType,
 } from "./workshop-variants";
+
+export type { WerdenValidationResult as WerdenValidationType } from "./werden";
 
 // ============================================================================
 // CONSTANTES DE TIPOS PARA USO EN RUNTIME
@@ -224,6 +296,31 @@ export const WORKSHOP_IDS = [
   "adjetivo",
   "preposiciones-temporales",
   "werden",
+] as const;
+
+/**
+ * Funciones de werden disponibles
+ */
+export const WERDEN_FUNCTIONS = ["verbo-pleno", "futuro", "pasiva"] as const;
+
+/**
+ * Tiempos verbales disponibles
+ */
+export const TENSES = ["prasens", "perfekt", "futur"] as const;
+
+/**
+ * Pronombres personales alemanes
+ */
+export const PRONOUNS = [
+  "ich",
+  "du",
+  "er",
+  "sie",
+  "es",
+  "wir",
+  "ihr",
+  "sie-formal",
+  "sie-plural",
 ] as const;
 
 /**
@@ -298,6 +395,22 @@ export const TIME_UNITS = [
 // UTILIDADES DE TIPOS
 // ============================================================================
 
+// Importar tipos necesarios para las utilidades
+import type {
+  AnyWorkshopVariant,
+  AdjectiveWorkshopVariant,
+  AdjectiveExercise,
+  PrepositionTemporalWorkshopVariant,
+  PrepositionTemporalExercise,
+  AdjectiveExerciseContext,
+  PrepositionTemporalContext,
+  AdjectiveValidationResult,
+  PrepositionTemporalValidationResult,
+  WorkshopId,
+} from "./workshop-variants";
+
+import type { WerdenWorkshopVariant } from "./workshop-implementation";
+
 /**
  * Extrae el tipo de ejercicio de una variante
  */
@@ -334,7 +447,7 @@ export type ExtractValidationType<T extends AnyWorkshopVariant> =
 export interface WorkshopIdToVariantMap {
   adjetivo: AdjectiveWorkshopVariant;
   "preposiciones-temporales": PrepositionTemporalWorkshopVariant;
-  werden: never; // TODO: Implementar cuando esté disponible
+  werden: WerdenWorkshopVariant;
 }
 
 /**
