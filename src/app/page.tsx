@@ -31,6 +31,13 @@ export default function Home() {
       href: "/workshops/preposiciones-temporales",
       status: "available",
     },
+    {
+      id: "preposiciones-recorrido-orientacion",
+      title: "🗺️ Taller de Preposiciones de Recorrido y Orientación",
+      description: "Nivel A2.2 | Orientación en la ciudad y itinerarios",
+      href: "/workshops/preposiciones-recorrido-orientacion",
+      status: "available",
+    },
   ];
 
   return (

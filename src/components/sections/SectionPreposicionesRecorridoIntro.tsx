@@ -13,22 +13,24 @@ import { Progress } from "@/components/ui/progress";
 import { useSectionState } from "@/hooks/useSectionState";
 import { useVariant } from "@/hooks/useVariant";
 import {
-  validatePreposicionTemporal,
-  generatePreposicionHint,
-  getPreposicionAnswer,
-} from "@/lib/preposiciones-rules";
-import type { PreposicionTemporalExercise } from "@/types/preposiciones-temporales";
+  validatePreposicionRecorrido,
+  generatePreposicionRecorridoHint,
+  getPreposicionRecorridoAnswer,
+} from "@/lib/preposiciones-recorrido-rules";
+import type { PreposicionRecorridoExercise } from "@/types/preposiciones-recorrido-orientacion";
 import {
   showCorrectAnswer,
   showIncorrectAnswer,
   showHintToast,
 } from "@/lib/toast-service";
-import { getPreposicionesTemporalesWarmupAsync } from "@/lib/workshop-loader";
+import { getPreposicionesRecorridoWarmupAsync } from "@/lib/workshop-loader";
 import { useState, useEffect } from "react";
 
-export function SectionPreposicionesIntro() {
+export function SectionPreposicionesRecorridoIntro() {
   const { currentVariant } = useVariant();
-  const [exercises, setExercises] = useState<PreposicionTemporalExercise[]>([]);
+  const [exercises, setExercises] = useState<PreposicionRecorridoExercise[]>(
+    []
+  );
   const [loading, setLoading] = useState(true);
 
   // Load exercises based on current variant
@@ -36,16 +38,16 @@ export function SectionPreposicionesIntro() {
     const loadExercises = async () => {
       setLoading(true);
       try {
-        const data = await getPreposicionesTemporalesWarmupAsync(
-          "preposiciones-temporales",
+        const data = await getPreposicionesRecorridoWarmupAsync(
+          "preposiciones-recorrido-orientacion",
           currentVariant
         );
         setExercises(data);
       } catch (error) {
         console.error("Failed to load exercises:", error);
         // Fallback to variant 1
-        const data = await getPreposicionesTemporalesWarmupAsync(
-          "preposiciones-temporales",
+        const data = await getPreposicionesRecorridoWarmupAsync(
+          "preposiciones-recorrido-orientacion",
           1
         );
         setExercises(data);
@@ -63,7 +65,7 @@ export function SectionPreposicionesIntro() {
     recordAnswer,
     recordHintUsed,
     resetSection,
-  } = useSectionState("preposiciones-warmup", exercises.length);
+  } = useSectionState("preposiciones-recorrido-warmup", exercises.length);
 
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [attempts, setAttempts] = useState<Record<string, number>>({});
@@ -80,9 +82,9 @@ export function SectionPreposicionesIntro() {
     return () => window.removeEventListener("resetAllSections", handleReset);
   }, [resetSection]);
 
-  const handleSubmit = (exercise: PreposicionTemporalExercise) => {
+  const handleSubmit = (exercise: PreposicionRecorridoExercise) => {
     const answer = answers[exercise.id] || "";
-    const result = validatePreposicionTemporal(answer, exercise.context);
+    const result = validatePreposicionRecorrido(answer, exercise.context);
     const currentAttempts = attempts[exercise.id] || 0;
 
     recordAnswer(exercise.id, answer, result.isCorrect, 0);
@@ -99,8 +101,8 @@ export function SectionPreposicionesIntro() {
     }
   };
 
-  const handleHint = (exercise: PreposicionTemporalExercise) => {
-    const hint = generatePreposicionHint(exercise.context);
+  const handleHint = (exercise: PreposicionRecorridoExercise) => {
+    const hint = generatePreposicionRecorridoHint(exercise.context);
     recordHintUsed();
     showHintToast(hint);
   };
@@ -109,11 +111,10 @@ export function SectionPreposicionesIntro() {
     <Card>
       <CardHeader>
         <CardTitle>
-          🎯 I. Repaso & Diagnóstico: Preposiciones Temporales
+          🎯 I. Repaso & Diagnóstico: Preposiciones de Recorrido y Orientación
         </CardTitle>
         <CardDescription>
-          Identifica las preposiciones temporales correctas en diferentes
-          contextos
+          Identifica las preposiciones de recorrido y orientación correctas
         </CardDescription>
         <Progress value={progress.score} className="mt-4" />
         <div className="flex justify-between text-sm text-muted-foreground mt-2">
@@ -134,60 +135,51 @@ export function SectionPreposicionesIntro() {
             {/* Demostración */}
             <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
               <h3 className="font-semibold text-lg mb-3 text-blue-900 dark:text-blue-100">
-                📚 Guía rápida: Preposiciones temporales
+                📚 Guía rápida: Preposiciones de Recorrido y Orientación
               </h3>
               <div className="space-y-3 text-sm">
-                <p>
-                  <strong>um:</strong> Para horas específicas
-                  <br />
-                  <span className="text-muted-foreground">
-                    → &quot;um 8 Uhr&quot; (a las 8)
-                  </span>
-                </p>
-                <p>
-                  <strong>am:</strong> Para días, momentos del día, fechas
-                  <br />
-                  <span className="text-muted-foreground">
-                    → &quot;am Montag&quot; (el lunes), &quot;am Morgen&quot;
-                    (por la mañana)
-                  </span>
-                </p>
-                <p>
-                  <strong>im:</strong> Para meses y estaciones
-                  <br />
-                  <span className="text-muted-foreground">
-                    → &quot;im Mai&quot; (en mayo), &quot;im Sommer&quot; (en
-                    verano)
-                  </span>
-                </p>
-                <p>
-                  <strong>seit:</strong> Para duración desde el pasado
-                  <br />
-                  <span className="text-muted-foreground">
-                    → &quot;seit drei Jahren&quot; (desde hace tres años)
-                  </span>
-                </p>
-                <p>
-                  <strong>nach:</strong> Para secuencia temporal
-                  <br />
-                  <span className="text-muted-foreground">
-                    → &quot;nach dem Unterricht&quot; (después de la clase)
-                  </span>
-                </p>
-                <p>
-                  <strong>bis:</strong> Para límite temporal
-                  <br />
-                  <span className="text-muted-foreground">
-                    → &quot;bis Freitag&quot; (hasta el viernes)
-                  </span>
-                </p>
-                <p>
-                  <strong>von... bis:</strong> Para período completo
-                  <br />
-                  <span className="text-muted-foreground">
-                    → &quot;von 9 bis 17 Uhr&quot; (de 9 a 17 horas)
-                  </span>
-                </p>
+                <div>
+                  <strong>Preposiciones de Recorrido (Acusativo):</strong>
+                  <p>
+                    <strong>durch:</strong> A través de
+                    <br />
+                    <span className="text-muted-foreground">
+                      → &quot;durch den Park&quot; (a través del parque)
+                    </span>
+                  </p>
+                  <p>
+                    <strong>um:</strong> Alrededor de
+                    <br />
+                    <span className="text-muted-foreground">
+                      → &quot;um die Stadt&quot; (alrededor de la ciudad)
+                    </span>
+                  </p>
+                </div>
+                <div>
+                  <strong>Indicaciones Locales Específicas (Dativo):</strong>
+                  <p>
+                    <strong>am...vorbei:</strong> Pasar junto a
+                    <br />
+                    <span className="text-muted-foreground">
+                      → &quot;an der Kirche vorbei&quot; (pasar junto a la
+                      iglesia)
+                    </span>
+                  </p>
+                  <p>
+                    <strong>bis zu:</strong> Hasta
+                    <br />
+                    <span className="text-muted-foreground">
+                      → &quot;bis zum Bahnhof&quot; (hasta la estación)
+                    </span>
+                  </p>
+                  <p>
+                    <strong>gegenüber von:</strong> Enfrente de
+                    <br />
+                    <span className="text-muted-foreground">
+                      → &quot;gegenüber von der Post&quot; (enfrente del correo)
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -209,7 +201,7 @@ export function SectionPreposicionesIntro() {
                       htmlFor={exercise.id}
                       className="text-sm font-medium"
                     >
-                      Preposición temporal:
+                      Preposición + artículo:
                     </label>
                     {(() => {
                       const correct = !!userAnswers.find(
@@ -225,8 +217,8 @@ export function SectionPreposicionesIntro() {
                           <Input
                             id={exercise.id}
                             type="text"
-                            maxLength={10}
-                            className="w-32"
+                            maxLength={20}
+                            className="w-40"
                             value={answers[exercise.id] || ""}
                             onChange={(e) =>
                               setAnswers((prev) => ({
@@ -285,7 +277,9 @@ export function SectionPreposicionesIntro() {
                       onClick={() =>
                         setAnswers((prev) => ({
                           ...prev,
-                          [exercise.id]: getPreposicionAnswer(exercise.context),
+                          [exercise.id]: getPreposicionRecorridoAnswer(
+                            exercise.context
+                          ),
                         }))
                       }
                       className="w-full md:w-auto"
@@ -329,7 +323,8 @@ export function SectionPreposicionesIntro() {
                   ¡Repaso completado con {progress.score}%!
                 </p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Has refrescado las preposiciones temporales básicas.
+                  Has refrescado las preposiciones de recorrido y orientación
+                  básicas.
                 </p>
               </div>
             )}

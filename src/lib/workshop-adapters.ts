@@ -25,6 +25,11 @@ import type {
   PreposicionTemporalParagraph,
   PreposicionTemporalCloze,
 } from "@/types/preposiciones-temporales";
+import type {
+  PreposicionRecorridoExercise,
+  PreposicionRecorridoParagraph,
+  PreposicionRecorridoCloze,
+} from "@/types/preposiciones-recorrido-orientacion";
 
 /**
  * Adaptador para ejercicios de adjetivos (CentralScenario)
@@ -232,11 +237,63 @@ export function createBaseContext(
 }
 
 /**
+ * Adaptador para ejercicios de preposiciones de recorrido y orientación
+ */
+export function adaptPreposicionesRecorridoExerciseToBase(
+  exercise: PreposicionRecorridoExercise
+): BaseExercise {
+  return {
+    id: exercise.id,
+    sentence: exercise.sentence,
+    expectedAnswer: exercise.expectedAnswer,
+    context: {
+      explanation: exercise.context.explanation,
+      preposition: exercise.context.preposition,
+      case: exercise.context.case,
+      type: exercise.context.type,
+      gender: exercise.context.gender,
+    } as BaseContext,
+  };
+}
+
+/**
+ * Adaptador para párrafos de preposiciones de recorrido y orientación
+ */
+export function adaptPreposicionesRecorridoParagraphToBase(
+  paragraph: PreposicionRecorridoParagraph
+): BaseParagraph {
+  return {
+    id: paragraph.id,
+    text: paragraph.germanText,
+    clozes: paragraph.clozes.map(adaptPreposicionesRecorridoClozeToBase),
+  };
+}
+
+/**
+ * Adaptador para clozes de preposiciones de recorrido y orientación
+ */
+export function adaptPreposicionesRecorridoClozeToBase(
+  cloze: PreposicionRecorridoCloze
+): BaseCloze {
+  return {
+    id: cloze.id,
+    expectedAnswer: cloze.expectedAnswer,
+    context: {
+      explanation: cloze.context.explanation,
+      preposition: cloze.context.preposition,
+      case: cloze.context.case,
+      type: cloze.context.type,
+      gender: cloze.context.gender,
+    } as BaseContext,
+  };
+}
+
+/**
  * Función helper para determinar el tipo de ejercicio desde el contexto
  */
 export function getExerciseType(baseContext: BaseContext): string {
-  if (baseContext.type) return baseContext.type; // adjetivos
-  if (baseContext.function) return baseContext.function; // werden
+  if (baseContext.type) return baseContext.type as string; // adjetivos
+  if (baseContext.function) return baseContext.function as string; // werden
   if (baseContext.preposition) return "preposition"; // preposiciones
   return "unknown";
 }
@@ -245,7 +302,7 @@ export function getExerciseType(baseContext: BaseContext): string {
  * Función helper para obtener la respuesta esperada desde el contexto
  */
 export function getExpectedAnswerFromContext(baseContext: BaseContext): string {
-  if (baseContext.preposition) return baseContext.preposition; // preposiciones
-  if (baseContext.expectedAnswer) return baseContext.expectedAnswer; // werden
+  if (baseContext.preposition) return baseContext.preposition as string; // preposiciones
+  if (baseContext.expectedAnswer) return baseContext.expectedAnswer as string; // werden
   return ""; // adjetivos - se calcula dinámicamente
 }

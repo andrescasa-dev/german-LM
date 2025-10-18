@@ -13,6 +13,11 @@ import type {
   PreposicionTemporalParagraph,
   PreposicionTemporalWorkshop,
 } from "@/types/preposiciones-temporales";
+import type {
+  PreposicionRecorridoExercise,
+  PreposicionRecorridoParagraph,
+  PreposicionRecorridoWorkshop,
+} from "@/types/preposiciones-recorrido-orientacion";
 
 /**
  * Definición de un taller en el registry
@@ -49,6 +54,13 @@ const WORKSHOP_REGISTRY: Record<string, WorkshopDefinition> = {
     loaderFn: loadPreposicionesTemporalesVariant,
     vocabularyLoaderFn: loadPreposicionesVocabularyVariant,
   },
+  "preposiciones-recorrido-orientacion": {
+    id: "preposiciones-recorrido-orientacion",
+    hasVariants: true,
+    variantCount: 1,
+    loaderFn: loadPreposicionesRecorridoVariant,
+    vocabularyLoaderFn: loadPreposicionesRecorridoVocabularyVariant,
+  },
 };
 
 export type WorkshopExercises =
@@ -60,7 +72,8 @@ export type WorkshopExercises =
         narrative: AdjectiveNarrativeParagraph[];
       };
     }
-  | PreposicionTemporalWorkshop;
+  | PreposicionTemporalWorkshop
+  | PreposicionRecorridoWorkshop;
 
 // Dynamic import function for adjective variants
 async function loadAdjectiveVariant(variant: number = 1) {
@@ -94,6 +107,26 @@ async function loadPreposicionesTemporalesVariant(variant: number = 1) {
     // Fallback to variant 1
     const variantModule = await import(
       `@/data/workshops/preposiciones-temporales/variant-1.json`
+    );
+    return variantModule.default;
+  }
+}
+
+// Dynamic import function for preposiciones recorrido variants
+async function loadPreposicionesRecorridoVariant(variant: number = 1) {
+  try {
+    const variantModule = await import(
+      `@/data/workshops/preposiciones-recorrido-orientacion/variant-${variant}.json`
+    );
+    return variantModule.default;
+  } catch (error) {
+    console.error(
+      `Failed to load preposiciones recorrido variant ${variant}:`,
+      error
+    );
+    // Fallback to variant 1
+    const variantModule = await import(
+      `@/data/workshops/preposiciones-recorrido-orientacion/variant-1.json`
     );
     return variantModule.default;
   }
@@ -239,6 +272,34 @@ export async function getPreposicionesTemporalesNarrativeAsync(
   return exercises.sections.narrative as PreposicionTemporalParagraph[];
 }
 
+// Helper functions for preposiciones recorrido workshop
+export async function getPreposicionesRecorridoWarmupAsync(
+  workshopId: string,
+  variant?: number
+): Promise<PreposicionRecorridoExercise[]> {
+  const exercises = await loadWorkshopExercises(workshopId, variant);
+  if ("warmup" in exercises.sections) {
+    return exercises.sections.warmup as PreposicionRecorridoExercise[];
+  }
+  return [];
+}
+
+export async function getPreposicionesRecorridoCentralAsync(
+  workshopId: string,
+  variant?: number
+): Promise<PreposicionRecorridoExercise[]> {
+  const exercises = await loadWorkshopExercises(workshopId, variant);
+  return exercises.sections.central as PreposicionRecorridoExercise[];
+}
+
+export async function getPreposicionesRecorridoNarrativeAsync(
+  workshopId: string,
+  variant?: number
+): Promise<PreposicionRecorridoParagraph[]> {
+  const exercises = await loadWorkshopExercises(workshopId, variant);
+  return exercises.sections.narrative as PreposicionRecorridoParagraph[];
+}
+
 // Helper para obtener un ejercicio específico por ID
 export function getExerciseById(
   workshopId: string,
@@ -321,6 +382,28 @@ async function loadPreposicionesVocabularyVariant(variant: number = 1) {
   } catch (error) {
     console.error(
       `Failed to load preposiciones vocabulary variant ${variant}:`,
+      error
+    );
+    // Fallback to general vocabulary
+    const generalModule = await import(
+      `@/data/workshops/legacy_vocabulary.json`
+    );
+    return generalModule.default;
+  }
+}
+
+// Dynamic import function for preposiciones recorrido vocabulary variants
+async function loadPreposicionesRecorridoVocabularyVariant(
+  variant: number = 1
+) {
+  try {
+    const variantModule = await import(
+      `@/data/workshops/preposiciones-recorrido-orientacion/variant-${variant}-vocabulary.json`
+    );
+    return variantModule.default;
+  } catch (error) {
+    console.error(
+      `Failed to load preposiciones recorrido vocabulary variant ${variant}:`,
       error
     );
     // Fallback to general vocabulary

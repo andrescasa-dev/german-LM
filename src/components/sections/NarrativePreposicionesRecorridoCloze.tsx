@@ -14,24 +14,24 @@ import { Progress } from "@/components/ui/progress";
 import { useSectionState } from "@/hooks/useSectionState";
 import { useVariant } from "@/hooks/useVariant";
 import {
-  validatePreposicionTemporal,
-  generatePreposicionHint,
-  getPreposicionAnswer,
-} from "@/lib/preposiciones-rules";
+  validatePreposicionRecorrido,
+  generatePreposicionRecorridoHint,
+  getPreposicionRecorridoAnswer,
+} from "@/lib/preposiciones-recorrido-rules";
 import type {
-  PreposicionTemporalParagraph,
-  PreposicionTemporalCloze,
-} from "@/types/preposiciones-temporales";
+  PreposicionRecorridoParagraph,
+  PreposicionRecorridoCloze,
+} from "@/types/preposiciones-recorrido-orientacion";
 import {
   showCorrectAnswer,
   showIncorrectAnswer,
   showHintToast,
 } from "@/lib/toast-service";
-import { getPreposicionesTemporalesNarrativeAsync } from "@/lib/workshop-loader";
+import { getPreposicionesRecorridoNarrativeAsync } from "@/lib/workshop-loader";
 
-export function NarrativePreposicionesCloze() {
+export function NarrativePreposicionesRecorridoCloze() {
   const { currentVariant } = useVariant();
-  const [paragraphs, setParagraphs] = useState<PreposicionTemporalParagraph[]>(
+  const [paragraphs, setParagraphs] = useState<PreposicionRecorridoParagraph[]>(
     []
   );
   const [loading, setLoading] = useState(true);
@@ -41,16 +41,16 @@ export function NarrativePreposicionesCloze() {
     const loadParagraphs = async () => {
       setLoading(true);
       try {
-        const data = await getPreposicionesTemporalesNarrativeAsync(
-          "preposiciones-temporales",
+        const data = await getPreposicionesRecorridoNarrativeAsync(
+          "preposiciones-recorrido-orientacion",
           currentVariant
         );
         setParagraphs(data);
       } catch (error) {
         console.error("Failed to load paragraphs:", error);
         // Fallback to variant 1
-        const data = await getPreposicionesTemporalesNarrativeAsync(
-          "preposiciones-temporales",
+        const data = await getPreposicionesRecorridoNarrativeAsync(
+          "preposiciones-recorrido-orientacion",
           1
         );
         setParagraphs(data);
@@ -73,7 +73,7 @@ export function NarrativePreposicionesCloze() {
     recordAnswer,
     recordHintUsed,
     resetSection,
-  } = useSectionState("preposiciones-narrative", totalClozes);
+  } = useSectionState("preposiciones-recorrido-narrative", totalClozes);
 
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [attempts, setAttempts] = useState<Record<string, number>>({});
@@ -90,9 +90,9 @@ export function NarrativePreposicionesCloze() {
     return () => window.removeEventListener("resetAllSections", handleReset);
   }, [resetSection]);
 
-  const handleSubmit = (cloze: PreposicionTemporalCloze) => {
+  const handleSubmit = (cloze: PreposicionRecorridoCloze) => {
     const answer = answers[cloze.id] || "";
-    const result = validatePreposicionTemporal(answer, cloze.context);
+    const result = validatePreposicionRecorrido(answer, cloze.context);
     const currentAttempts = attempts[cloze.id] || 0;
 
     recordAnswer(cloze.id, answer, result.isCorrect, 0);
@@ -109,13 +109,13 @@ export function NarrativePreposicionesCloze() {
     }
   };
 
-  const handleHint = (cloze: PreposicionTemporalCloze) => {
-    const hint = generatePreposicionHint(cloze.context);
+  const handleHint = (cloze: PreposicionRecorridoCloze) => {
+    const hint = generatePreposicionRecorridoHint(cloze.context);
     recordHintUsed();
     showHintToast(hint);
   };
 
-  const renderTextWithClozes = (paragraph: PreposicionTemporalParagraph) => {
+  const renderTextWithClozes = (paragraph: PreposicionRecorridoParagraph) => {
     let text = paragraph.germanText;
     const clozeElements: JSX.Element[] = [];
 
@@ -133,8 +133,8 @@ export function NarrativePreposicionesCloze() {
         <span key={cloze.id} className="inline-flex items-center gap-1">
           <Input
             type="text"
-            maxLength={10}
-            className="w-20 h-8 text-sm inline-block"
+            maxLength={20}
+            className="w-24 h-8 text-sm inline-block"
             value={answers[cloze.id] || ""}
             onChange={(e) =>
               setAnswers((prev) => ({
@@ -143,7 +143,7 @@ export function NarrativePreposicionesCloze() {
               }))
             }
             disabled={correct}
-            aria-label={`Preposición temporal ${index + 1}`}
+            aria-label={`Preposición de recorrido ${index + 1}`}
           />
           {correct && (
             <span
@@ -193,9 +193,12 @@ export function NarrativePreposicionesCloze() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>📖 III. Relato Contextualizado: Un día típico</CardTitle>
+        <CardTitle>
+          📖 III. Relato Contextualizado: Itinerarios y Orientación
+        </CardTitle>
         <CardDescription>
-          Completa el relato con las preposiciones temporales correctas
+          Completa el relato con las preposiciones de recorrido y orientación
+          correctas
         </CardDescription>
         <Progress value={progress.score} className="mt-4" />
         <div className="flex justify-between text-sm text-muted-foreground mt-2">
@@ -238,7 +241,8 @@ export function NarrativePreposicionesCloze() {
                             Espacio {clozeIndex + 1}:
                           </span>
                           <span className="text-xs text-muted-foreground">
-                            {cloze.context.timeUnit} | {cloze.context.case}
+                            {cloze.context.type} | {cloze.context.case} |{" "}
+                            {cloze.context.gender}
                           </span>
                         </div>
 
@@ -276,7 +280,9 @@ export function NarrativePreposicionesCloze() {
                             onClick={() =>
                               setAnswers((prev) => ({
                                 ...prev,
-                                [cloze.id]: getPreposicionAnswer(cloze.context),
+                                [cloze.id]: getPreposicionRecorridoAnswer(
+                                  cloze.context
+                                ),
                               }))
                             }
                             className="w-full md:w-auto"
@@ -323,8 +329,8 @@ export function NarrativePreposicionesCloze() {
                   ¡Relato completado con {progress.score}%!
                 </p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Has aplicado las preposiciones temporales en contexto
-                  narrativo.
+                  Has aplicado las preposiciones de recorrido y orientación en
+                  contexto narrativo.
                 </p>
               </div>
             )}

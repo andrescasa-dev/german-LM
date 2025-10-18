@@ -1,0 +1,270 @@
+{
+  "workshopId": "preposiciones-recorrido-orientacion",
+  "sections": {
+    "warmup": [
+      {
+        "id": "warm-1",
+        "sentence": "Wir laufen ____ (Tunnel, masculino).",
+        "expectedAnswer": "durch den",
+        "context": {
+          "preposition": "durch",
+          "case": "acusativo",
+          "type": "recorrido",
+          "gender": "masculino",
+          "explanation": "'Durch' rige Acusativo. Masculino: den"
+        }
+      },
+      {
+        "id": "warm-2",
+        "sentence": "Sie geht ____ (Stadt, femenino).",
+        "expectedAnswer": "um die",
+        "context": {
+          "preposition": "um",
+          "case": "acusativo",
+          "type": "recorrido",
+          "gender": "femenino",
+          "explanation": "'Um' rige Acusativo. Femenino: die"
+        }
+      },
+      {
+        "id": "warm-3",
+        "sentence": "Das Licht scheint ____ (das Fenster, neutro).",
+        "expectedAnswer": "durch das",
+        "context": {
+          "preposition": "durch",
+          "case": "acusativo",
+          "type": "recorrido",
+          "gender": "neutro",
+          "explanation": "'Durch' rige Acusativo. Neutro: das"
+        }
+      },
+      {
+        "id": "warm-4",
+        "sentence": "Wir spazieren ____ (der See, masculino).",
+        "expectedAnswer": "um den",
+        "context": {
+          "preposition": "um",
+          "case": "acusativo",
+          "type": "recorrido",
+          "gender": "masculino",
+          "explanation": "'Um' rige Acusativo. Masculino: den"
+        }
+      }
+    ],
+    "central": [
+      {
+        "id": "practice-1",
+        "sentence": "Er fährt ____ (der Park, masculino).",
+        "expectedAnswer": "durch den",
+        "context": {
+          "preposition": "durch",
+          "case": "acusativo",
+          "type": "recorrido",
+          "gender": "masculino",
+          "explanation": "'Durch' siempre rige Acusativo. Masculino: den"
+        }
+      },
+      {
+        "id": "practice-2",
+        "sentence": "Sie müssen ____ (die Post) vorbei gehen.",
+        "expectedAnswer": "an der",
+        "context": {
+          "preposition": "an",
+          "case": "dativo",
+          "type": "local-especifico",
+          "gender": "femenino",
+          "explanation": "'Am...vorbei' rige Dativo. Femenino: der"
+        }
+      },
+      {
+        "id": "practice-3",
+        "sentence": "Fahren Sie geradeaus ____ (der Bahnhof).",
+        "expectedAnswer": "bis zum",
+        "context": {
+          "preposition": "bis zu",
+          "case": "dativo",
+          "type": "local-especifico",
+          "gender": "masculino",
+          "explanation": "'Bis zu' rige Dativo. Masculino: dem → zum"
+        }
+      },
+      {
+        "id": "practice-4",
+        "sentence": "Das Hotel befindet sich ____ (die Polizei).",
+        "expectedAnswer": "gegenüber von der",
+        "context": {
+          "preposition": "gegenüber von",
+          "case": "dativo",
+          "type": "local-especifico",
+          "gender": "femenino",
+          "explanation": "'Gegenüber von' rige Dativo. Femenino: der"
+        }
+      },
+      {
+        "id": "practice-5",
+        "sentence": "Wir treffen uns ____ (der Supermarkt, masculino).",
+        "expectedAnswer": "gegenüber vom",
+        "context": {
+          "preposition": "gegenüber von",
+          "case": "dativo",
+          "type": "local-especifico",
+          "gender": "masculino",
+          "explanation": "'Gegenüber von' rige Dativo. Masculino: dem → vom"
+        }
+      },
+      {
+        "id": "practice-6",
+        "sentence": "Der Bus fährt ____ (die Brücke, femenino).",
+        "expectedAnswer": "durch die",
+        "context": {
+          "preposition": "durch",
+          "case": "acusativo",
+          "type": "recorrido",
+          "gender": "femenino",
+          "explanation": "'Durch' rige Acusativo. Femenino: die"
+        }
+      }
+    ],
+    "narrative": [
+      {
+        "id": "para-1",
+        "germanText": "Zuerst gehen Sie {0} (der Platz, masculino). Danach gehen Sie {1} (die Kirche, femenino) vorbei. Laufen Sie weiter {2} (die Ampel, femenino). Das Kino liegt {3} (die Apotheke, femenino).",
+        "clozes": [
+          {
+            "id": "cloze-1",
+            "expectedAnswer": "durch den",
+            "context": {
+              "preposition": "durch",
+              "case": "acusativo",
+              "type": "recorrido",
+              "gender": "masculino",
+              "explanation": "'Durch' rige Acusativo. Masculino: den"
+            }
+          },
+          {
+            "id": "cloze-2",
+            "expectedAnswer": "an der",
+            "context": {
+              "preposition": "an",
+              "case": "dativo",
+              "type": "local-especifico",
+              "gender": "femenino",
+              "explanation": "'Am...vorbei' rige Dativo. Femenino: der"
+            }
+          },
+          {
+            "id": "cloze-3",
+            "expectedAnswer": "bis zur",
+            "context": {
+              "preposition": "bis zu",
+              "case": "dativo",
+              "type": "local-especifico",
+              "gender": "femenino",
+              "explanation": "'Bis zu' rige Dativo. Femenino: der → zur"
+            }
+          },
+          {
+            "id": "cloze-4",
+            "expectedAnswer": "gegenüber von der",
+            "context": {
+              "preposition": "gegenüber von",
+              "case": "dativo",
+              "type": "local-especifico",
+              "gender": "femenino",
+              "explanation": "'Gegenüber von' rige Dativo. Femenino: der"
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-2",
+        "germanText": "Der Weg zum Bahnhof ist einfach. Gehen Sie {0} (der Park, masculino) und dann {1} (das Rathaus, neutro) vorbei. Der Bahnhof ist {2} (die Bibliothek, femenino).",
+        "clozes": [
+          {
+            "id": "cloze-5",
+            "expectedAnswer": "durch den",
+            "context": {
+              "preposition": "durch",
+              "case": "acusativo",
+              "type": "recorrido",
+              "gender": "masculino",
+              "explanation": "'Durch' rige Acusativo. Masculino: den"
+            }
+          },
+          {
+            "id": "cloze-6",
+            "expectedAnswer": "am",
+            "context": {
+              "preposition": "am",
+              "case": "dativo",
+              "type": "local-especifico",
+              "gender": "neutro",
+              "explanation": "'Am...vorbei' rige Dativo. Neutro: dem → am"
+            }
+          },
+          {
+            "id": "cloze-7",
+            "expectedAnswer": "gegenüber von der",
+            "context": {
+              "preposition": "gegenüber von",
+              "case": "dativo",
+              "type": "local-especifico",
+              "gender": "femenino",
+              "explanation": "'Gegenüber von' rige Dativo. Femenino: der"
+            }
+          }
+        ]
+      },
+      {
+        "id": "para-3",
+        "germanText": "Für den Spaziergang gehen wir {0} (der Wald, masculino) und {1} (der See, masculino). Wir treffen uns {2} (die Brücke, femenino) und gehen dann {3} (das Museum, neutro) vorbei.",
+        "clozes": [
+          {
+            "id": "cloze-8",
+            "expectedAnswer": "durch den",
+            "context": {
+              "preposition": "durch",
+              "case": "acusativo",
+              "type": "recorrido",
+              "gender": "masculino",
+              "explanation": "'Durch' rige Acusativo. Masculino: den"
+            }
+          },
+          {
+            "id": "cloze-9",
+            "expectedAnswer": "um den",
+            "context": {
+              "preposition": "um",
+              "case": "acusativo",
+              "type": "recorrido",
+              "gender": "masculino",
+              "explanation": "'Um' rige Acusativo. Masculino: den"
+            }
+          },
+          {
+            "id": "cloze-10",
+            "expectedAnswer": "an der",
+            "context": {
+              "preposition": "an",
+              "case": "dativo",
+              "type": "local-especifico",
+              "gender": "femenino",
+              "explanation": "'Am...vorbei' rige Dativo. Femenino: der"
+            }
+          },
+          {
+            "id": "cloze-11",
+            "expectedAnswer": "am",
+            "context": {
+              "preposition": "am",
+              "case": "dativo",
+              "type": "local-especifico",
+              "gender": "neutro",
+              "explanation": "'Am...vorbei' rige Dativo. Neutro: dem → am"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
